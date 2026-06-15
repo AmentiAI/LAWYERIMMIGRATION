@@ -4,6 +4,7 @@ import { CheckCircle2, Award, Globe, Users } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { CTASection } from "@/components/CTASection";
+import { mysticImages } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -46,8 +47,8 @@ export default function AboutPage() {
             <FadeIn delay={0.2}>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
-                  alt="Modern law office interior"
+                  src={mysticImages.basculeBridge.src}
+                  alt={mysticImages.basculeBridge.alt}
                   fill
                   className="object-cover"
                 />
@@ -153,8 +154,8 @@ export default function AboutPage() {
             <FadeIn delay={0.2}>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80"
-                  alt="Mystic, Connecticut"
+                  src={mysticImages.downtownWinter.src}
+                  alt={mysticImages.downtownWinter.alt}
                   fill
                   className="object-cover"
                 />

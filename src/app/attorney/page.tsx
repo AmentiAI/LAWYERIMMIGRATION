@@ -4,6 +4,7 @@ import { GraduationCap, Languages, Award, BookOpen } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { CTASection } from "@/components/CTASection";
+import { mysticImages } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Attorney Jacquelyn R Goncalves",
@@ -27,8 +28,8 @@ export default function AttorneyPage() {
               <div className="sticky top-32">
                 <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
                   <Image
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80"
-                    alt="Attorney Jacquelyn R Goncalves"
+                    src={mysticImages.downtownRiver.src}
+                    alt="Downtown Mystic, Connecticut — home of the Law Office of Jacquelyn R Goncalves LLC"
                     fill
                     className="object-cover"
                   />

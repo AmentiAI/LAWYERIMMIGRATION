@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { siteConfig, navLinks, practiceAreas } from "@/lib/constants";
+import { mysticImages } from "@/lib/images";
 
 export function Footer() {
   return (
@@ -107,6 +108,18 @@ export function Footer() {
             until a signed engagement agreement is in place.
           </p>
         </div>
+        <p className="pb-8 text-xs text-white/25 text-center">
+          Photos of Mystic, Connecticut via{" "}
+          <a
+            href="https://commons.wikimedia.org/wiki/Category:Mystic,_Connecticut"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-white/40 transition-colors"
+          >
+            Wikimedia Commons
+          </a>
+          . Credits: {mysticImages.hero.credit}, {mysticImages.marina.credit}.
+        </p>
       </div>
     </footer>
   );

@@ -22,6 +22,7 @@ import {
   testimonials,
   stats,
 } from "@/lib/constants";
+import { mysticImages } from "@/lib/images";
 
 const iconMap = {
   Heart,
@@ -39,8 +40,8 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1920&q=80"
-            alt="Historic Mystic, Connecticut waterfront"
+            src={mysticImages.hero.src}
+            alt={mysticImages.hero.alt}
             fill
             className="object-cover"
             priority
@@ -106,8 +107,8 @@ export default function HomePage() {
               <div className="relative">
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
                   <Image
-                    src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
-                    alt="Law office consultation"
+                    src={mysticImages.marina.src}
+                    alt={mysticImages.marina.alt}
                     fill
                     className="object-cover"
                   />
@@ -329,8 +330,8 @@ export default function HomePage() {
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1920&q=80"
-            alt="Connecticut coastline near Mystic"
+            src={mysticImages.downtownRiver.src}
+            alt={mysticImages.downtownRiver.alt}
             fill
             className="object-cover"
           />
