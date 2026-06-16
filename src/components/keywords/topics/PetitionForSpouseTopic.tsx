@@ -11,10 +11,10 @@ export default function PetitionForSpouseTopic() {
             <p className="text-rose-600 font-semibold text-sm mb-3">
               Spousal I-130 Petition
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 mb-6">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 mb-6">
               Petition for Spouse: Bringing Your Husband or Wife to America
             </h1>
-            <p className="text-slate-600 text-lg leading-relaxed mb-4">
+            <p className="text-slate-600 text-xl md:text-2xl leading-relaxed mb-4">
               A spousal petition (Form I-130) is how U.S. citizens and permanent
               residents sponsor their foreign national spouse for a green card.
               It is the most common family immigration case — and one of the most

@@ -30,10 +30,10 @@ export default function RemovalOfConditionsDivorceTopic() {
           <p className="text-slate-500 font-semibold text-sm mb-3">
             Form I-751 · Post-Divorce
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 mb-6">
             Removal of Conditions After Divorce and Separation
           </h1>
-          <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto mb-4">
+          <p className="text-slate-600 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto mb-4">
             If you received a two-year conditional green card through marriage and
             your marriage ended before you filed to remove conditions, you cannot
             file jointly with your spouse. You must file Form I-751 with a waiver

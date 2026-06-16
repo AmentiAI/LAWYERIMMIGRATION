@@ -54,13 +54,13 @@ export default function HomePage() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-olive-900 leading-[1.1] max-w-4xl break-words">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-olive-900 leading-[1.1] max-w-4xl break-words">
               {siteConfig.tagline}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed">
+            <p className="mt-5 sm:mt-7 text-lg sm:text-xl md:text-2xl text-slate-600 max-w-2xl leading-relaxed">
               {siteConfig.subtagline}
             </p>
           </FadeIn>
@@ -96,7 +96,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-padding bg-cream-50">
+      <section className="section-padding bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeIn direction="left">

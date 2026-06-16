@@ -30,10 +30,10 @@ export default function PetitionForParentsTopic() {
               Immediate Relative · No Visa Backlog
             </span>
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 mb-6">
             Petition for Parents: Reuniting Families Across Generations
           </h1>
-          <p className="text-slate-600 text-lg leading-relaxed mb-4 max-w-3xl">
+          <p className="text-slate-600 text-xl md:text-2xl leading-relaxed mb-4 max-w-3xl">
             U.S. citizens age 21 and older may petition for their mother or
             father as immediate relatives. Unlike sibling or married-child
             petitions, parent cases have no annual visa cap and no years-long

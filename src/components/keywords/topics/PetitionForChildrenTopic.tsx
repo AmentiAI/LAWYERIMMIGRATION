@@ -64,11 +64,11 @@ export default function PetitionForChildrenTopic() {
             <Baby className="h-4 w-4" />
             Child I-130 Petitions
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 mb-6">
             Petition for Children: Sons and Daughters of U.S. Citizens and
             Permanent Residents
           </h1>
-          <p className="text-slate-600 text-lg leading-relaxed mb-4 max-w-3xl">
+          <p className="text-slate-600 text-xl md:text-2xl leading-relaxed mb-4 max-w-3xl">
             Bringing your children to the United States requires understanding
             which visa category applies — and that category can change based on
             the child&apos;s age, marital status, and whether you are a citizen or

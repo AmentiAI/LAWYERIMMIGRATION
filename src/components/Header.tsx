@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { siteConfig, navLinks } from "@/lib/constants";
 import { servicesList } from "@/lib/services";
@@ -9,11 +10,22 @@ import { keywordPagesList } from "@/lib/keyword-pages";
 import { cn } from "@/lib/utils";
 
 export function Header() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [topicsOpen, setTopicsOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileTopicsOpen, setMobileTopicsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const topicsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsOpen(false);
+    setMobileServicesOpen(false);
+    setMobileTopicsOpen(false);
+    setServicesOpen(false);
+    setTopicsOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -41,11 +53,17 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  function closeMobileMenu() {
+    setIsOpen(false);
+    setMobileServicesOpen(false);
+    setMobileTopicsOpen(false);
+  }
+
   const mainLinks = navLinks.filter((l) => l.href !== "/consultation");
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass shadow-lg shadow-olive-950/5 py-2.5 sm:py-3 bg-tan-100/95 safe-top">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-[60] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-3">
           <Link href="/" className="group flex items-center gap-2 sm:gap-3 min-w-0">
             <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-olive-800 text-tan-100 font-serif text-lg sm:text-xl font-bold transition-transform group-hover:scale-105">
@@ -67,7 +85,12 @@ export function Header() {
                 return (
                   <div key={link.href} className="relative" ref={topicsRef}>
                     <button
-                      onClick={() => setTopicsOpen(!topicsOpen)}
+                      type="button"
+                      onClick={() => {
+                        setTopicsOpen((o) => !o);
+                        setServicesOpen(false);
+                      }}
+                      aria-expanded={topicsOpen}
                       className={cn(
                         "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-slate-700 hover:text-olive-900 hover:bg-olive-900/5",
                         topicsOpen && "bg-olive-900/5"
@@ -82,7 +105,7 @@ export function Header() {
                       />
                     </button>
                     {topicsOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-80 bg-tan-50 rounded-2xl shadow-2xl shadow-olive-950/10 border border-tan-200 py-2 max-h-96 overflow-y-auto">
+                      <div className="absolute top-full left-0 mt-2 w-80 bg-tan-50 rounded-2xl shadow-2xl shadow-olive-950/10 border border-tan-200 py-2 max-h-96 overflow-y-auto z-50">
                         <Link
                           href="/immigration"
                           onClick={() => setTopicsOpen(false)}
@@ -109,7 +132,12 @@ export function Header() {
                 return (
                   <div key={link.href} className="relative" ref={dropdownRef}>
                     <button
-                      onClick={() => setServicesOpen(!servicesOpen)}
+                      type="button"
+                      onClick={() => {
+                        setServicesOpen((o) => !o);
+                        setTopicsOpen(false);
+                      }}
+                      aria-expanded={servicesOpen}
                       className={cn(
                         "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-slate-700 hover:text-olive-900 hover:bg-olive-900/5",
                         servicesOpen && "bg-olive-900/5"
@@ -124,7 +152,7 @@ export function Header() {
                       />
                     </button>
                     {servicesOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-72 bg-tan-50 rounded-2xl shadow-2xl shadow-olive-950/10 border border-tan-200 py-2 max-h-96 overflow-y-auto">
+                      <div className="absolute top-full left-0 mt-2 w-72 bg-tan-50 rounded-2xl shadow-2xl shadow-olive-950/10 border border-tan-200 py-2 max-h-96 overflow-y-auto z-50">
                         <Link
                           href="/services"
                           onClick={() => setServicesOpen(false)}
@@ -176,9 +204,11 @@ export function Header() {
           </div>
 
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg text-olive-900 transition-colors"
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            className="lg:hidden relative z-[70] p-2.5 rounded-lg text-olive-900 transition-colors touch-manipulation"
             aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -186,93 +216,134 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 top-[60px] sm:top-[68px] z-40 glass-dark overflow-y-auto overscroll-contain safe-bottom">
-          <nav className="flex flex-col p-4 sm:p-6 gap-1 pb-8">
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
-            >
-              About
-            </Link>
-            <div className="px-4 py-2 text-sm font-semibold text-white/50 uppercase tracking-wider">
-              Services
-            </div>
-            {servicesList.map((service) => (
+        <>
+          <button
+            type="button"
+            aria-label="Close menu"
+            className="lg:hidden fixed inset-0 top-14 sm:top-16 z-[55] bg-black/40"
+            onClick={closeMobileMenu}
+          />
+          <div className="lg:hidden fixed left-0 right-0 top-14 sm:top-16 bottom-0 z-[56] glass-dark overflow-y-auto overscroll-contain safe-bottom">
+            <nav className="flex flex-col p-4 sm:p-6 gap-1 pb-10">
               <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                onClick={() => setIsOpen(false)}
-                className="px-6 py-2.5 text-base text-white/80 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
+                href="/"
+                onClick={closeMobileMenu}
+                className="px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
               >
-                {service.title}
+                Home
               </Link>
-            ))}
-            <Link
-              href="/services"
-              onClick={() => setIsOpen(false)}
-              className="px-6 py-2 text-sm text-olive-300 font-medium"
-            >
-              View All Services →
-            </Link>
-            <div className="px-4 py-2 mt-4 text-sm font-semibold text-white/50 uppercase tracking-wider">
-              Immigration Topics
-            </div>
-            {keywordPagesList.map((topic) => (
               <Link
-                key={topic.slug}
-                href={`/immigration/${topic.slug}`}
-                onClick={() => setIsOpen(false)}
-                className="px-6 py-2.5 text-base text-white/80 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
+                href="/about"
+                onClick={closeMobileMenu}
+                className="px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
               >
-                {topic.title}
+                About
               </Link>
-            ))}
-            <Link
-              href="/immigration"
-              onClick={() => setIsOpen(false)}
-              className="px-6 py-2 text-sm text-olive-300 font-medium"
-            >
-              View All Topics →
-            </Link>
-            <Link
-              href="/faq"
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
-            >
-              FAQ
-            </Link>
-            <Link
-              href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
-            >
-              Contact
-            </Link>
-            <hr className="my-4 border-white/10" />
-            <a
-              href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
-              className="flex items-center gap-2 px-4 py-3 text-white/80"
-            >
-              <Phone className="h-5 w-5" />
-              {siteConfig.phone}
-            </a>
-            <Link
-              href="/consultation"
-              onClick={() => setIsOpen(false)}
-              className="mt-4 inline-flex items-center justify-center rounded-full bg-olive-700 px-6 py-3 text-base font-semibold text-white"
-            >
-              Book Now
-            </Link>
-          </nav>
-        </div>
+
+              <button
+                type="button"
+                onClick={() => setMobileServicesOpen((o) => !o)}
+                aria-expanded={mobileServicesOpen}
+                className="flex items-center justify-between w-full px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors touch-manipulation"
+              >
+                Services
+                <ChevronDown
+                  className={cn(
+                    "h-5 w-5 shrink-0 transition-transform",
+                    mobileServicesOpen && "rotate-180"
+                  )}
+                />
+              </button>
+              {mobileServicesOpen && (
+                <div className="ml-2 border-l border-white/10 pl-2 space-y-0.5">
+                  {servicesList.map((service) => (
+                    <Link
+                      key={service.slug}
+                      href={`/services/${service.slug}`}
+                      onClick={closeMobileMenu}
+                      className="block px-4 py-2.5 text-base text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                  <Link
+                    href="/services"
+                    onClick={closeMobileMenu}
+                    className="block px-4 py-2 text-sm text-olive-300 font-medium"
+                  >
+                    View All Services →
+                  </Link>
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={() => setMobileTopicsOpen((o) => !o)}
+                aria-expanded={mobileTopicsOpen}
+                className="flex items-center justify-between w-full px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors touch-manipulation"
+              >
+                Topics
+                <ChevronDown
+                  className={cn(
+                    "h-5 w-5 shrink-0 transition-transform",
+                    mobileTopicsOpen && "rotate-180"
+                  )}
+                />
+              </button>
+              {mobileTopicsOpen && (
+                <div className="ml-2 border-l border-white/10 pl-2 space-y-0.5">
+                  {keywordPagesList.map((topic) => (
+                    <Link
+                      key={topic.slug}
+                      href={`/immigration/${topic.slug}`}
+                      onClick={closeMobileMenu}
+                      className="block px-4 py-2.5 text-base text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                    >
+                      {topic.title}
+                    </Link>
+                  ))}
+                  <Link
+                    href="/immigration"
+                    onClick={closeMobileMenu}
+                    className="block px-4 py-2 text-sm text-olive-300 font-medium"
+                  >
+                    View All Topics →
+                  </Link>
+                </div>
+              )}
+
+              <Link
+                href="/faq"
+                onClick={closeMobileMenu}
+                className="px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
+              >
+                FAQ
+              </Link>
+              <Link
+                href="/contact"
+                onClick={closeMobileMenu}
+                className="px-4 py-3 text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
+              >
+                Contact
+              </Link>
+              <hr className="my-4 border-white/10" />
+              <a
+                href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+                className="flex items-center gap-2 px-4 py-3 text-white/80"
+              >
+                <Phone className="h-5 w-5" />
+                {siteConfig.phone}
+              </a>
+              <Link
+                href="/consultation"
+                onClick={closeMobileMenu}
+                className="mt-2 inline-flex items-center justify-center rounded-full bg-olive-700 px-6 py-3.5 text-base font-semibold text-white touch-manipulation"
+              >
+                Book Now
+              </Link>
+            </nav>
+          </div>
+        </>
       )}
     </header>
   );

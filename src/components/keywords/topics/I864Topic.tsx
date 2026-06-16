@@ -38,7 +38,7 @@ export default function I864Topic() {
           <p className="text-teal-200 text-sm font-semibold mb-3">
             Affidavit of Support
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             Form I-864: The Financial Contract Behind Every Family Immigration
             Case
           </h1>

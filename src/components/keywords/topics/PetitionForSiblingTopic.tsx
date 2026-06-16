@@ -45,11 +45,11 @@ export default function PetitionForSiblingTopic() {
           <p className="text-olive-700 font-semibold text-sm mb-3 tracking-widest uppercase">
             F4 Family Preference · Sibling Petitions
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-6">
             Petition for Brother or Sister: Navigating the Longest Family
             Immigration Wait
           </h1>
-          <p className="text-slate-800 text-lg leading-relaxed mb-4 max-w-3xl">
+          <p className="text-slate-800 text-xl md:text-2xl leading-relaxed mb-4 max-w-3xl">
             U.S. citizens may petition for their brothers and sisters in the F4
             family preference category. Unlike spouse or parent petitions, sibling
             cases are subject to annual visa caps and per-country limits — with

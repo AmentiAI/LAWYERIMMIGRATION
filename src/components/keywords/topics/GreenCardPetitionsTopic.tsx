@@ -67,10 +67,10 @@ export default function GreenCardPetitionsTopic() {
           <p className="text-olive-700 text-sm font-bold uppercase tracking-widest mb-4">
             Permanent Residence
           </p>
-          <h1 className="font-serif text-3xl sm:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-8">
+          <h1 className="font-serif text-3xl sm:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black leading-tight mb-8">
             Green Card Petitions: Every Pathway to U.S. Permanent Residence
           </h1>
-          <p className="text-slate-800 text-lg leading-relaxed mb-6">
+          <p className="text-slate-800 text-xl md:text-2xl leading-relaxed mb-6">
             A green card grants lawful permanent residence in the United States —
             the right to live, work, and eventually apply for citizenship. But
             &ldquo;green card petition&rdquo; is not a single process. It refers

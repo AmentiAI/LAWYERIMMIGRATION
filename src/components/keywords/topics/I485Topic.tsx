@@ -27,11 +27,11 @@ export default function I485Topic() {
           <p className="font-mono text-teal-600 font-bold text-sm mb-3">
             ADJUSTMENT OF STATUS · FORM I-485
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 mb-6">
             Form I-485: Apply for Your Green Card Without Leaving the United
             States
           </h1>
-          <p className="text-slate-600 text-lg leading-relaxed mb-4">
+          <p className="text-slate-600 text-xl md:text-2xl leading-relaxed mb-4">
             Adjustment of status allows eligible individuals already present in
             the United States to become lawful permanent residents without
             departing for consular processing abroad. Form I-485 is the core

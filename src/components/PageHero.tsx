@@ -46,11 +46,11 @@ export function PageHero({ title, subtitle, breadcrumb, className }: PageHeroPro
             ))}
           </nav>
         )}
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight break-words">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white max-w-4xl leading-tight break-words">
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
+          <p className="mt-5 sm:mt-7 text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl leading-relaxed">
             {subtitle}
           </p>
         )}

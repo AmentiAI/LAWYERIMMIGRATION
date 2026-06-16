@@ -33,7 +33,7 @@ export default function I130Topic() {
           <p className="text-teal-400 text-sm font-semibold mb-3">
             Petition for Alien Relative
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
             Form I-130: Establishing the Family Relationship That Starts Your
             Immigration Case
           </h1>

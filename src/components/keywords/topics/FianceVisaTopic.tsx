@@ -20,10 +20,10 @@ export default function FianceVisaTopic() {
             <p className="text-rose-600 font-semibold text-sm mb-3">
               K-1 Nonimmigrant Visa
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 mb-6">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 mb-6">
               Fiancé Visa (K-1): Bring Your Partner to America to Marry
             </h1>
-            <p className="text-slate-600 text-lg leading-relaxed mb-4">
+            <p className="text-slate-600 text-xl md:text-2xl leading-relaxed mb-4">
               The K-1 fiancé visa allows a U.S. citizen to bring their foreign
               fiancé(e) to the United States for marriage within 90 days of
               entry. It is the only visa category specifically designed for

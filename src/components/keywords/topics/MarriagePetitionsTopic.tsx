@@ -81,10 +81,10 @@ export default function MarriagePetitionsTopic() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 text-rose-800 text-xs font-bold uppercase tracking-wider mb-6">
               <Heart className="h-3.5 w-3.5" /> Marriage-Based Immigration
             </span>
-            <h1 className="font-serif text-3xl sm:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-navy-900 leading-tight mb-6">
+            <h1 className="font-serif text-3xl sm:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-navy-900 leading-tight mb-6">
               Marriage Petitions: Reuniting Spouses Under U.S. Immigration Law
             </h1>
-            <p className="text-slate-600 text-lg md:text-xl leading-relaxed mb-4">
+            <p className="text-slate-600 text-xl md:text-2xl md:text-xl leading-relaxed mb-4">
               A marriage petition is the legal process by which a U.S. citizen or
               lawful permanent resident sponsors their foreign national spouse for
               a green card. It is one of the most common — and most carefully

@@ -49,10 +49,10 @@ export default function I90Topic() {
             <p className="text-teal-600 font-semibold text-sm mb-3">
               Permanent Resident Card
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-navy-900 mb-6">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-navy-900 mb-6">
               Form I-90: Renew or Replace Your Green Card
             </h1>
-            <p className="text-slate-600 text-lg leading-relaxed mb-4">
+            <p className="text-slate-600 text-xl md:text-2xl leading-relaxed mb-4">
               Lawful permanent residents receive a card valid for 10 years (or 2
               years if conditional). Form I-90 is used to renew an expiring card
               or replace one that is lost, stolen, damaged, or contains errors.

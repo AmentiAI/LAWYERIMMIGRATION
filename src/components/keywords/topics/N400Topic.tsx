@@ -30,10 +30,10 @@ export default function N400Topic() {
               Application for Naturalization
             </p>
           </div>
-          <h1 className="font-serif text-3xl sm:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
+          <h1 className="font-serif text-3xl sm:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black mb-6">
             Form N-400: Your Application to Become a United States Citizen
           </h1>
-          <p className="text-slate-800 text-lg max-w-3xl leading-relaxed">
+          <p className="text-slate-800 text-xl md:text-2xl max-w-3xl leading-relaxed">
             Naturalization is the process by which lawful permanent residents
             become U.S. citizens. Form N-400 is the application — and Attorney
             Goncalves has guided clients from filing to oath ceremony in as little

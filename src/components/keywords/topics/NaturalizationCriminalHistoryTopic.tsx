@@ -39,10 +39,10 @@ export default function NaturalizationCriminalHistoryTopic() {
               Complex Naturalization Cases
             </span>
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-6">
             Naturalization and Citizenship with Criminal History
           </h1>
-          <p className="text-slate-800 text-lg leading-relaxed mb-4">
+          <p className="text-slate-800 text-xl md:text-2xl leading-relaxed mb-4">
             A criminal record does not automatically disqualify you from U.S.
             citizenship — but it requires careful legal analysis before filing
             Form N-400. Some offenses permanently bar naturalization; others

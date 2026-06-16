@@ -18,10 +18,10 @@ export function ServiceBanner({
         <p className="text-olive-200 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-2 sm:mb-3">
           {eyebrow}
         </p>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight max-w-4xl mb-3 sm:mb-4 break-words">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight max-w-4xl mb-4 sm:mb-5 break-words">
           {title}
         </h1>
-        <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-3xl">{lead}</p>
+        <p className="text-white/85 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-3xl">{lead}</p>
       </div>
     </section>
   );
@@ -30,7 +30,7 @@ export function ServiceBanner({
 export function ServiceIntro({ children }: { children: React.ReactNode }) {
   return (
     <section className="py-12 sm:py-16 bg-white border-b border-tan-200">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-slate-700 leading-relaxed space-y-4 text-base sm:text-lg">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-slate-700 leading-relaxed space-y-4 text-lg sm:text-xl">
         {children}
       </div>
     </section>

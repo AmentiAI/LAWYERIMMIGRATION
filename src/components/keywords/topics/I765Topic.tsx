@@ -18,10 +18,10 @@ export default function I765Topic() {
           <div className="inline-block bg-olive-700 text-white font-mono font-bold px-4 py-2 rounded-lg text-sm mb-6">
             FORM I-765 · EAD
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-6">
             Form I-765: Your Employment Authorization Document
           </h1>
-          <p className="text-slate-800 text-lg leading-relaxed mb-4">
+          <p className="text-slate-800 text-xl md:text-2xl leading-relaxed mb-4">
             An Employment Authorization Document (EAD) is the card that proves to
             U.S. employers you may work legally. Form I-765 is used to apply for
             initial authorization, renewals, and replacements — each with
