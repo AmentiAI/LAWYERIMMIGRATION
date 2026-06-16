@@ -31,6 +31,8 @@ export default function PetitionForSpouseTopic() {
               src={legalImages.naturalization.src}
               alt="Immigration consultation"
               fill
+              sizes="(max-width: 768px) 100vw, 400px"
+              unoptimized
               className="object-cover"
             />
           </div>

@@ -10,7 +10,7 @@ export const legalImages = {
     credit: "USDA / Wikimedia Commons (Public Domain)",
   },
   capitol: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/b/b2/United_States_Capitol_-_west_front.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/ed/United_States_Capitol_-_west_side.JPG",
     alt: "United States Capitol building",
     credit: "Wikimedia Commons (Public Domain)",
   },

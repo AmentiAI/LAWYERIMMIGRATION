@@ -134,6 +134,8 @@ export default function FianceVisaTopic() {
               src={legalImages.capitol.src}
               alt={legalImages.capitol.alt}
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              unoptimized
               className="object-cover"
             />
           </div>

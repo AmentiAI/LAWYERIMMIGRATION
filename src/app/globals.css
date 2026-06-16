@@ -81,6 +81,12 @@ html {
   overflow-x: hidden;
 }
 
+@media (max-width: 1023px) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-tan-50);
@@ -116,6 +122,20 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1023px) {
+  .glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(245, 240, 230, 0.98);
+  }
+
+  .glass-dark {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgb(61, 74, 34);
+  }
 }
 
 /* Consistent page section spacing — tighter on phones */

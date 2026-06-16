@@ -48,7 +48,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
           <FadeIn>
             <div className="inline-flex items-center gap-2 rounded-full border border-olive-300 bg-tan-100 px-3 sm:px-4 py-1.5 text-xs sm:text-sm text-olive-800 mb-6 sm:mb-8 max-w-full">
-              <span className="h-2 w-2 rounded-full bg-olive-600 animate-pulse shrink-0" />
+              <span className="h-2 w-2 rounded-full bg-olive-600 shrink-0 motion-reduce:animate-none animate-pulse" />
               <span className="truncate">Personalized Immigration Legal Services</span>
             </div>
           </FadeIn>
@@ -106,6 +106,8 @@ export default function HomePage() {
                     src={legalImages.ladyJustice.src}
                     alt={legalImages.ladyJustice.alt}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    unoptimized
                     className="object-cover"
                   />
                 </div>
@@ -357,6 +359,8 @@ export default function HomePage() {
                   src={legalImages.supremeCourt.src}
                   alt={legalImages.supremeCourt.alt}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  unoptimized
                   className="object-cover"
                 />
               </div>

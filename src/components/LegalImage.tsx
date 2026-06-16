@@ -15,7 +15,7 @@ export function LegalImage({
   className,
   priority,
   fill = true,
-  sizes = "(max-width: 768px) 100vw, 50vw",
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
 }: LegalImageProps) {
   const img = legalImages[imageKey];
 
@@ -27,6 +27,7 @@ export function LegalImage({
         fill
         priority={priority}
         sizes={sizes}
+        unoptimized
         className={cn("object-cover", className)}
       />
     );
@@ -39,6 +40,7 @@ export function LegalImage({
       width={1200}
       height={800}
       priority={priority}
+      unoptimized
       className={cn("w-full h-auto object-cover", className)}
     />
   );

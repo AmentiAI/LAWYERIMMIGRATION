@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { useLightMotion } from "@/lib/use-light-motion";
 
 interface FadeInProps {
   children: ReactNode;
@@ -24,12 +25,18 @@ export function FadeIn({
   delay = 0,
   direction = "up",
 }: FadeInProps) {
+  const lightMotion = useLightMotion();
+
+  if (lightMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, ...directionOffset[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, amount: 0.12, margin: "0px 0px -24px 0px" }}
+      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -48,11 +55,17 @@ export function StaggerContainer({
   className,
   staggerDelay = 0.1,
 }: StaggerContainerProps) {
+  const lightMotion = useLightMotion();
+
+  if (lightMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0.12, margin: "0px 0px -24px 0px" }}
       variants={{
         hidden: {},
         visible: {
@@ -73,14 +86,20 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
+  const lightMotion = useLightMotion();
+
+  if (lightMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 24 },
+        hidden: { opacity: 0, y: 20 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+          transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
         },
       }}
       className={className}
