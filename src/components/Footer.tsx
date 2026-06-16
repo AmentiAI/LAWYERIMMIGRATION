@@ -15,8 +15,8 @@ export function Footer() {
                 JG
               </div>
               <div>
-                <p className="font-serif text-lg font-semibold">
-                  {siteConfig.shortName}
+                <p className="font-serif text-sm sm:text-base lg:text-lg font-semibold leading-snug">
+                  {siteConfig.name}
                 </p>
                 <p className="text-sm text-white/60">{siteConfig.serviceAreas}</p>
               </div>

@@ -210,11 +210,11 @@ export function Header() {
             <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-olive-800 text-tan-100 font-serif text-lg sm:text-xl font-bold transition-transform group-hover:scale-105">
               JG
             </div>
-            <div className="min-w-0">
-              <p className="font-serif text-base sm:text-lg font-semibold leading-tight text-olive-900 truncate">
-                {siteConfig.shortName}
+            <div className="min-w-0 max-w-[11rem] min-[400px]:max-w-xs sm:max-w-sm lg:max-w-md">
+              <p className="font-serif text-[0.68rem] min-[400px]:text-xs sm:text-sm lg:text-base font-semibold leading-snug text-olive-900 line-clamp-2 sm:line-clamp-none">
+                {siteConfig.name}
               </p>
-              <p className="text-[10px] sm:text-xs tracking-wide text-slate-600 hidden sm:block">
+              <p className="text-[10px] sm:text-xs tracking-wide text-slate-600 hidden min-[400px]:block">
                 Immigration Law
               </p>
             </div>

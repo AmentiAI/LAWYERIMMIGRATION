@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Law Offices of Jacquelyn R. Goncalves",
-  shortName: "JacqLaw",
+  name: "Law Office of Jacquelyn R. Goncalves",
+  shortName: "Law Office of Jacquelyn R. Goncalves",
   tagline:
     "Guiding Families Through the Immigration Process With Personal Care and Attention",
   subtagline:
