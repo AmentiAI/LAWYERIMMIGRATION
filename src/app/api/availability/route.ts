@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { initDatabase } from "@/lib/schema";
 import { getAvailableSlotsForMonth } from "@/lib/availability";
+import { getDb } from "@/lib/db";
+
+export const dynamic = "force-dynamic";
 
 let dbReady = false;
 
@@ -23,7 +26,20 @@ export async function GET(request: Request) {
     }
 
     const slots = await getAvailableSlotsForMonth(year, month);
-    return NextResponse.json({ year, month, slots });
+
+    const sql = getDb();
+    const enabledDays = await sql`
+      SELECT COUNT(*)::int AS count
+      FROM weekly_availability
+      WHERE is_enabled = true
+    `;
+
+    return NextResponse.json({
+      year,
+      month,
+      slots,
+      configured: enabledDays[0].count > 0,
+    });
   } catch (error) {
     console.error("Availability error:", error);
     return NextResponse.json({ error: "Failed to load availability" }, { status: 500 });

@@ -1,5 +1,33 @@
 import { getDb } from "./db";
 
+const DEFAULT_WEEKLY_SCHEDULE = [
+  { day_of_week: 0, start_time: "09:00", end_time: "12:00", slot_duration_minutes: 30, is_enabled: false },
+  { day_of_week: 1, start_time: "09:00", end_time: "18:00", slot_duration_minutes: 30, is_enabled: true },
+  { day_of_week: 2, start_time: "09:00", end_time: "18:00", slot_duration_minutes: 30, is_enabled: true },
+  { day_of_week: 3, start_time: "09:00", end_time: "18:00", slot_duration_minutes: 30, is_enabled: true },
+  { day_of_week: 4, start_time: "09:00", end_time: "18:00", slot_duration_minutes: 30, is_enabled: true },
+  { day_of_week: 5, start_time: "09:00", end_time: "18:00", slot_duration_minutes: 30, is_enabled: true },
+  { day_of_week: 6, start_time: "09:00", end_time: "14:00", slot_duration_minutes: 30, is_enabled: true },
+] as const;
+
+async function ensureDefaultWeeklySchedule() {
+  const sql = getDb();
+
+  for (const day of DEFAULT_WEEKLY_SCHEDULE) {
+    await sql`
+      INSERT INTO weekly_availability (day_of_week, start_time, end_time, slot_duration_minutes, is_enabled)
+      VALUES (
+        ${day.day_of_week},
+        ${day.start_time}::time,
+        ${day.end_time}::time,
+        ${day.slot_duration_minutes},
+        ${day.is_enabled}
+      )
+      ON CONFLICT (day_of_week) DO NOTHING
+    `;
+  }
+}
+
 export async function initDatabase() {
   const sql = getDb();
 
@@ -54,21 +82,5 @@ export async function initDatabase() {
     )
   `;
 
-  const existing = await sql`
-    SELECT COUNT(*)::int AS count FROM weekly_availability
-  `;
-
-  if (existing[0].count === 0) {
-    await sql`
-      INSERT INTO weekly_availability (day_of_week, start_time, end_time, slot_duration_minutes, is_enabled)
-      VALUES
-        (1, '09:00', '18:00', 30, true),
-        (2, '09:00', '18:00', 30, true),
-        (3, '09:00', '18:00', 30, true),
-        (4, '09:00', '18:00', 30, true),
-        (5, '09:00', '18:00', 30, true),
-        (6, '09:00', '14:00', 30, true),
-        (0, '09:00', '12:00', 30, false)
-    `;
-  }
+  await ensureDefaultWeeklySchedule();
 }

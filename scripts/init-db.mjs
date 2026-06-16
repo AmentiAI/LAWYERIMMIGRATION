@@ -59,18 +59,26 @@ async function initDatabase() {
 
   const existing = await sql`SELECT COUNT(*)::int AS count FROM weekly_availability`;
 
-  if (existing[0].count === 0) {
+  const defaultSchedule = [
+    { day: 0, start: "09:00", end: "12:00", duration: 30, enabled: false },
+    { day: 1, start: "09:00", end: "18:00", duration: 30, enabled: true },
+    { day: 2, start: "09:00", end: "18:00", duration: 30, enabled: true },
+    { day: 3, start: "09:00", end: "18:00", duration: 30, enabled: true },
+    { day: 4, start: "09:00", end: "18:00", duration: 30, enabled: true },
+    { day: 5, start: "09:00", end: "18:00", duration: 30, enabled: true },
+    { day: 6, start: "09:00", end: "14:00", duration: 30, enabled: true },
+  ];
+
+  for (const row of defaultSchedule) {
     await sql`
       INSERT INTO weekly_availability (day_of_week, start_time, end_time, slot_duration_minutes, is_enabled)
-      VALUES
-        (1, '09:00', '18:00', 30, true),
-        (2, '09:00', '18:00', 30, true),
-        (3, '09:00', '18:00', 30, true),
-        (4, '09:00', '18:00', 30, true),
-        (5, '09:00', '18:00', 30, true),
-        (6, '09:00', '14:00', 30, true),
-        (0, '09:00', '12:00', 30, false)
+      VALUES (${row.day}, ${row.start}::time, ${row.end}::time, ${row.duration}, ${row.enabled})
+      ON CONFLICT (day_of_week) DO NOTHING
     `;
+  }
+
+  if (existing[0].count === 0) {
+    console.log("Seeded default weekly availability.");
   }
 }
 

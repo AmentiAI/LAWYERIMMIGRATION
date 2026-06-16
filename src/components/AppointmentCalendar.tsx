@@ -47,15 +47,39 @@ export function AppointmentCalendar({
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [slots, setSlots] = useState<Record<string, TimeSlot[]>>({});
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState("");
+  const [noAvailability, setNoAvailability] = useState(false);
 
   const fetchSlots = useCallback(async () => {
     setLoading(true);
+    setFetchError("");
+    setNoAvailability(false);
     try {
-      const res = await fetch(`/api/availability?year=${year}&month=${month}`);
+      const res = await fetch(
+        `/api/availability?year=${year}&month=${month}`,
+        { cache: "no-store" }
+      );
       const data = await res.json();
-      setSlots(data.slots || {});
+      if (!res.ok) {
+        setSlots({});
+        setFetchError(
+          data.error ||
+            "Unable to load availability. Please call our office to schedule."
+        );
+        return;
+      }
+      const nextSlots = data.slots || {};
+      setSlots(nextSlots);
+      if (data.configured === false) {
+        setNoAvailability(true);
+      } else if (Object.keys(nextSlots).length === 0) {
+        setNoAvailability(true);
+      }
     } catch {
       setSlots({});
+      setFetchError(
+        "Unable to load availability. Please call our office to schedule."
+      );
     } finally {
       setLoading(false);
     }
@@ -122,8 +146,21 @@ export function AppointmentCalendar({
         <div className="flex items-center justify-center py-12 text-olive-600">
           <Loader2 className="h-6 w-6 animate-spin" />
         </div>
+      ) : fetchError ? (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+          {fetchError}
+        </div>
       ) : (
         <>
+          {noAvailability && (
+            <div className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+              No open appointment days are configured for this month. Please call{" "}
+              <a href="tel:8604713023" className="font-semibold underline">
+                (860) 471-3023
+              </a>{" "}
+              to schedule.
+            </div>
+          )}
           <div className="grid grid-cols-7 gap-1 mb-2">
             {DAY_LABELS.map((d) => (
               <div
@@ -154,12 +191,12 @@ export function AppointmentCalendar({
                     onSelectTime(null);
                   }}
                     className={cn(
-                      "aspect-square rounded-lg text-sm font-medium transition-all touch-target",
+                      "aspect-square rounded-lg text-sm font-semibold transition-all touch-target",
                     isSelected
-                      ? "bg-olive-700 text-white shadow-md"
+                      ? "bg-olive-700 text-white shadow-md ring-2 ring-olive-400"
                       : hasSlots && !isPast
-                        ? "bg-olive-50 text-olive-800 hover:bg-olive-100 border border-olive-200"
-                        : "text-slate-300 cursor-not-allowed"
+                        ? "bg-olive-100 text-olive-900 hover:bg-olive-200 border-2 border-olive-500 shadow-sm"
+                        : "text-slate-300 cursor-not-allowed bg-tan-50"
                   )}
                 >
                   {day}

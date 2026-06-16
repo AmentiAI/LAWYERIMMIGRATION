@@ -44,6 +44,15 @@ function formatDate(d: Date): string {
   return `${y}-${m}-${day}`;
 }
 
+function normalizeDateKey(value: string): string {
+  return value.slice(0, 10);
+}
+
+function normalizeTimeKey(value: string): string {
+  const [h, m] = value.split(":");
+  return `${h.padStart(2, "0")}:${m.padStart(2, "0")}`;
+}
+
 function generateSlotsForDay(
   startMinutes: number,
   endMinutes: number,
@@ -67,6 +76,10 @@ export async function getAvailableSlotsForMonth(
     FROM weekly_availability
   `) as WeeklyRow[];
 
+  if (weekly.length === 0) {
+    return {};
+  }
+
   const weeklyMap = new Map(weekly.map((w) => [w.day_of_week, w]));
 
   const startDate = new Date(year, month - 1, 1);
@@ -81,7 +94,7 @@ export async function getAvailableSlotsForMonth(
   `) as OverrideRow[];
 
   const overrideMap = new Map(
-    overrides.map((o) => [o.override_date, o])
+    overrides.map((o) => [normalizeDateKey(o.override_date), o])
   );
 
   const booked = (await sql`
@@ -93,7 +106,10 @@ export async function getAvailableSlotsForMonth(
   `) as BookedRow[];
 
   const bookedSet = new Set(
-    booked.map((b) => `${b.appointment_date}_${b.appointment_time.slice(0, 5)}`)
+    booked.map(
+      (b) =>
+        `${normalizeDateKey(b.appointment_date)}_${normalizeTimeKey(b.appointment_time)}`
+    )
   );
 
   const result: Record<string, TimeSlot[]> = {};
