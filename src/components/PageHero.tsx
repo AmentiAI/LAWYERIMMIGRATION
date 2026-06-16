@@ -12,12 +12,10 @@ export function PageHero({ title, subtitle, breadcrumb, className }: PageHeroPro
   return (
     <section
       className={cn(
-        "relative pt-32 pb-20 md:pt-40 md:pb-28 bg-navy-950 overflow-hidden",
+        "relative pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28 bg-olive-900 overflow-hidden",
         className
       )}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-teal-600)_0%,_transparent_50%)] opacity-20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--color-gold-500)_0%,_transparent_50%)] opacity-10" />
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -27,7 +25,7 @@ export function PageHero({ title, subtitle, breadcrumb, className }: PageHeroPro
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {breadcrumb && (
-          <nav className="mb-6 flex items-center gap-2 text-sm text-white/50">
+          <nav className="mb-4 md:mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-white/50">
             <Link href="/" className="hover:text-white/80 transition-colors">
               Home
             </Link>
@@ -48,11 +46,11 @@ export function PageHero({ title, subtitle, breadcrumb, className }: PageHeroPro
             ))}
           </nav>
         )}
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight break-words">
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
             {subtitle}
           </p>
         )}

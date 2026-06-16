@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Schedule a Consultation",
+  title: "Book Now",
   description:
-    "Request a consultation with Attorney Jacquelyn R Goncalves for expert immigration legal advice in Mystic, Connecticut.",
+    "Request a consultation with Attorney Jacquelyn R. Goncalves for family-based immigration legal services in Rhode Island and Connecticut.",
 };
 
 export default function ConsultationLayout({

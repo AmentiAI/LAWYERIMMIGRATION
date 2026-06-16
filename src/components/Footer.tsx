@@ -1,28 +1,28 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { siteConfig, navLinks, practiceAreas } from "@/lib/constants";
-import { mysticImages } from "@/lib/images";
+import { siteConfig, navLinks } from "@/lib/constants";
+import { servicesList } from "@/lib/services";
+import { keywordPagesList } from "@/lib/keyword-pages";
 
 export function Footer() {
   return (
-    <footer className="bg-navy-950 text-white">
+    <footer className="bg-olive-950 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-800 text-gold-400 font-serif text-xl font-bold">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-olive-800 text-tan-100 font-serif text-xl font-bold">
                 JG
               </div>
               <div>
                 <p className="font-serif text-lg font-semibold">
-                  Goncalves Immigration Law
+                  {siteConfig.shortName}
                 </p>
-                <p className="text-sm text-white/60">Mystic, Connecticut</p>
+                <p className="text-sm text-white/60">{siteConfig.serviceAreas}</p>
               </div>
             </div>
             <p className="text-sm text-white/60 leading-relaxed">
-              Compassionate, expert immigration legal services serving
-              Connecticut and clients nationwide from our Mystic office.
+              {siteConfig.tagline}
             </p>
           </div>
 
@@ -35,7 +35,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 hover:text-gold-400 transition-colors"
+                    className="text-sm text-white/60 hover:text-olive-300 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -45,27 +45,55 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-serif text-lg font-semibold mb-4">
-              Practice Areas
-            </h3>
+            <h3 className="font-serif text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-3">
-              {practiceAreas.slice(0, 5).map((area) => (
-                <li key={area.id}>
+              {servicesList.slice(0, 6).map((service) => (
+                <li key={service.slug}>
                   <Link
-                    href={`/practice-areas#${area.id}`}
-                    className="text-sm text-white/60 hover:text-gold-400 transition-colors"
+                    href={`/services/${service.slug}`}
+                    className="text-sm text-white/60 hover:text-olive-300 transition-colors"
                   >
-                    {area.title}
+                    {service.title}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/services"
+                  className="text-sm text-olive-300/80 hover:text-olive-300 transition-colors"
+                >
+                  View all services →
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-serif text-lg font-semibold mb-4">
-              Contact Us
-            </h3>
+            <h3 className="font-serif text-lg font-semibold mb-4">Topics</h3>
+            <ul className="space-y-3">
+              {keywordPagesList.slice(0, 6).map((topic) => (
+                <li key={topic.slug}>
+                  <Link
+                    href={`/immigration/${topic.slug}`}
+                    className="text-sm text-white/60 hover:text-olive-300 transition-colors"
+                  >
+                    {topic.title}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/immigration"
+                  className="text-sm text-olive-300/80 hover:text-olive-300 transition-colors"
+                >
+                  View all topics →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-serif text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-4">
               <li>
                 <a
@@ -91,7 +119,11 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-sm text-white/60">
                 <Clock className="h-4 w-4 mt-0.5 shrink-0" />
-                <span>{siteConfig.hours.weekdays}</span>
+                <span>
+                  {siteConfig.hours.weekdays}
+                  <br />
+                  {siteConfig.hours.saturday}
+                </span>
               </li>
             </ul>
           </div>
@@ -108,18 +140,6 @@ export function Footer() {
             until a signed engagement agreement is in place.
           </p>
         </div>
-        <p className="pb-8 text-xs text-white/25 text-center">
-          Photos of Mystic, Connecticut via{" "}
-          <a
-            href="https://commons.wikimedia.org/wiki/Category:Mystic,_Connecticut"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-white/40 transition-colors"
-          >
-            Wikimedia Commons
-          </a>
-          . Credits: {mysticImages.hero.credit}, {mysticImages.marina.credit}.
-        </p>
       </div>
     </footer>
   );

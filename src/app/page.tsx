@@ -4,94 +4,91 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Heart,
+  Users,
   Briefcase,
   Flag,
   Shield,
-  Scale,
   FileCheck,
+  Globe,
   Star,
   CheckCircle2,
+  Heart,
+  CreditCard,
+  Lock,
+  RefreshCw,
+  TrendingUp,
+  Plane,
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { Button } from "@/components/Button";
 import { CTASection } from "@/components/CTASection";
-import {
-  siteConfig,
-  practiceAreas,
-  testimonials,
-  stats,
-} from "@/lib/constants";
-import { mysticImages } from "@/lib/images";
+import { siteConfig, testimonials, highlights, faqs } from "@/lib/constants";
+import { servicesList } from "@/lib/services";
+import { legalImages } from "@/lib/images";
 
 const iconMap = {
-  Heart,
+  Users,
   Briefcase,
   Flag,
   Shield,
-  Scale,
   FileCheck,
+  Globe,
+  Heart,
+  CreditCard,
+  Lock,
+  RefreshCw,
+  TrendingUp,
+  Plane,
 };
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={mysticImages.hero.src}
-            alt={mysticImages.hero.alt}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/80 to-navy-950/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950/50 to-transparent" />
-        </div>
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      <section className="relative min-h-[85dvh] sm:min-h-[90dvh] lg:min-h-screen flex items-center bg-tan-50 border-b border-tan-200">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
           <FadeIn>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm text-white/90 backdrop-blur-sm mb-8">
-              <span className="h-2 w-2 rounded-full bg-gold-400 animate-pulse" />
-              Serving Mystic, Connecticut &amp; Nationwide
+            <div className="inline-flex items-center gap-2 rounded-full border border-olive-300 bg-tan-100 px-3 sm:px-4 py-1.5 text-xs sm:text-sm text-olive-800 mb-6 sm:mb-8 max-w-full">
+              <span className="h-2 w-2 rounded-full bg-olive-600 animate-pulse shrink-0" />
+              <span className="truncate">Personalized Immigration Legal Services</span>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] max-w-4xl">
-              Expert Immigration Law with{" "}
-              <span className="gradient-text">Heart</span>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-olive-900 leading-[1.1] max-w-4xl break-words">
+              {siteConfig.tagline}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="mt-6 text-lg md:text-xl text-white/75 max-w-2xl leading-relaxed">
-              {siteConfig.name} provides compassionate, results-driven
-              immigration advocacy from our Mystic office. Your American dream
-              deserves an attorney who listens, fights, and cares.
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed">
+              {siteConfig.subtagline}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button href="/consultation" size="lg">
-                Schedule Free Consultation
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Button href="/consultation" size="lg" className="w-full sm:w-auto justify-center">
+                Book Consultation
               </Button>
-              <Button href="/practice-areas" variant="outline" size="lg">
-                Explore Our Services
+              <Button
+                href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+                variant="secondary"
+                size="lg"
+                className="w-full sm:w-auto justify-center"
+              >
+                Call {siteConfig.phone}
               </Button>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.4}>
-            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center md:text-left">
-                  <p className="font-serif text-3xl md:text-4xl font-bold text-gold-400">
-                    {stat.value}
+            <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+              {highlights.map((item) => (
+                <div key={item.label} className="text-center md:text-left">
+                  <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-olive-700">
+                    {item.value}
                   </p>
-                  <p className="text-sm text-white/60 mt-1">{stat.label}</p>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1 leading-snug">{item.label}</p>
                 </div>
               ))}
             </div>
@@ -99,7 +96,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* About Preview */}
       <section className="section-padding bg-cream-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -107,18 +103,18 @@ export default function HomePage() {
               <div className="relative">
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
                   <Image
-                    src={mysticImages.marina.src}
-                    alt={mysticImages.marina.alt}
+                    src={legalImages.ladyJustice.src}
+                    alt={legalImages.ladyJustice.alt}
                     fill
                     className="object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 bg-gold-500 rounded-2xl p-6 shadow-xl">
-                  <p className="font-serif text-3xl font-bold text-navy-950">
-                    15+
+                <div className="absolute bottom-4 right-4 sm:-bottom-6 sm:-right-6 md:-bottom-8 md:-right-8 bg-gold-500 rounded-2xl p-4 sm:p-6 shadow-xl">
+                  <p className="font-serif text-2xl sm:text-3xl font-bold text-navy-950">
+                    6 Yrs
                   </p>
                   <p className="text-sm font-medium text-navy-900/80">
-                    Years of Experience
+                    U.S. Navy Service
                   </p>
                 </div>
               </div>
@@ -126,29 +122,26 @@ export default function HomePage() {
 
             <FadeIn direction="right">
               <p className="text-teal-600 font-semibold text-sm tracking-wider uppercase mb-3">
-                About Our Firm
+                Concierge-Style Representation
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-                Trusted Immigration Advocacy in Coastal Connecticut
+                Personal Attention. Clear Guidance.
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                Located in the heart of historic Mystic, our firm combines deep
-                legal expertise with a personal touch. We understand that
-                behind every visa application and court hearing is a person
-                with dreams, family, and a future at stake.
+                At the {siteConfig.name}, we understand that immigration is
+                more than paperwork — it&apos;s about your future, your family,
+                and your peace of mind.
               </p>
               <p className="text-slate-700 leading-relaxed mb-8">
-                Attorney Jacquelyn R Goncalves has dedicated her career to
-                helping individuals and families navigate the U.S. immigration
-                system — from straightforward green card applications to complex
-                deportation defense.
+                You will work directly with Attorney Goncalves from start to
+                finish, never passed from one person to another.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  "Personalized attention for every client",
-                  "Fluent in English and Portuguese",
-                  "Transparent fees and clear communication",
-                  "Representation in all 50 states",
+                  "Direct attorney involvement on every case",
+                  "English, Spanish, and Portuguese",
+                  "Serving Rhode Island and Connecticut",
+                  "Family-based immigration focus",
                 ].map((item) => (
                   <li
                     key={item}
@@ -163,7 +156,7 @@ export default function HomePage() {
                 href="/about"
                 className="inline-flex items-center gap-2 text-navy-900 font-semibold hover:text-teal-600 transition-colors group"
               >
-                Learn More About Us
+                Learn More About Me
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </FadeIn>
@@ -171,40 +164,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Practice Areas */}
       <section className="section-padding bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <p className="text-teal-600 font-semibold text-sm tracking-wider uppercase mb-3">
-              Practice Areas
+              Services
             </p>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-4">
-              Comprehensive Immigration Services
+              Immigration Legal Services
             </h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              From family reunification to deportation defense, we provide
-              full-service immigration representation tailored to your unique
-              circumstances.
+              From family petitions to citizenship, work permits, and investor
+              visas — every case handled with direct attorney involvement.
             </p>
           </FadeIn>
 
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {practiceAreas.map((area) => {
-              const Icon = iconMap[area.icon as keyof typeof iconMap];
+            {servicesList.slice(0, 6).map((service) => {
+              const Icon = iconMap[service.icon as keyof typeof iconMap];
               return (
-                <StaggerItem key={area.id}>
+                <StaggerItem key={service.slug}>
                   <Link
-                    href={`/practice-areas#${area.id}`}
+                    href={`/services/${service.slug}`}
                     className="group block h-full rounded-2xl border border-cream-200 bg-cream-50 p-8 transition-all duration-300 hover:border-teal-500/30 hover:shadow-xl hover:shadow-navy-950/5 hover:-translate-y-1"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400 mb-5 transition-colors group-hover:bg-teal-600 group-hover:text-white">
                       <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="font-serif text-xl font-semibold text-navy-900 mb-3">
-                      {area.title}
+                      {service.title}
                     </h3>
                     <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                      {area.shortDescription}
+                      {service.shortDescription}
                     </p>
                     <span className="inline-flex items-center gap-1 text-sm font-semibold text-teal-600 group-hover:gap-2 transition-all">
                       Learn more <ArrowRight className="h-4 w-4" />
@@ -216,65 +207,63 @@ export default function HomePage() {
           </StaggerContainer>
 
           <FadeIn className="text-center mt-12">
-            <Button href="/practice-areas" variant="secondary">
-              View All Practice Areas
+            <Button href="/services" variant="secondary">
+              View All Services
             </Button>
           </FadeIn>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="section-padding bg-navy-950 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_var(--color-teal-600)_0%,_transparent_40%)] opacity-20" />
+      <section className="section-padding bg-tan-100 relative overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
-            <p className="text-gold-400 font-semibold text-sm tracking-wider uppercase mb-3">
+            <p className="text-olive-600 font-semibold text-sm tracking-wider uppercase mb-3">
               Why Choose Us
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
-              The Goncalves Difference
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-olive-900 mb-4">
+              The JacqLaw Difference
             </h2>
           </FadeIn>
 
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Client-Centered Approach",
+                title: "Direct Attorney Access",
                 description:
-                  "You're not a case number. We take time to understand your story, your goals, and your concerns before crafting a strategy.",
+                  "You work directly with Attorney Goncalves from the initial consultation through the resolution of your case — never passed between staff.",
               },
               {
-                title: "Deep Legal Expertise",
+                title: "Concierge-Style Service",
                 description:
-                  "Years of focused immigration practice means we know the law, the procedures, and the strategies that get results.",
+                  "A hands-on approach with prompt answers, clear guidance, and availability when concerns arise throughout your immigration journey.",
               },
               {
-                title: "Bilingual Services",
+                title: "Trilingual Support",
                 description:
-                  "We serve our diverse community in English and Portuguese, ensuring nothing is lost in translation.",
+                  "We proudly assist clients in English, Spanish, and Portuguese to make the process comfortable and accessible.",
               },
               {
-                title: "Transparent Communication",
+                title: "Clear Communication",
                 description:
-                  "No legal jargon without explanation. You'll always know where your case stands and what comes next.",
+                  "An English and MBA background means complex immigration matters are explained in plain language you can understand.",
               },
               {
-                title: "Nationwide Representation",
+                title: "Rhode Island & Connecticut",
                 description:
-                  "Based in Mystic but licensed for federal immigration practice — we represent clients across the United States.",
+                  "Serving clients across both states from our Mystic office, with federal immigration representation available nationwide.",
               },
               {
-                title: "Proven Track Record",
+                title: "Military Discipline",
                 description:
-                  "Hundreds of successful cases across family immigration, employment visas, citizenship, and deportation defense.",
+                  "Six years of U.S. Navy service shaped the attention to detail, discipline, and dedication that guides every client relationship.",
               },
             ].map((item) => (
               <StaggerItem key={item.title}>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
-                  <h3 className="font-serif text-xl font-semibold text-white mb-3">
+                <div className="rounded-2xl border border-tan-200 bg-white p-8 shadow-sm">
+                  <h3 className="font-serif text-xl font-semibold text-olive-900 mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-white/60 leading-relaxed text-sm">
+                  <p className="text-slate-600 leading-relaxed text-sm">
                     {item.description}
                   </p>
                 </div>
@@ -284,22 +273,55 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
       <section className="section-padding bg-cream-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <p className="text-teal-600 font-semibold text-sm tracking-wider uppercase mb-3">
-              Client Stories
+              Questions? We&apos;re Here to Help.
             </p>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900">
+              Frequently Asked Questions
+            </h2>
+          </FadeIn>
+
+          <div className="max-w-3xl mx-auto space-y-4 mb-12">
+            {faqs.slice(0, 5).map((faq, index) => (
+              <FadeIn key={faq.question} delay={index * 0.05}>
+                <details className="group rounded-2xl border border-cream-200 bg-white overflow-hidden">
+                  <summary className="flex items-start sm:items-center justify-between cursor-pointer p-4 sm:p-6 font-semibold text-navy-900 hover:bg-cream-50 transition-colors text-sm sm:text-base gap-3">
+                    <span className="text-left">{faq.question}</span>
+                    <span className="ml-4 text-teal-600 transition-transform group-open:rotate-45 text-xl shrink-0">
+                      +
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-slate-700 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </details>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn className="text-center">
+            <Button href="/faq" variant="secondary">
+              View All FAQs
+            </Button>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="section-padding bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900">
               What Our Clients Say
             </h2>
           </FadeIn>
 
-          <StaggerContainer className="grid md:grid-cols-3 gap-8">
+          <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {testimonials.map((testimonial) => (
               <StaggerItem key={testimonial.author}>
-                <div className="h-full rounded-2xl bg-white p-8 shadow-lg shadow-navy-950/5">
+                <div className="h-full rounded-2xl bg-cream-50 border border-cream-200 p-8 shadow-lg shadow-navy-950/5">
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star
@@ -313,7 +335,7 @@ export default function HomePage() {
                   </p>
                   <div>
                     <p className="font-semibold text-navy-900">
-                      {testimonial.author}
+                      — {testimonial.author}
                     </p>
                     <p className="text-sm text-slate-500">
                       {testimonial.location}
@@ -326,32 +348,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Location Banner */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={mysticImages.downtownRiver.src}
-            alt={mysticImages.downtownRiver.alt}
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-navy-950/80" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <FadeIn>
-            <p className="text-gold-400 font-semibold text-sm tracking-wider uppercase mb-3">
-              Visit Our Office
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
-              Proudly Serving Mystic &amp; All of Connecticut
-            </h2>
-            <p className="text-white/70 max-w-xl mx-auto mb-8">
-              {siteConfig.address.full}
-            </p>
-            <Button href="/contact" variant="outline" size="lg">
-              Get Directions
-            </Button>
-          </FadeIn>
+      <section className="section-padding bg-tan-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <FadeIn>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src={legalImages.supremeCourt.src}
+                  alt={legalImages.supremeCourt.alt}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.2} className="text-center lg:text-left">
+              <p className="text-olive-600 font-semibold text-sm tracking-wider uppercase mb-3">
+                Visit Our Office
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-olive-900 mb-4">
+                {siteConfig.serviceAreas}
+              </h2>
+              <p className="text-slate-600 max-w-xl mx-auto lg:mx-0 mb-2">
+                {siteConfig.address.full}
+              </p>
+              <p className="text-slate-500 mb-8">
+                {siteConfig.email} · {siteConfig.phoneAlt}
+              </p>
+              <Button href="/contact" variant="primary" size="lg">
+                Get Directions
+              </Button>
+            </FadeIn>
+          </div>
         </div>
       </section>
 

@@ -1,20 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-950: #0a1628;
-  --color-navy-900: #0f1f3d;
-  --color-navy-800: #162d54;
-  --color-navy-700: #1e3a66;
-  --color-navy-600: #2a4d82;
-  --color-teal-600: #0d7377;
-  --color-teal-500: #14919b;
-  --color-teal-400: #32b8c6;
-  --color-gold-500: #c9a227;
-  --color-gold-400: #dbb84a;
-  --color-gold-300: #e8cc6e;
-  --color-cream-50: #faf8f5;
-  --color-cream-100: #f5f0e8;
-  --color-cream-200: #ebe3d6;
+  /* Tan palette — site background */
+  --color-tan-50: #f5f0e6;
+  --color-tan-100: #ede6d6;
+  --color-tan-200: #ddd0b8;
+  --color-tan-300: #c9b896;
+
+  /* Olive green — primary accents */
+  --color-olive-950: #2a3318;
+  --color-olive-900: #3d4a22;
+  --color-olive-800: #4a5d23;
+  --color-olive-700: #556b2f;
+  --color-olive-600: #6b7f3c;
+  --color-olive-500: #7a8f4e;
+  --color-olive-400: #95a86a;
+  --color-olive-300: #b0bf8a;
+  --color-olive-200: #cdd9b0;
+  --color-olive-100: #e4ebd4;
+  --color-olive-50: #f0f4e8;
+
+  /* Remapped legacy tokens → olive/tan theme */
+  --color-navy-950: #2a3318;
+  --color-navy-900: #3d4a22;
+  --color-navy-800: #4a5d23;
+  --color-navy-700: #556b2f;
+  --color-navy-600: #6b7f3c;
+  --color-teal-600: #556b2f;
+  --color-teal-500: #6b7f3c;
+  --color-teal-400: #95a86a;
+  --color-gold-500: #8b9a5b;
+  --color-gold-400: #a3b06e;
+  --color-gold-300: #b8c48a;
+  --color-cream-50: #f5f0e6;
+  --color-cream-100: #ede6d6;
+  --color-cream-200: #ddd0b8;
   --color-slate-600: #64748b;
   --color-slate-700: #475569;
   --color-slate-800: #334155;
@@ -58,45 +78,57 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-cream-50);
-  color: var(--color-navy-900);
+  background-color: var(--color-tan-50);
+  color: var(--color-olive-900);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-width: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
-  background-color: color-mix(in srgb, var(--color-gold-400) 40%, transparent);
-  color: var(--color-navy-950);
+  background-color: color-mix(in srgb, var(--color-olive-400) 40%, transparent);
+  color: var(--color-olive-950);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-300));
+  background: linear-gradient(135deg, var(--color-olive-500), var(--color-olive-300));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(245, 240, 230, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(85, 107, 47, 0.12);
 }
 
 .glass-dark {
-  background: rgba(15, 31, 61, 0.85);
+  background: rgba(61, 74, 34, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Consistent page section spacing — tighter on phones */
 .section-padding {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -106,12 +138,55 @@ body {
   }
 }
 
+/* Offset below fixed header */
+.page-header-offset {
+  padding-top: 6rem;
+}
+
+@media (min-width: 768px) {
+  .page-header-offset {
+    padding-top: 8rem;
+  }
+}
+
+/* Horizontal scroll for wide tables on small screens */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.table-scroll table {
+  min-width: 32rem;
+}
+
+/* Touch-friendly interactive targets */
+.touch-target {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+}
+
+/* Safe area for notched devices */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
 .prose-custom h2 {
   font-family: var(--font-serif);
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-navy-900);
+  color: var(--color-olive-900);
   margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .prose-custom h2 {
+    font-size: 1.875rem;
+  }
 }
 
 .prose-custom p {
@@ -129,4 +204,10 @@ body {
 
 .prose-custom li {
   margin-bottom: 0.5rem;
+}
+
+/* Prevent long words/URLs from breaking layout */
+.break-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }

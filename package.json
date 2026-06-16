@@ -6,25 +6,29 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:init": "node scripts/init-db.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.16.0",
+    "jose": "^6.2.3",
+    "lucide-react": "^0.511.0",
     "next": "^15.3.3",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "lucide-react": "^0.511.0",
-    "framer-motion": "^12.16.0",
-    "clsx": "^2.1.1"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.8",
     "@types/node": "^22.15.29",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
-    "typescript": "^5.8.3",
-    "@tailwindcss/postcss": "^4.1.8",
-    "tailwindcss": "^4.1.8",
+    "dotenv": "^17.4.2",
     "eslint": "^9.28.0",
     "eslint-config-next": "^15.3.3",
-    "@eslint/eslintrc": "^3.3.1"
+    "tailwindcss": "^4.1.8",
+    "typescript": "^5.8.3"
   }
 }

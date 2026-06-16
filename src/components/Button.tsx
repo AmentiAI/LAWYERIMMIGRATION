@@ -13,12 +13,12 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-gold-500 text-navy-950 hover:bg-gold-400 shadow-lg shadow-gold-500/20 hover:shadow-gold-500/30",
+    "bg-olive-700 text-white hover:bg-olive-600 shadow-lg shadow-olive-700/20 hover:shadow-olive-700/30",
   secondary:
-    "bg-navy-900 text-white hover:bg-navy-800 shadow-lg shadow-navy-900/20",
+    "bg-olive-900 text-white hover:bg-olive-800 shadow-lg shadow-olive-900/20",
   outline:
     "border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm",
-  ghost: "text-navy-900 hover:bg-navy-900/5",
+  ghost: "text-olive-900 hover:bg-olive-900/5",
 };
 
 const sizes = {
