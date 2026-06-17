@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 interface ButtonProps {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline" | "ghost";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "gold";
   size?: "sm" | "md" | "lg";
   className?: string;
   external?: boolean;
@@ -13,18 +13,20 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-olive-700 text-white hover:bg-olive-600 shadow-lg shadow-olive-700/20 hover:shadow-olive-700/30",
+    "bg-olive-800 text-white hover:bg-olive-700 border border-olive-700",
   secondary:
-    "bg-olive-900 text-white hover:bg-olive-800 shadow-lg shadow-olive-900/20",
+    "bg-olive-950 text-white hover:bg-olive-900 border border-olive-900",
+  gold:
+    "bg-gold-500 text-olive-950 hover:bg-gold-400 border border-gold-600 font-semibold tracking-wide",
   outline:
-    "border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm",
-  ghost: "text-olive-900 hover:bg-olive-900/5",
+    "border-2 border-white/40 text-white hover:bg-white/10 hover:border-gold-400/60",
+  ghost: "text-olive-900 hover:bg-olive-900/5 border border-transparent",
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-sm",
+  sm: "px-4 py-2 text-xs tracking-wide uppercase",
   md: "px-6 py-3 text-sm",
-  lg: "px-8 py-4 text-base",
+  lg: "px-8 py-3.5 text-sm sm:text-base",
 };
 
 export function Button({
@@ -36,7 +38,7 @@ export function Button({
   external,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300",
+    "inline-flex items-center justify-center gap-2 rounded-sm font-semibold transition-colors duration-200",
     variants[variant],
     sizes[size],
     className
@@ -67,7 +69,7 @@ export function ButtonWithArrow({
   return (
     <Button href={href} variant={variant} size={size} className={className}>
       {children}
-      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
     </Button>
   );
 }

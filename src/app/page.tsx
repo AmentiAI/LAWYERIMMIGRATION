@@ -44,35 +44,41 @@ const iconMap = {
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[85dvh] sm:min-h-[90dvh] lg:min-h-screen flex items-center bg-tan-50 border-b border-tan-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
+      <section className="relative min-h-[85dvh] sm:min-h-[90dvh] lg:min-h-screen flex items-center bg-olive-950 border-b-4 border-gold-500">
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a227'%3E%3Cpath d='M30 0l4 12h12l-10 8 4 12-10-8-10 8 4-12-10-8h12z'/%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
           <FadeIn>
-            <div className="inline-flex items-center gap-2 rounded-full border border-olive-300 bg-tan-100 px-3 sm:px-4 py-1.5 text-xs sm:text-sm text-olive-800 mb-6 sm:mb-8 max-w-full">
-              <span className="h-2 w-2 rounded-full bg-olive-600 shrink-0 motion-reduce:animate-none animate-pulse" />
-              <span className="truncate">Personalized Immigration Legal Services</span>
-            </div>
+            <p className="law-eyebrow mb-4 sm:mb-5">
+              Immigration Law · Rhode Island & Connecticut
+            </p>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-olive-900 leading-[1.1] max-w-4xl break-words">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] max-w-4xl break-words">
               {siteConfig.tagline}
             </h1>
+            <div className="law-rule mt-6 sm:mt-8" />
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="mt-5 sm:mt-7 text-lg sm:text-xl md:text-2xl text-slate-600 max-w-2xl leading-relaxed">
+            <p className="mt-5 sm:mt-7 text-lg sm:text-xl md:text-2xl text-tan-100/80 max-w-2xl leading-relaxed font-light">
               {siteConfig.subtagline}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.3}>
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Button href="/consultation" size="lg" className="w-full sm:w-auto justify-center">
+              <Button href="/consultation" variant="gold" size="lg" className="w-full sm:w-auto justify-center">
                 Book Consultation
               </Button>
               <Button
                 href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
-                variant="secondary"
+                variant="outline"
                 size="lg"
                 className="w-full sm:w-auto justify-center"
               >
@@ -82,13 +88,15 @@ export default function HomePage() {
           </FadeIn>
 
           <FadeIn delay={0.4}>
-            <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+            <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 pt-8 border-t border-white/10">
               {highlights.map((item) => (
                 <div key={item.label} className="text-center md:text-left">
-                  <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-olive-700">
+                  <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-gold-400">
                     {item.value}
                   </p>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1 leading-snug">{item.label}</p>
+                  <p className="text-xs sm:text-sm text-tan-100/60 mt-1 leading-snug uppercase tracking-wide">
+                    {item.label}
+                  </p>
                 </div>
               ))}
             </div>
@@ -123,7 +131,7 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn direction="right">
-              <p className="text-teal-600 font-semibold text-sm tracking-wider uppercase mb-3">
+              <p className="law-eyebrow mb-3">
                 Concierge-Style Representation
               </p>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6">
@@ -169,12 +177,11 @@ export default function HomePage() {
       <section className="section-padding bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
-            <p className="text-teal-600 font-semibold text-sm tracking-wider uppercase mb-3">
-              Services
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+            <p className="law-eyebrow mb-3">Services</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-olive-900 mb-4">
               Immigration Legal Services
             </h2>
+            <div className="law-rule law-rule-center mb-4" />
             <p className="text-slate-600 max-w-2xl mx-auto">
               From family petitions to citizenship, work permits, and investor
               visas — every case handled with direct attorney involvement.
@@ -188,18 +195,18 @@ export default function HomePage() {
                 <StaggerItem key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="group block h-full rounded-2xl border border-cream-200 bg-cream-50 p-8 transition-all duration-300 hover:border-teal-500/30 hover:shadow-xl hover:shadow-navy-950/5 hover:-translate-y-1"
+                    className="group block h-full law-card p-8 transition-colors hover:border-gold-400/40"
                   >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400 mb-5 transition-colors group-hover:bg-teal-600 group-hover:text-white">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-sm border border-gold-500/30 bg-olive-950 text-gold-400 mb-5">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <h3 className="font-serif text-xl font-semibold text-navy-900 mb-3">
+                    <h3 className="font-serif text-xl font-semibold text-olive-900 mb-3">
                       {service.title}
                     </h3>
                     <p className="text-slate-600 text-sm leading-relaxed mb-4">
                       {service.shortDescription}
                     </p>
-                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-teal-600 group-hover:gap-2 transition-all">
+                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-olive-800 group-hover:text-gold-600 transition-colors">
                       Learn more <ArrowRight className="h-4 w-4" />
                     </span>
                   </Link>
@@ -219,12 +226,11 @@ export default function HomePage() {
       <section className="section-padding bg-tan-100 relative overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
-            <p className="text-olive-600 font-semibold text-sm tracking-wider uppercase mb-3">
-              Why Choose Us
-            </p>
+            <p className="law-eyebrow mb-3">Why Choose Us</p>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-olive-900 mb-4">
-              The JacqLaw Difference
+              A Tradition of Personal Advocacy
             </h2>
+            <div className="law-rule law-rule-center" />
           </FadeIn>
 
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -261,7 +267,7 @@ export default function HomePage() {
               },
             ].map((item) => (
               <StaggerItem key={item.title}>
-                <div className="rounded-2xl border border-tan-200 bg-white p-8 shadow-sm">
+                <div className="law-card p-8">
                   <h3 className="font-serif text-xl font-semibold text-olive-900 mb-3">
                     {item.title}
                   </h3>
@@ -278,10 +284,8 @@ export default function HomePage() {
       <section className="section-padding bg-cream-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
-            <p className="text-teal-600 font-semibold text-sm tracking-wider uppercase mb-3">
-              Questions? We&apos;re Here to Help.
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900">
+            <p className="law-eyebrow mb-3">Questions? We&apos;re Here to Help.</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-olive-900">
               Frequently Asked Questions
             </h2>
           </FadeIn>

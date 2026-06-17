@@ -6,12 +6,12 @@ import { keywordPagesList } from "@/lib/keyword-pages";
 
 export function Footer() {
   return (
-    <footer className="bg-olive-950 text-white">
+    <footer className="bg-olive-950 text-white border-t-4 border-gold-500">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-olive-800 text-tan-100 font-serif text-xl font-bold">
+              <div className="flex h-12 w-12 items-center justify-center rounded-sm border border-gold-500/50 bg-olive-900 text-gold-400 font-serif text-xl font-bold">
                 JG
               </div>
               <div>
@@ -27,7 +27,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-serif text-lg font-semibold mb-4">
+            <h3 className="font-serif text-lg font-semibold mb-4 text-gold-400 tracking-wide">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -45,7 +45,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-serif text-lg font-semibold mb-4">Services</h3>
+            <h3 className="font-serif text-lg font-semibold mb-4 text-gold-400 tracking-wide">Services</h3>
             <ul className="space-y-3">
               {servicesList.slice(0, 6).map((service) => (
                 <li key={service.slug}>
@@ -69,7 +69,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-serif text-lg font-semibold mb-4">Topics</h3>
+            <h3 className="font-serif text-lg font-semibold mb-4 text-gold-400 tracking-wide">Topics</h3>
             <ul className="space-y-3">
               {keywordPagesList.slice(0, 6).map((topic) => (
                 <li key={topic.slug}>
@@ -93,7 +93,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-serif text-lg font-semibold mb-4">Contact</h3>
+            <h3 className="font-serif text-lg font-semibold mb-4 text-gold-400 tracking-wide">Contact</h3>
             <ul className="space-y-4">
               <li>
                 <a

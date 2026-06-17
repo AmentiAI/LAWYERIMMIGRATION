@@ -36,7 +36,7 @@ export function TopicFooter({
           {relatedService && (
             <Link
               href={`/services/${relatedService}`}
-              className={`inline-flex items-center justify-center gap-2 rounded-full border-2 px-6 sm:px-8 py-3.5 sm:py-4 text-sm font-semibold transition-colors w-full sm:w-auto ${
+              className={`inline-flex items-center justify-center gap-2 rounded-sm border-2 px-6 sm:px-8 py-3.5 sm:py-4 text-sm font-semibold transition-colors w-full sm:w-auto ${
                 variant === "dark"
                   ? "border-white/30 text-white hover:bg-white/10"
                   : "border-olive-800 text-olive-800 hover:bg-olive-800 hover:text-white"

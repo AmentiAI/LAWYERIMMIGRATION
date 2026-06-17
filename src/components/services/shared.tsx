@@ -13,11 +13,12 @@ export function ServiceBanner({
   lead: string;
 }) {
   return (
-    <section className="bg-olive-800 page-header-offset pb-8 md:pb-10">
+    <section className="bg-olive-950 page-header-offset pb-8 md:pb-10 border-b-4 border-gold-500">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-olive-200 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-2 sm:mb-3">
+        <p className="law-eyebrow mb-2 sm:mb-3">
           {eyebrow}
         </p>
+        <div className="law-rule mb-4 sm:mb-5" />
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight max-w-4xl mb-4 sm:mb-5 break-words">
           {title}
         </h1>

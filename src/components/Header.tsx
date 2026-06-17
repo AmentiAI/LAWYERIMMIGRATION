@@ -77,7 +77,7 @@ export function Header() {
               className="lg:hidden fixed inset-0 z-[9998] bg-black/50"
               onClick={closeMobileMenu}
             />
-            <div className="lg:hidden fixed left-0 right-0 top-14 sm:top-16 bottom-0 z-[9999] bg-olive-900 overflow-y-auto overscroll-contain safe-bottom">
+            <div className="lg:hidden fixed left-0 right-0 top-14 sm:top-16 bottom-0 z-[9999] bg-olive-950 border-t border-gold-500/30 overflow-y-auto overscroll-contain safe-bottom">
               <nav className="flex flex-col p-4 sm:p-6 gap-1 pb-10">
                 <Link
                   href="/"
@@ -191,7 +191,7 @@ export function Header() {
                 <Link
                   href="/consultation"
                   onClick={closeMobileMenu}
-                  className="mt-2 inline-flex items-center justify-center rounded-full bg-olive-700 px-6 py-3.5 text-base font-semibold text-white touch-manipulation"
+                  className="mt-2 inline-flex items-center justify-center rounded-sm bg-gold-500 px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-olive-950 touch-manipulation hover:bg-gold-400"
                 >
                   Book Now
                 </Link>
@@ -203,18 +203,18 @@ export function Header() {
       : null;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[10000] glass shadow-lg shadow-olive-950/5 py-2.5 sm:py-3 bg-tan-100/95 safe-top">
+    <header className="fixed top-0 left-0 right-0 z-[10000] bg-olive-950 border-b-2 border-gold-500 shadow-lg shadow-black/20 safe-top">
       <div className="relative z-[60] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-between gap-3 py-2.5 sm:py-3">
           <Link href="/" className="group flex items-center gap-2 sm:gap-3 min-w-0">
-            <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-olive-800 text-tan-100 font-serif text-lg sm:text-xl font-bold transition-transform group-hover:scale-105">
+            <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-sm border border-gold-500/50 bg-olive-900 text-gold-400 font-serif text-lg sm:text-xl font-bold">
               JG
             </div>
             <div className="min-w-0 max-w-[11rem] min-[400px]:max-w-xs sm:max-w-sm lg:max-w-md">
-              <p className="font-serif text-[0.68rem] min-[400px]:text-xs sm:text-sm lg:text-base font-semibold leading-snug text-olive-900 line-clamp-2 sm:line-clamp-none">
+              <p className="font-serif text-[0.68rem] min-[400px]:text-xs sm:text-sm lg:text-base font-semibold leading-snug text-white line-clamp-2 sm:line-clamp-none">
                 {siteConfig.name}
               </p>
-              <p className="text-[10px] sm:text-xs tracking-wide text-slate-600 hidden min-[400px]:block">
+              <p className="text-[10px] sm:text-xs tracking-[0.15em] uppercase text-gold-400/80 hidden min-[400px]:block">
                 Immigration Law
               </p>
             </div>
@@ -233,8 +233,8 @@ export function Header() {
                       }}
                       aria-expanded={topicsOpen}
                       className={cn(
-                        "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-slate-700 hover:text-olive-900 hover:bg-olive-900/5",
-                        topicsOpen && "bg-olive-900/5"
+                        "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-sm transition-colors text-tan-100/85 hover:text-gold-400 hover:bg-white/5",
+                        topicsOpen && "text-gold-400 bg-white/5"
                       )}
                     >
                       Topics
@@ -246,7 +246,7 @@ export function Header() {
                       />
                     </button>
                     {topicsOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-80 bg-tan-50 rounded-2xl shadow-2xl shadow-olive-950/10 border border-tan-200 py-2 max-h-96 overflow-y-auto z-50">
+                      <div className="absolute top-full left-0 mt-2 w-80 bg-tan-50 rounded-sm shadow-2xl shadow-black/20 border border-tan-200 py-2 max-h-96 overflow-y-auto z-50">
                         <Link
                           href="/immigration"
                           onClick={() => setTopicsOpen(false)}
@@ -280,8 +280,8 @@ export function Header() {
                       }}
                       aria-expanded={servicesOpen}
                       className={cn(
-                        "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-slate-700 hover:text-olive-900 hover:bg-olive-900/5",
-                        servicesOpen && "bg-olive-900/5"
+                        "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-sm transition-colors text-tan-100/85 hover:text-gold-400 hover:bg-white/5",
+                        servicesOpen && "text-gold-400 bg-white/5"
                       )}
                     >
                       Services
@@ -293,7 +293,7 @@ export function Header() {
                       />
                     </button>
                     {servicesOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-72 bg-tan-50 rounded-2xl shadow-2xl shadow-olive-950/10 border border-tan-200 py-2 max-h-96 overflow-y-auto z-50">
+                      <div className="absolute top-full left-0 mt-2 w-72 bg-tan-50 rounded-sm shadow-2xl shadow-black/20 border border-tan-200 py-2 max-h-96 overflow-y-auto z-50">
                         <Link
                           href="/services"
                           onClick={() => setServicesOpen(false)}
@@ -320,7 +320,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-slate-700 hover:text-olive-900 hover:bg-olive-900/5"
+                  className="px-4 py-2 text-sm font-medium rounded-sm transition-colors text-tan-100/85 hover:text-gold-400 hover:bg-white/5"
                 >
                   {link.label}
                 </Link>
@@ -331,14 +331,14 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
-              className="flex items-center gap-2 text-sm font-medium text-olive-800 transition-colors"
+              className="flex items-center gap-2 text-sm font-medium text-tan-100/85 hover:text-gold-400 transition-colors"
             >
               <Phone className="h-4 w-4" />
               {siteConfig.phone}
             </a>
             <Link
               href="/consultation"
-              className="inline-flex items-center rounded-full bg-olive-700 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-olive-600 hover:shadow-lg hover:shadow-olive-700/25"
+              className="inline-flex items-center rounded-sm bg-gold-500 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-olive-950 transition-colors hover:bg-gold-400"
             >
               Book Now
             </Link>
@@ -347,7 +347,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}
-            className="lg:hidden relative z-[70] p-2.5 rounded-lg text-olive-900 transition-colors touch-manipulation"
+            className="lg:hidden relative z-[70] p-2.5 rounded-sm text-tan-100 hover:text-gold-400 transition-colors touch-manipulation"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
           >
