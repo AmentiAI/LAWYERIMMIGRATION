@@ -38,7 +38,7 @@ export const keywordPagesList: KeywordPage[] = [
     layout: "certificate-hero",
     imageKey: "courtroom",
     metaDescription:
-      "Marriage petition immigration attorney in Rhode Island and Connecticut. Spousal green cards, I-130 filings, and marriage-based immigration.",
+      "Marriage petition immigration attorney in Connecticut. Spousal green cards, I-130 filings, and marriage-based immigration.",
     relatedService: "family-based-petitions",
   },
   {
@@ -50,7 +50,7 @@ export const keywordPagesList: KeywordPage[] = [
     layout: "card-stack",
     imageKey: "immigrationAct",
     metaDescription:
-      "Green card petition lawyer serving Mystic, CT, Rhode Island, and Connecticut. Family and adjustment pathways to permanent residence.",
+      "Green card petition lawyer serving Mystic, Connecticut. Family and adjustment pathways to permanent residence.",
     relatedService: "family-based-petitions",
   },
   {
@@ -62,7 +62,7 @@ export const keywordPagesList: KeywordPage[] = [
     layout: "visa-journey",
     imageKey: "capitol",
     metaDescription:
-      "K-1 fiancé visa attorney. I-129F petitions, consular processing, and post-marriage green card adjustment in RI and CT.",
+      "K-1 fiancé visa attorney. I-129F petitions, consular processing, and post-marriage green card adjustment in Connecticut.",
     relatedService: "fiance-petitions",
   },
   {
@@ -122,7 +122,7 @@ export const keywordPagesList: KeywordPage[] = [
     layout: "work-badge",
     imageKey: "capitol",
     metaDescription:
-      "I-765 work permit attorney. EAD applications, renewals, and replacements in Rhode Island and Connecticut.",
+      "I-765 work permit attorney. EAD applications, renewals, and replacements in Connecticut.",
     relatedService: "work-permit-renewal",
   },
   {
@@ -146,7 +146,7 @@ export const keywordPagesList: KeywordPage[] = [
     layout: "criminal-review",
     imageKey: "ladyJustice",
     metaDescription:
-      "Naturalization attorney for applicants with criminal history. Good moral character analysis and N-400 strategy in RI and CT.",
+      "Naturalization attorney for applicants with criminal history. Good moral character analysis and N-400 strategy in Connecticut.",
     relatedService: "citizenship-naturalization",
   },
   {

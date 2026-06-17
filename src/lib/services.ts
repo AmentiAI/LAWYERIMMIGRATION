@@ -34,7 +34,7 @@ export const servicesList: ServiceItem[] = [
     layout: "split-panel",
     imageKey: "courtroom",
     metaDescription:
-      "Family-based immigration petitions (I-130) in Rhode Island and Connecticut. Attorney Goncalves handles spouse, parent, and child petitions with direct attorney involvement.",
+      "Family-based immigration petitions (I-130) in Connecticut. Attorney Goncalves handles spouse, parent, and child petitions with direct attorney involvement.",
   },
   {
     slug: "adjustment-of-status",
@@ -56,7 +56,7 @@ export const servicesList: ServiceItem[] = [
     layout: "pipeline",
     imageKey: "capitol",
     metaDescription:
-      "Consular processing immigration attorney serving RI and CT. Embassy interview preparation and NVC document management.",
+      "Consular processing immigration attorney serving Connecticut. Embassy interview preparation and NVC document management.",
   },
   {
     slug: "removal-of-conditions",
@@ -89,7 +89,7 @@ export const servicesList: ServiceItem[] = [
     layout: "dual-path",
     imageKey: "courtroom",
     metaDescription:
-      "K-1 fiancé visa attorney. I-129F petitions and adjustment of status after marriage in RI and CT.",
+      "K-1 fiancé visa attorney. I-129F petitions and adjustment of status after marriage in Connecticut.",
   },
   {
     slug: "work-permit-renewal",
@@ -122,7 +122,7 @@ export const servicesList: ServiceItem[] = [
     layout: "confidential",
     imageKey: "ladyJustice",
     metaDescription:
-      "VAWA self-petition immigration attorney. Confidential legal representation for abuse survivors in RI and CT.",
+      "VAWA self-petition immigration attorney. Confidential legal representation for abuse survivors in Connecticut.",
   },
   {
     slug: "daca-renewal",
@@ -144,7 +144,7 @@ export const servicesList: ServiceItem[] = [
     layout: "investment-grid",
     imageKey: "supremeCourt",
     metaDescription:
-      "E-2 treaty investor visa attorney. Business investment immigration for entrepreneurs in Rhode Island and Connecticut.",
+      "E-2 treaty investor visa attorney. Business investment immigration for entrepreneurs in Connecticut.",
   },
   {
     slug: "b1-b2-renewal",

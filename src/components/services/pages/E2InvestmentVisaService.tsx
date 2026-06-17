@@ -29,7 +29,7 @@ export default function E2InvestmentVisaService() {
           E-2 applications receive intense scrutiny at U.S. consulates. Officers examine
           your business plan, source of funds, investment amount relative to business
           cost, and whether the enterprise is real and operating — not marginal. Attorney
-          Goncalves works with entrepreneurs across Connecticut and Rhode Island to
+          Goncalves works with entrepreneurs across Connecticut to
           structure investments and prepare consular applications.
         </p>
       </ServiceIntro>
@@ -224,7 +224,7 @@ export default function E2InvestmentVisaService() {
 
       <ServiceFooter
         heading="Evaluate Your E-2 Investment Strategy"
-        description="Entrepreneurs in Rhode Island and Connecticut trust Attorney Goncalves for treaty investor visa planning."
+        description="Entrepreneurs in Connecticut trust Attorney Goncalves for treaty investor visa planning."
         buttonLabel="Discuss E-2 Visa Options"
       />
     </div>

@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   keywords: [
     "immigration lawyer",
     "Mystic CT",
-    "Rhode Island immigration attorney",
+    "Connecticut immigration attorney",
     "Connecticut immigration attorney",
     "family immigration lawyer",
     "green card lawyer",

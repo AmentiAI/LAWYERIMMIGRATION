@@ -6,7 +6,7 @@ export const siteConfig = {
   subtagline:
     "Direct attorney support from start to finish for family-based immigration matters.",
   description:
-    "Immigration lawyer serving Rhode Island and Connecticut. Family-based immigration, green cards, fiancé visas, citizenship, and naturalization. Schedule a consultation in Mystic, CT.",
+    "Immigration lawyer serving Connecticut. Family-based immigration, green cards, fiancé visas, citizenship, and naturalization. Schedule a consultation in Mystic, CT.",
   url: "https://www.jacqlaw.com",
   phone: "(860) 471-3023",
   phoneAlt: "(860) 471-3032",
@@ -23,7 +23,7 @@ export const siteConfig = {
     saturday: "Saturday: 9:00 AM – 2:00 PM",
     sunday: "Sunday: Closed",
   },
-  serviceAreas: "Rhode Island & Connecticut",
+  serviceAreas: "Connecticut",
   languages: ["English", "Spanish", "Portuguese"],
 };
 
@@ -56,7 +56,7 @@ export const highlights = [
   { value: "Direct", label: "Attorney Access" },
   { value: "3", label: "Languages Spoken" },
   { value: "6 Yrs", label: "U.S. Navy Service" },
-  { value: "RI & CT", label: "Serving Both States" },
+  { value: "CT", label: "Serving Connecticut" },
 ];
 
 export const faqs = [

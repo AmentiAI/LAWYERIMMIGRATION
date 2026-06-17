@@ -54,7 +54,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
           <FadeIn>
             <p className="law-eyebrow mb-4 sm:mb-5">
-              Immigration Law · Rhode Island & Connecticut
+              Immigration Law · Connecticut
             </p>
           </FadeIn>
 
@@ -150,7 +150,7 @@ export default function HomePage() {
                 {[
                   "Direct attorney involvement on every case",
                   "English, Spanish, and Portuguese",
-                  "Serving Rhode Island and Connecticut",
+                  "Serving Connecticut",
                   "Family-based immigration focus",
                 ].map((item) => (
                   <li
@@ -256,9 +256,9 @@ export default function HomePage() {
                   "An English and MBA background means complex immigration matters are explained in plain language you can understand.",
               },
               {
-                title: "Rhode Island & Connecticut",
+                title: "Connecticut",
                 description:
-                  "Serving clients across both states from our Mystic office, with federal immigration representation available nationwide.",
+                  "Serving clients from our Mystic office, with federal immigration representation available nationwide.",
               },
               {
                 title: "Military Discipline",

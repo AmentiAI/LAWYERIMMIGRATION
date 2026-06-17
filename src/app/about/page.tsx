@@ -11,7 +11,7 @@ import { legalImages } from "@/lib/images";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Attorney Jacquelyn R. Goncalves — immigration lawyer serving Rhode Island and Connecticut with concierge-style, family-based immigration representation.",
+    "About Attorney Jacquelyn R. Goncalves — immigration lawyer serving Connecticut with concierge-style, family-based immigration representation.",
 };
 
 export default function AboutPage() {
@@ -168,7 +168,7 @@ export default function AboutPage() {
               </h2>
               <p className="text-white/70 leading-relaxed mb-6">
                 Our office is located in Mystic, Connecticut, serving clients
-                throughout Rhode Island and Connecticut. U.S. immigration law is
+                throughout Connecticut. U.S. immigration law is
                 federal, so we also represent clients nationwide.
               </p>
               <ul className="space-y-3 mb-8">

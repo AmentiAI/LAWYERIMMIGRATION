@@ -42,7 +42,7 @@ export default function PetitionForParentsTopic() {
           </p>
           <p className="text-slate-500 leading-relaxed max-w-2xl">
             Attorney Goncalves handles parent petitions for clients throughout
-            Rhode Island and Connecticut, including cases involving step-parents,
+            Connecticut, including cases involving step-parents,
             adoptive parents, and parents adjusting status from visitor visas.
           </p>
         </div>

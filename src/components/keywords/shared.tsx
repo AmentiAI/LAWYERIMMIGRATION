@@ -26,8 +26,7 @@ export function TopicFooter({
     <section className={`py-12 sm:py-16 md:py-20 border-t ${bg}`}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
         <p className={`mb-6 sm:mb-8 text-sm ${text}`}>
-          Attorney Jacquelyn R. Goncalves personally handles every case — Rhode
-          Island, Connecticut, and nationwide.
+          Attorney Jacquelyn R. Goncalves personally handles every case — Connecticut and nationwide.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <Button href="/consultation" size="lg" variant={variant === "gold" ? "secondary" : "primary"} className="w-full sm:w-auto">

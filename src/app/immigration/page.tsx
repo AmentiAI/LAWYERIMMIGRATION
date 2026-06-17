@@ -9,7 +9,7 @@ import { keywordPagesList } from "@/lib/keyword-pages";
 export const metadata: Metadata = {
   title: "Immigration Topics",
   description:
-    "Immigration law guides — marriage petitions, I-130, I-485, N-400, fiancé visas, green cards, naturalization, and family petitions. Rhode Island & Connecticut attorney.",
+    "Immigration law guides — marriage petitions, I-130, I-485, N-400, fiancé visas, green cards, naturalization, and family petitions. Connecticut immigration attorney.",
 };
 
 export default function ImmigrationIndexPage() {
@@ -35,7 +35,7 @@ export default function ImmigrationIndexPage() {
     <>
       <PageHero
         title="Immigration Law Topics & Forms"
-        subtitle="In-depth guides on the immigration forms, petitions, and processes Attorney Goncalves handles for clients in Rhode Island and Connecticut."
+        subtitle="In-depth guides on the immigration forms, petitions, and processes Attorney Goncalves handles for clients in Connecticut."
         breadcrumb={[{ label: "Immigration Topics" }]}
       />
 

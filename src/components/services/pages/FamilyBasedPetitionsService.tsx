@@ -26,7 +26,7 @@ export default function FamilyBasedPetitionsService() {
         </p>
         <p>
           Attorney Jacquelyn R. Goncalves personally reviews every I-130 before filing.
-          Clients throughout Rhode Island, Connecticut, and nationwide work directly
+          Clients throughout Connecticut and nationwide work directly
           with the attorney from consultation through approval — never passed between
           paralegals or support staff.
         </p>
@@ -227,7 +227,7 @@ export default function FamilyBasedPetitionsService() {
 
       <ServiceFooter
         heading="Start Your Family Petition Consultation"
-        description="Discuss your I-130 case with Attorney Goncalves — serving Rhode Island, Connecticut, and families nationwide."
+        description="Discuss your I-130 case with Attorney Goncalves — serving Connecticut and families nationwide."
         buttonLabel="Discuss Family Petition"
       />
     </div>
