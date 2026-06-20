@@ -35,9 +35,8 @@ export const legalImages = {
     credit: "U.S. National Archives / Wikimedia Commons (Public Domain)",
   },
   mysticConnecticut: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/3/30/Downtown_Mystic%2C_CT_Mystic_River.JPG",
-    alt: "Downtown Mystic, Connecticut along the Mystic River",
-    credit: "Juliancolton / Wikimedia Commons (Public Domain)",
+    src: "/images/mystic-hero.png",
+    alt: "Main Street in Mystic, Connecticut at sunset",
   },
   immigrationLawOffice: {
     src: "/images/immigration-law-office.png",

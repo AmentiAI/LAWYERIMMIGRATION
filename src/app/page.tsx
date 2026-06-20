@@ -51,11 +51,15 @@ export default function HomePage() {
           fill
           priority
           sizes="100vw"
+          quality={95}
           unoptimized
-          className="object-cover"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-olive-950/70" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-olive-950/65 via-olive-950/40 to-olive-950/25"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
           <FadeIn>
             <p className="law-eyebrow mb-3 sm:mb-4 text-xs sm:text-sm">
               Immigration Law · Connecticut
