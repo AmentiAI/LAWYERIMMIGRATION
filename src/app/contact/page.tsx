@@ -13,6 +13,7 @@ export default function ContactPage() {
         title="Contact"
         subtitle="Reach our Mystic office by phone or email, or book an in-person or video consultation below."
         breadcrumb={[{ label: "Contact" }]}
+        compact
       />
 
       <section className="section-padding bg-tan-50">

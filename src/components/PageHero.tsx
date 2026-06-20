@@ -6,13 +6,23 @@ interface PageHeroProps {
   subtitle?: string;
   breadcrumb?: { label: string; href?: string }[];
   className?: string;
+  compact?: boolean;
 }
 
-export function PageHero({ title, subtitle, breadcrumb, className }: PageHeroProps) {
+export function PageHero({
+  title,
+  subtitle,
+  breadcrumb,
+  className,
+  compact = false,
+}: PageHeroProps) {
   return (
     <section
       className={cn(
-        "relative pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28 bg-olive-950 border-b-4 border-gold-500 overflow-hidden",
+        "relative bg-olive-950 border-b-4 border-gold-500 overflow-hidden",
+        compact
+          ? "pt-20 pb-8 sm:pt-24 sm:pb-10 md:pt-28 md:pb-12"
+          : "pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28",
         className
       )}
     >
@@ -25,7 +35,12 @@ export function PageHero({ title, subtitle, breadcrumb, className }: PageHeroPro
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {breadcrumb && (
-          <nav className="mb-4 md:mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-white/45 font-medium tracking-wide">
+          <nav
+            className={cn(
+              "flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-white/45 font-medium tracking-wide",
+              compact ? "mb-3 md:mb-4" : "mb-4 md:mb-6"
+            )}
+          >
             <Link href="/" className="hover:text-gold-400 transition-colors">
               Home
             </Link>
@@ -46,12 +61,26 @@ export function PageHero({ title, subtitle, breadcrumb, className }: PageHeroPro
             ))}
           </nav>
         )}
-        <div className="law-rule mb-6 sm:mb-8" />
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white max-w-4xl leading-tight break-words">
+        <div className={cn("law-rule", compact ? "mb-4 sm:mb-5" : "mb-6 sm:mb-8")} />
+        <h1
+          className={cn(
+            "font-serif font-bold text-white max-w-4xl leading-tight break-words",
+            compact
+              ? "text-3xl sm:text-4xl md:text-5xl"
+              : "text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+          )}
+        >
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-5 sm:mt-7 text-lg sm:text-xl md:text-2xl text-tan-100/85 max-w-3xl leading-relaxed font-light">
+          <p
+            className={cn(
+              "text-tan-100/85 max-w-3xl leading-relaxed font-light",
+              compact
+                ? "mt-3 sm:mt-4 text-base sm:text-lg"
+                : "mt-5 sm:mt-7 text-lg sm:text-xl md:text-2xl"
+            )}
+          >
             {subtitle}
           </p>
         )}
