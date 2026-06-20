@@ -7,12 +7,14 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { CTASection } from "@/components/CTASection";
 import { siteConfig } from "@/lib/constants";
 import { legalImages } from "@/lib/images";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
     "About Attorney Jacquelyn R. Goncalves — immigration lawyer serving Connecticut with concierge-style, family-based immigration representation.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -130,9 +132,9 @@ export default function AboutPage() {
               },
               {
                 icon: Globe,
-                title: "Trilingual Services",
+                title: "Multilingual Services",
                 description:
-                  "Full legal services in English, Spanish, and Portuguese for accessible communication.",
+                  "Full legal services in English, Spanish, and Portuguese. Other languages available upon request.",
               },
               {
                 icon: CheckCircle2,
@@ -168,8 +170,9 @@ export default function AboutPage() {
               </h2>
               <p className="text-white/70 leading-relaxed mb-6">
                 Our office is located in Mystic, Connecticut, serving clients
-                throughout Connecticut. U.S. immigration law is
-                federal, so we also represent clients nationwide.
+                throughout Connecticut and worldwide. U.S. immigration law is
+                federal, so we represent clients across the United States and
+                abroad.
               </p>
               <ul className="space-y-3 mb-8">
                 {[

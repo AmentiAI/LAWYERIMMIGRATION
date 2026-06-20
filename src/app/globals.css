@@ -193,12 +193,12 @@ body {
 
 /* Offset below fixed header */
 .page-header-offset {
-  padding-top: 6rem;
+  padding-top: 6.5rem;
 }
 
 @media (min-width: 768px) {
   .page-header-offset {
-    padding-top: 8rem;
+    padding-top: 8.5rem;
   }
 }
 

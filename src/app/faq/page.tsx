@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn } from "@/components/FadeIn";
+import { JsonLd } from "@/components/JsonLd";
 import { CTASection } from "@/components/CTASection";
 import { faqs } from "@/lib/constants";
+import { pageMetadata } from "@/lib/seo";
+import { faqPageJsonLd } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "FAQ",
   description:
     "Frequently asked questions about immigration services, consultations, and the process at the Law Offices of Jacquelyn R. Goncalves in Mystic, CT.",
-};
+  path: "/faq",
+});
 
 export default function FAQPage() {
   return (
     <>
+      <JsonLd data={faqPageJsonLd()} />
       <PageHero
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions about our immigration services, consultations, and process."

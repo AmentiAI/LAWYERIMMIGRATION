@@ -6,7 +6,7 @@ export const siteConfig = {
   subtagline:
     "Direct attorney support from start to finish for family-based immigration matters.",
   description:
-    "Immigration lawyer serving Connecticut. Family-based immigration, green cards, fiancé visas, citizenship, and naturalization. Schedule a consultation in Mystic, CT.",
+    "Immigration lawyer serving Connecticut and clients worldwide. Family-based immigration, green cards, business and investment matters, and consultations in Mystic, CT.",
   url: "https://www.jacqlaw.com",
   phone: "(860) 471-3023",
   phoneAlt: "(860) 471-3032",
@@ -25,13 +25,47 @@ export const siteConfig = {
   },
   serviceAreas: "Connecticut",
   languages: ["English", "Spanish", "Portuguese"],
+  languagesNote: "Other languages available upon request.",
+};
+
+export const businessInvestmentServices = [
+  "LLC applications",
+  "Finance Dept.",
+  "Consular processing",
+  "Consultation fees",
+];
+
+export const consultationFees = [
+  {
+    title: "General Overview Snapshot",
+    duration: "30 min",
+    price: "$99",
+    description:
+      "A focused consultation — in person or by video — to review your situation and outline your options.",
+  },
+  {
+    title: "Start Working on Your Case",
+    duration: "1 hour",
+    price: "$350",
+    description:
+      "An in-depth consultation to begin case planning — in person or by video. Credited towards attorney fees if you retain our office.",
+    credited: true,
+  },
+];
+
+export const cancellationPolicy = {
+  reschedule:
+    "We will kindly reschedule you if necessary once.",
+  rules: [
+    "No show (30 min) — forfeiture of fee.",
+    "No show (1 hr) → reschedule once → refund.",
+  ],
 };
 
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/immigration", label: "Topics" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
   { href: "/consultation", label: "Book Now" },
@@ -52,23 +86,16 @@ export const testimonials = [
   },
 ];
 
-export const highlights = [
-  { value: "Direct", label: "Attorney Access" },
-  { value: "3", label: "Languages Spoken" },
-  { value: "6 Yrs", label: "U.S. Navy Service" },
-  { value: "CT", label: "Serving Connecticut" },
-];
-
 export const faqs = [
   {
     question: "What immigration services do you offer?",
     answer:
-      "We provide family-based immigration services for individuals and families navigating the U.S. immigration process. This includes green cards, marriage-based petitions, fiancé visas, adjustment of status, citizenship and naturalization, and other family immigration matters. Every case is handled with personal attention and direct attorney involvement from start to finish.",
+      "We provide family-based immigration services for individuals and families navigating the U.S. immigration process — including green cards, marriage-based petitions, fiancé visas, adjustment of status, citizenship and naturalization, and other family immigration matters. We also assist with business and investment immigration, including LLC applications, finance department documentation, consular processing, and consultation fees. Every case is handled with personal attention and direct attorney involvement from start to finish.",
   },
   {
     question: "How do I start the immigration process?",
     answer:
-      "The first step is scheduling a consultation to discuss your situation and immigration goals. During the consultation, Attorney Jacquelyn Goncalves will review your case, explain the process, answer your questions, and outline the next steps. Every immigration case is different, so getting personalized guidance early is important.",
+      "The first step is scheduling a consultation to discuss your situation and immigration goals. Consultations are held in person at our Mystic office; video meetings are also available. During the consultation, Attorney Jacquelyn Goncalves will review your case, explain the process, answer your questions, and outline the next steps. Every immigration case is different, so getting personalized guidance early is important.",
   },
   {
     question: "Can you help with family-based immigration petitions?",
@@ -83,7 +110,12 @@ export const faqs = [
   {
     question: "How much does an immigration consultation cost?",
     answer:
-      "Consultation fees may vary depending on the type and complexity of your immigration matter. During your consultation, you will receive personalized legal guidance, answers to your questions, and a better understanding of your available options and next steps.",
+      "General Overview Snapshot — 30 min consultation: $99. Start Working on Your Case — 1 hour consultation: $350 (credited towards attorney fees if you retain our office). Consultations are in person at our Mystic office; video meetings are also available. During your consultation, you will receive personalized legal guidance, answers to your questions, and a better understanding of your available options and next steps.",
+  },
+  {
+    question: "What is your cancellation policy?",
+    answer:
+      "We will kindly reschedule you if necessary once. No show (30 min) — forfeiture of fee. No show (1 hr) → reschedule once → refund.",
   },
   {
     question: "What documents do I need for my immigration case?",
@@ -96,18 +128,18 @@ export const faqs = [
       "Processing times vary depending on the type of immigration case, government processing backlogs, and your individual circumstances. Some cases may take several months, while others can take longer. We help clients understand the timeline for their specific case and keep them informed throughout the process.",
   },
   {
-    question: "Do you speak Spanish or Portuguese?",
+    question: "What languages do you speak?",
     answer:
-      "Yes. We proudly assist clients in English, Spanish, and Portuguese to help make the immigration process more comfortable and accessible for individuals and families from different backgrounds.",
+      "We assist clients in English, Spanish, and Portuguese. Other languages are available upon request.",
+  },
+  {
+    question: "Do you assist clients outside Connecticut?",
+    answer:
+      "Yes. We assist clients worldwide. U.S. immigration law is federal, so we represent clients across the United States and abroad for consular processing and other immigration matters.",
   },
   {
     question: "Will I work directly with the attorney?",
     answer:
       "Yes. Attorney Jacquelyn Goncalves personally handles every case and works directly with clients throughout the immigration process. Clients are never passed between multiple attorneys or staff members, allowing for consistent communication, personalized attention, and trusted guidance every step of the way.",
-  },
-  {
-    question: "How can I contact you?",
-    answer:
-      "You can reach us via our contact page, by phone at (860) 471-3023, or by email at jr@jacquelynrgoncalveslaw.com. We aim to respond quickly — usually within one business day.",
   },
 ];

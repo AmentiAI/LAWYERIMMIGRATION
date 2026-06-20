@@ -22,7 +22,7 @@ import {
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { Button } from "@/components/Button";
 import { CTASection } from "@/components/CTASection";
-import { siteConfig, testimonials, highlights, faqs } from "@/lib/constants";
+import { siteConfig, testimonials, faqs } from "@/lib/constants";
 import { servicesList } from "@/lib/services";
 import { legalImages } from "@/lib/images";
 
@@ -44,7 +44,17 @@ const iconMap = {
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[85dvh] sm:min-h-[90dvh] lg:min-h-screen flex items-center bg-olive-950 border-b-4 border-gold-500">
+      <section className="relative min-h-[70dvh] sm:min-h-[75dvh] lg:min-h-[85dvh] flex items-center border-b-4 border-gold-500 overflow-hidden">
+        <Image
+          src={legalImages.mysticConnecticut.src}
+          alt={legalImages.mysticConnecticut.alt}
+          fill
+          priority
+          sizes="100vw"
+          unoptimized
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-olive-950/70" />
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -53,26 +63,26 @@ export default function HomePage() {
         />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
           <FadeIn>
-            <p className="law-eyebrow mb-4 sm:mb-5">
+            <p className="law-eyebrow mb-3 sm:mb-4 text-xs sm:text-sm">
               Immigration Law · Connecticut
             </p>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] max-w-4xl break-words">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] max-w-4xl break-words">
               {siteConfig.tagline}
             </h1>
-            <div className="law-rule mt-6 sm:mt-8" />
+            <div className="law-rule mt-5 sm:mt-6" />
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="mt-5 sm:mt-7 text-lg sm:text-xl md:text-2xl text-tan-100/80 max-w-2xl leading-relaxed font-light">
+            <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-tan-100/80 max-w-2xl leading-relaxed font-light">
               {siteConfig.subtagline}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button href="/consultation" variant="gold" size="lg" className="w-full sm:w-auto justify-center">
                 Book Consultation
               </Button>
@@ -86,21 +96,6 @@ export default function HomePage() {
               </Button>
             </div>
           </FadeIn>
-
-          <FadeIn delay={0.4}>
-            <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 pt-8 border-t border-white/10">
-              {highlights.map((item) => (
-                <div key={item.label} className="text-center md:text-left">
-                  <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-gold-400">
-                    {item.value}
-                  </p>
-                  <p className="text-xs sm:text-sm text-tan-100/60 mt-1 leading-snug uppercase tracking-wide">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
         </div>
       </section>
 
@@ -109,23 +104,14 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeIn direction="left">
               <div className="relative">
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
                   <Image
-                    src={legalImages.ladyJustice.src}
-                    alt={legalImages.ladyJustice.alt}
+                    src={legalImages.immigrationLawOffice.src}
+                    alt={legalImages.immigrationLawOffice.alt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    unoptimized
                     className="object-cover"
                   />
-                </div>
-                <div className="absolute bottom-4 right-4 sm:-bottom-6 sm:-right-6 md:-bottom-8 md:-right-8 bg-gold-500 rounded-2xl p-4 sm:p-6 shadow-xl">
-                  <p className="font-serif text-2xl sm:text-3xl font-bold text-navy-950">
-                    6 Yrs
-                  </p>
-                  <p className="text-sm font-medium text-navy-900/80">
-                    U.S. Navy Service
-                  </p>
                 </div>
               </div>
             </FadeIn>
@@ -149,8 +135,8 @@ export default function HomePage() {
               <ul className="space-y-3 mb-8">
                 {[
                   "Direct attorney involvement on every case",
-                  "English, Spanish, and Portuguese",
-                  "Serving Connecticut",
+                  "English, Spanish, and Portuguese — other languages available upon request",
+                  "Assist clients worldwide",
                   "Family-based immigration focus",
                 ].map((item) => (
                   <li
@@ -183,8 +169,9 @@ export default function HomePage() {
             </h2>
             <div className="law-rule law-rule-center mb-4" />
             <p className="text-slate-600 max-w-2xl mx-auto">
-              From family petitions to citizenship, work permits, and investor
-              visas — every case handled with direct attorney involvement.
+              From family petitions to citizenship, business and investment
+              immigration, and consular processing — every case handled with
+              direct attorney involvement.
             </p>
           </FadeIn>
 
@@ -246,9 +233,9 @@ export default function HomePage() {
                   "A hands-on approach with prompt answers, clear guidance, and availability when concerns arise throughout your immigration journey.",
               },
               {
-                title: "Trilingual Support",
+                title: "Multilingual Support",
                 description:
-                  "We proudly assist clients in English, Spanish, and Portuguese to make the process comfortable and accessible.",
+                  "We assist clients in English, Spanish, and Portuguese. Other languages are available upon request.",
               },
               {
                 title: "Clear Communication",
@@ -256,9 +243,9 @@ export default function HomePage() {
                   "An English and MBA background means complex immigration matters are explained in plain language you can understand.",
               },
               {
-                title: "Connecticut",
+                title: "Worldwide Clients",
                 description:
-                  "Serving clients from our Mystic office, with federal immigration representation available nationwide.",
+                  "We assist clients worldwide — from our Mystic office with federal immigration representation across the U.S. and abroad.",
               },
               {
                 title: "Military Discipline",
@@ -360,11 +347,10 @@ export default function HomePage() {
             <FadeIn>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src={legalImages.supremeCourt.src}
-                  alt={legalImages.supremeCourt.alt}
+                  src={legalImages.mysticOffice.src}
+                  alt={legalImages.mysticOffice.alt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  unoptimized
                   className="object-cover"
                 />
               </div>

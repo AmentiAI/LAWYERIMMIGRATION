@@ -34,6 +34,19 @@ export const legalImages = {
     alt: "Immigration reform signing at Statue of Liberty, 1965",
     credit: "U.S. National Archives / Wikimedia Commons (Public Domain)",
   },
+  mysticConnecticut: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/3/30/Downtown_Mystic%2C_CT_Mystic_River.JPG",
+    alt: "Downtown Mystic, Connecticut along the Mystic River",
+    credit: "Juliancolton / Wikimedia Commons (Public Domain)",
+  },
+  immigrationLawOffice: {
+    src: "/images/immigration-law-office.png",
+    alt: "Immigration law office with scales of justice, gavel, and law books",
+  },
+  mysticOffice: {
+    src: "/images/mystic-office.png",
+    alt: "Office building exterior at 12 Roosevelt Ave, Mystic, Connecticut",
+  },
 } as const;
 
 export type LegalImageKey = keyof typeof legalImages;

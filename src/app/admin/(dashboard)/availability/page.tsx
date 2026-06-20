@@ -172,7 +172,6 @@ export default function AdminAvailabilityPage() {
                 className="rounded-lg border border-tan-200 px-3 py-2 text-sm disabled:opacity-40"
               >
                 <option value={30}>30 min slots</option>
-                <option value={45}>45 min slots</option>
                 <option value={60}>60 min slots</option>
               </select>
             </div>

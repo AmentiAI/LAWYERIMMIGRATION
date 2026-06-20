@@ -5,12 +5,14 @@ import { PageHero } from "@/components/PageHero";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { CTASection } from "@/components/CTASection";
 import { keywordPagesList } from "@/lib/keyword-pages";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Immigration Topics",
   description:
     "Immigration law guides — marriage petitions, I-130, I-485, N-400, fiancé visas, green cards, naturalization, and family petitions. Connecticut immigration attorney.",
-};
+  path: "/immigration",
+});
 
 export default function ImmigrationIndexPage() {
   const forms = keywordPagesList.filter((p) =>

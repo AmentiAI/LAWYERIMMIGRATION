@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Clock, Shield, MessageSquare, CheckCircle2 } from "lucide-react";
+import {
+  Shield,
+  MessageSquare,
+  CheckCircle2,
+  Video,
+} from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { AppointmentBookingForm } from "@/components/AppointmentBookingForm";
@@ -12,7 +17,7 @@ export default function ConsultationPage() {
     <>
       <PageHero
         title="Book a Consultation"
-        subtitle="Choose an available date and time, then tell us about your immigration matter."
+        subtitle="Choose an available date and time for an in-person or video consultation, then tell us about your immigration matter."
         breadcrumb={[{ label: "Book Now" }]}
       />
 
@@ -24,13 +29,20 @@ export default function ConsultationPage() {
                 What to Expect
               </h2>
               <p className="text-slate-700 leading-relaxed mb-8">
-                Your initial consultation is an opportunity to discuss your
-                immigration matter with Attorney Goncalves, understand your
-                options, and determine the best path forward.
+                Your initial consultation with Attorney Goncalves — in person at
+                our Mystic office or by video — is an opportunity to discuss your
+                immigration matter, understand your options, and determine the best
+                path forward.
               </p>
 
               <StaggerContainer className="space-y-6">
                 {[
+                  {
+                    icon: Video,
+                    title: "In Person or Video",
+                    description:
+                      "Meet at our Mystic office or by secure video — whichever works best for you.",
+                  },
                   {
                     icon: MessageSquare,
                     title: "Case Evaluation",
@@ -42,12 +54,6 @@ export default function ConsultationPage() {
                     title: "Confidential Discussion",
                     description:
                       "All consultations are private and protected by attorney-client privilege.",
-                  },
-                  {
-                    icon: Clock,
-                    title: "60-Minute Session",
-                    description:
-                      "Enough time to thoroughly understand your situation and outline next steps.",
                   },
                   {
                     icon: CheckCircle2,

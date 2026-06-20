@@ -9,6 +9,7 @@ import {
   Clock,
 } from "lucide-react";
 import { AppointmentCalendar, formatDisplayTime } from "@/components/AppointmentCalendar";
+import { ConsultationBookingInfo } from "@/components/ConsultationBookingInfo";
 
 const CASE_TYPES = [
   { value: "family", label: "Family Based Petitions" },
@@ -22,8 +23,22 @@ const CASE_TYPES = [
   { value: "vawa", label: "VAWA" },
   { value: "daca", label: "DACA Renewal" },
   { value: "e2", label: "E-2 Investment Visa" },
+  { value: "business", label: "Business / Investment" },
   { value: "b1b2", label: "B-1/B-2 Renewal" },
   { value: "other", label: "Other / Not Sure" },
+];
+
+const CONSULTATION_TYPES = [
+  {
+    value: "30",
+    label: "General Overview Snapshot — 30 min ($99)",
+    duration: "30 min",
+  },
+  {
+    value: "60",
+    label: "Start Working on Your Case — 1 hour ($350)",
+    duration: "1 hour",
+  },
 ];
 
 export function AppointmentBookingForm() {
@@ -38,6 +53,7 @@ export function AppointmentBookingForm() {
     email: "",
     phone: "",
     caseType: "",
+    consultationType: "",
     message: "",
   });
 
@@ -68,8 +84,14 @@ export function AppointmentBookingForm() {
       return;
     }
 
-    const subject =
+    const caseLabel =
       CASE_TYPES.find((c) => c.value === form.caseType)?.label || "Consultation";
+    const consultationLabel =
+      CONSULTATION_TYPES.find((c) => c.value === form.consultationType)
+        ?.duration || "";
+    const subject = consultationLabel
+      ? `${caseLabel} — ${consultationLabel} consultation`
+      : caseLabel;
 
     setLoading(true);
     try {
@@ -124,6 +146,8 @@ export function AppointmentBookingForm() {
 
   return (
     <div className="rounded-3xl bg-white shadow-xl border border-tan-200 overflow-hidden">
+      <ConsultationBookingInfo />
+
       <div className="flex border-b border-tan-200">
         {[
           { num: 1, label: "Select date & time" },
@@ -154,7 +178,8 @@ export function AppointmentBookingForm() {
               Choose an Available Time
             </h2>
             <p className="text-slate-600 text-sm mb-6">
-              Select a day, then pick an open time slot to continue.
+              Select a day, then pick an open time slot for your in-person or
+              video consultation.
             </p>
             <AppointmentCalendar
               selectedDate={selectedDate}
@@ -275,6 +300,34 @@ export function AppointmentBookingForm() {
                 >
                   <option value="">Select a service</option>
                   {CASE_TYPES.map((c) => (
+                    <option key={c.value} value={c.value}>
+                      {c.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="booking-consultation-type"
+                  className="block text-sm font-medium text-olive-900 mb-2"
+                >
+                  Consultation Type *
+                </label>
+                <select
+                  id="booking-consultation-type"
+                  required
+                  value={form.consultationType}
+                  onChange={(e) =>
+                    setForm((p) => ({
+                      ...p,
+                      consultationType: e.target.value,
+                    }))
+                  }
+                  className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-3 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
+                >
+                  <option value="">Select consultation type</option>
+                  {CONSULTATION_TYPES.map((c) => (
                     <option key={c.value} value={c.value}>
                       {c.label}
                     </option>

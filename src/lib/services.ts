@@ -411,13 +411,13 @@ export function getServiceContent(slug: string) {
       formType: "work-permit",
     },
     "green-card-renewal": {
-      eyebrow: "Form I-90",
+      eyebrow: "Green Card",
       headline: "Maintain Your Status as a Lawful Permanent Resident",
-      lead: "Permanent resident cards expire every ten years and must be renewed. If your card is lost, stolen, damaged, or contains errors, replacement is required. We file your I-90 application and track USCIS processing so you always have valid proof of status.",
+      lead: "Permanent resident cards expire every ten years and must be renewed. If your card is lost, stolen, damaged, or contains errors, replacement is required. We file your application and track USCIS processing so you always have valid proof of status.",
       sections: [
         {
           title: "When to Renew",
-          body: "USCIS recommends filing Form I-90 six months before your green card expires. An expired card does not mean you lose permanent residence, but it can create problems with employment, travel, and government benefits.",
+          body: "USCIS recommends filing your renewal application six months before your green card expires. An expired card does not mean you lose permanent residence, but it can create problems with employment, travel, and government benefits.",
           items: [
             "Card expiring within six months",
             "Name change since card was issued",
@@ -437,7 +437,7 @@ export function getServiceContent(slug: string) {
         },
         {
           title: "Biometrics and Processing",
-          body: "Most I-90 applicants attend a biometrics appointment. We prepare you for this step and monitor your case through approval and card delivery.",
+          body: "Most applicants attend a biometrics appointment. We prepare you for this step and monitor your case through approval and card delivery.",
         },
       ],
       cta: "Renew or Replace Your Green Card",

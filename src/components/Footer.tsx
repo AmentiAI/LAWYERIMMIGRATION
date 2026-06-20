@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="bg-olive-950 text-white border-t-4 border-gold-500">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex h-12 w-12 items-center justify-center rounded-sm border border-gold-500/50 bg-olive-900 text-gold-400 font-serif text-xl font-bold">
@@ -69,30 +69,6 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-serif text-lg font-semibold mb-4 text-gold-400 tracking-wide">Topics</h3>
-            <ul className="space-y-3">
-              {keywordPagesList.slice(0, 6).map((topic) => (
-                <li key={topic.slug}>
-                  <Link
-                    href={`/immigration/${topic.slug}`}
-                    className="text-sm text-white/60 hover:text-olive-300 transition-colors"
-                  >
-                    {topic.title}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/immigration"
-                  className="text-sm text-olive-300/80 hover:text-olive-300 transition-colors"
-                >
-                  View all topics →
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
             <h3 className="font-serif text-lg font-semibold mb-4 text-gold-400 tracking-wide">Contact</h3>
             <ul className="space-y-4">
               <li>
@@ -128,6 +104,24 @@ export function Footer() {
             </ul>
           </div>
         </div>
+
+        <nav className="flex flex-wrap gap-x-3 gap-y-1 pb-4">
+          <Link
+            href="/immigration"
+            className="text-[11px] leading-tight text-olive-950 hover:text-olive-950"
+          >
+            Immigration Topics
+          </Link>
+          {keywordPagesList.map((topic) => (
+            <Link
+              key={topic.slug}
+              href={`/immigration/${topic.slug}`}
+              className="text-[11px] leading-tight text-olive-950 hover:text-olive-950"
+            >
+              {topic.title}
+            </Link>
+          ))}
+        </nav>
 
         <div className="border-t border-white/10 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/40">

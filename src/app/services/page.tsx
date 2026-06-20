@@ -19,6 +19,7 @@ import { PageHero } from "@/components/PageHero";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { CTASection } from "@/components/CTASection";
 import { servicesList } from "@/lib/services";
+import { pageMetadata } from "@/lib/seo";
 
 const iconMap = {
   Users,
@@ -35,18 +36,19 @@ const iconMap = {
   Plane,
 };
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Services",
   description:
     "Immigration legal services at the Law Offices of Jacquelyn R. Goncalves — family petitions, green cards, citizenship, VAWA, DACA, E-2 visas, and more.",
-};
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
     <>
       <PageHero
         title="Immigration Legal Services"
-        subtitle="Direct attorney representation for every stage of your immigration journey — from family petitions to citizenship, work permits, and investor visas."
+        subtitle="Direct attorney representation for every stage of your immigration journey — from family petitions to citizenship, business and investment matters, and consular processing."
         breadcrumb={[{ label: "Services" }]}
       />
 
