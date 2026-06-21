@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteShell } from "@/components/SiteShell";
 import { siteConfig } from "@/lib/constants";
@@ -92,6 +93,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
       <body className="antialiased overflow-x-hidden min-w-0">
+        <GoogleAnalytics />
         <JsonLd data={organizationJsonLd()} />
         <SiteShell>{children}</SiteShell>
       </body>
