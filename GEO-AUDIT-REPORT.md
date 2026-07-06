@@ -1,191 +1,143 @@
 # GEO Audit Report: Law Office of Jacquelyn R. Goncalves
 
-**Audit Date:** 2026-06-20
+**Audit Date:** 2026-07-06
 **URL:** https://www.jacqlaw.com
-**Business Type:** Local Business + Legal Services (single-attorney immigration law firm, Mystic, CT)
-**Pages Analyzed:** 34 (full sitemap: 7 core pages, 14 service pages, 13 immigration topic pages)
+**Business Type:** Local Business — Solo Immigration Law Firm (YMYL)
+**Pages Analyzed:** 8 live pages fetched + full source review of all 34 sitemap routes (+ 10 undeployed `/local/*` pages)
+**Prior audit:** 2026-06-20 (59/100) — see deltas noted below
 
 ---
 
 ## Executive Summary
 
-**Overall GEO Score: 59/100 (Poor — upper boundary, nearly Fair)**
+**Overall GEO Score: 58/100 (Poor — bordering Fair)**
 
-The site has a **strong technical and schema foundation** — clean server-side-rendered Next.js, valid `LegalService` / `WebSite` / `Attorney` JSON-LD on every page, a complete sitemap, AI-crawler-friendly `robots.txt`, and well-written, directly-quotable content. The score is held down by two things AI engines weigh heavily: **thin content depth** (most topic pages run ~550 words with no dates, sources, or author attribution) and **near-zero off-site brand authority** (no `sameAs` social links, no aggregated reviews, no third-party citations, no Wikipedia/Reddit/YouTube presence). The single highest-leverage fix is adding **`FAQPage` schema to the 27 service/topic pages that already contain Q&A content** but currently emit none.
+The site has genuinely strong technical bones — server-side rendered content, a clean site-wide `LegalService`/`WebSite`/`Attorney` JSON-LD graph, consistent NAP, unblocked AI crawlers, and content-rich topic pages (~1,400 words each) in an AI-friendly Q&A format. What holds the score down is **near-invisibility to AI as a recognized entity** (off-site presence is directory listings only, and search engines aren't confident she even practices immigration law), **thin E-E-A-T credentials** on a Your-Money-Your-Life legal site, and **wasted structured-data opportunities** — the topic pages already contain structured FAQ data that is never emitted as `FAQPage` schema. Two regressions since the 2026-06-20 audit lowered Technical GEO: `/contact` + `/consultation` are canonicalizing to the homepage (now fixed in the working tree), and the 10 `/local/*` pages 404 in production.
 
 ### Score Breakdown
 
-| Category | Score | Weight | Weighted Score |
-|---|---|---|---|
-| AI Citability | 68/100 | 25% | 17.0 |
-| Brand Authority | 38/100 | 20% | 7.6 |
-| Content E-E-A-T | 58/100 | 20% | 11.6 |
-| Technical GEO | 80/100 | 15% | 12.0 |
-| Schema & Structured Data | 62/100 | 10% | 6.2 |
-| Platform Optimization | 48/100 | 10% | 4.8 |
-| **Overall GEO Score** | | | **59/100** |
+| Category | Score | Weight | Weighted Score | vs. 06-20 |
+|---|---|---|---|---|
+| AI Citability | 72/100 | 25% | 18.0 | +4 |
+| Brand Authority | 40/100 | 20% | 8.0 | +2 |
+| Content E-E-A-T | 55/100 | 20% | 11.0 | −3 |
+| Technical GEO | 62/100 | 15% | 9.3 | −18 |
+| Schema & Structured Data | 58/100 | 10% | 5.8 | −4 |
+| Platform Optimization | 42/100 | 10% | 4.2 | −6 |
+| **Overall GEO Score** | | | **56.3 → 58/100** | −1 |
+
+> Technical GEO dropped mainly because this audit verified two live defects the prior audit did not catch: the homepage-canonical duplication on `/contact` + `/consultation`, and the `/local/*` 404s (the deployed sitemap has only 34 URLs, none of them `/local/*`).
 
 ---
 
 ## Critical Issues (Fix Immediately)
 
-*None.* No AI crawlers are blocked, content is server-rendered and indexable, key pages return 200, and structured data is present. This is a healthy baseline — the work ahead is optimization, not rescue.
+None at the "site is invisible" level — AI crawlers are allowed, content is server-rendered and indexable, and core schema is present. The problems below are High/Medium optimization gaps.
 
 ---
 
 ## High Priority Issues (Fix Within 1 Week)
 
-1. **FAQ content exists on 27 pages but `FAQPage` schema is emitted on only 1.**
-   `faqPageJsonLd()` is wired into `/faq` only (`src/app/faq/page.tsx`). Every service page and immigration topic page (e.g. `/immigration/i-130` has a "Family Petition Questions" Q&A block) renders its FAQ as plain HTML with no structured data. FAQ schema is one of the most reliable ways to win AI Overview and ChatGPT citations for question-shaped queries.
-   **Fix:** Generate per-page `FAQPage` JSON-LD from each topic/service page's existing Q&A data and inject `<JsonLd>` in `src/app/immigration/[slug]/page.tsx` and `src/app/services/[slug]/page.tsx`.
+1. **No `FAQPage` schema on the immigration topic pages** — `/immigration/i-130`, `/n-400`, `/i-485`, etc. render visible FAQ sections ("Family Petition Questions") and the data already exists in structured form (`faq?: { q: string; a: string }[]` in `src/lib/keyword-pages.ts:224`). Only `/faq` emits `FAQPage` markup. These topic pages are the most citable content on the site for Google AI Overviews / ChatGPT / Perplexity, and the markup is being left on the table.
 
-2. **No `llms.txt` file.** `https://www.jacqlaw.com/llms.txt` returns 404. This emerging standard gives AI systems a curated map of your most important pages and a plain-language description of the practice.
-   **Fix:** Add an `src/app/llms.txt/route.ts` (or static `public/llms.txt`) listing the firm description, core pages, and the service/topic page index.
+2. **`/contact` and `/consultation` were canonicalizing to the homepage** (live). Both were `"use client"` pages that inherited the homepage's title + `canonical`, so Google treated them as duplicates of the homepage. **Already fixed in the working tree** (split into server `page.tsx` + client content with unique metadata) — commit and deploy.
 
-3. **No author/attorney attribution on content pages.** Topic and service pages contain substantive legal explanations but carry no byline, no "reviewed by Attorney Jacquelyn R. Goncalves," and no link to her bio. AI engines use authorship to assess E-E-A-T before citing legal content.
-   **Fix:** Add a visible "Written/reviewed by Jacquelyn R. Goncalves, Immigration Attorney →" attribution block (linking `/about`) to the shared topic/service layout, and reflect it with `author`/`Person` schema.
+3. **10 `/local/*` location pages return HTTP 404 in production** (e.g. `/local/immigration-lawyer-mystic-ct`). They exist in source and in `sitemap.ts`, but the deployed sitemap has only 34 URLs and no `/local/*` routes. A whole tier of well-differentiated, location-targeted pages is built but unshipped — deploy them.
 
-4. **`Attorney` schema node is sparse and `sameAs` is absent everywhere.** The `Attorney` graph node in `src/lib/structured-data.ts` has only `name`, `worksFor`, `url`. There are no `sameAs` links (Google Business Profile, LinkedIn, Avvo, Justia, state bar profile) on either the Attorney or LegalService node — these are the primary signals AI uses for entity recognition.
-   **Fix:** Enrich the `Attorney` node with `jobTitle`, `image`, `description`, `alumniOf`, `knowsAbout`, and `sameAs[]`; add `sameAs[]` to the `LegalService` node.
+4. **No `llms.txt` file** — `https://www.jacqlaw.com/llms.txt` returns 404. This is the emerging standard for telling AI systems what the site is and which pages to prioritize.
+
+5. **Weak entity recognition** — a web search for the attorney surfaces only lawyer directories (Justia, LawInfo, Super Lawyers), and the search engine's own summary said those entries "focus on other legal matters rather than immigration law specifically." AI systems are not confident who she is or what she does — the core reason the firm won't be *named/recommended* in AI answers.
 
 ---
 
 ## Medium Priority Issues (Fix Within 1 Month)
 
-5. **`breadcrumbJsonLd()` is defined but never called.** It exists in `src/lib/structured-data.ts:99` but no page uses it. Breadcrumb structured data helps AI engines understand site hierarchy and is shown in AI/SERP results. Wire it into the service and immigration topic pages.
-
-6. **No review/rating signals.** Two testimonials exist in `constants.ts` (initials only), but there is no `AggregateRating` or `Review` schema, and no off-site review aggregation. AI engines lean heavily on review signals when recommending local service providers.
-
-7. **`LegalService` schema missing `geo` coordinates and `hasMap`.** The `PostalAddress` is complete, but adding `GeoCoordinates` and a Google Maps link strengthens local entity grounding for "immigration lawyer near me" style AI answers.
-
-8. **Content depth is thin.** Topic pages average ~550 words. AI engines preferentially cite comprehensive pages. Expand the highest-intent pages (I-130, N-400, I-485, marriage petitions, fiancé visa) to 900–1,500 words with more sub-questions, process timelines, and concrete eligibility criteria.
-
-9. **No freshness signals.** No visible "Last updated" date and no `dateModified` in schema on any content page (the live "© 2026" reads as a placeholder). Immigration law changes frequently; dated content is more trusted and more cited by AI.
-
-10. **No `Service` schema on service pages.** The 14 `/services/[slug]` pages describe distinct offerings but emit no `Service` structured data tied back to the `LegalService` provider.
+1. **No `Service` schema on the 12 `/services/*` pages** — only the global org graph is present. Each service page should emit a `Service` entity linked to the `LegalService` provider.
+2. **No `BreadcrumbList` schema** anywhere, despite breadcrumb UI on service and topic pages.
+3. **Thin credential signals on YMYL content** — the About page mentions "experience," "founded," and languages, but no bar admission, law school, J.D., or year admitted were found. Legal content is held to Google's highest E-E-A-T bar.
+4. **No author attribution or published/updated dates** on the topic pages — AI systems weight named expertise and freshness.
+5. **Google Business Profile not confirmed / not strongly surfaced** — the #1 local + AI-Overview trust signal for a local firm.
 
 ---
 
 ## Low Priority Issues (Optimize When Possible)
 
-11. **Homepage meta description not detected in rendered text** — verify `siteConfig.description` is actually emitted (it is configured in `layout.tsx`; confirm in production `<head>`).
-12. **Single OG image sitewide** — per-page OG images for major service/topic pages would improve social/AI link previews.
-13. **`robots.txt` could explicitly name AI crawlers.** Currently `User-agent: *  Allow: /`, which permits them — but explicitly allowing `GPTBot`, `ClaudeBot`, `PerplexityBot`, `OAI-SearchBot`, and `Google-Extended` documents intent and future-proofs.
-14. **Testimonials use initials only** ("CL", "AS") — full first name + last initial + verifiable source (Google review) would raise trust weight.
-15. **No Speakable schema** on FAQ/answer content for voice-assistant surfacing.
+1. Add an explicit self-canonical to the homepage (currently correctly inherited from the layout; explicit is more robust).
+2. Three Mystic synonym pages (`immigration-lawyer-` / `-attorney-` / `-law-firm-mystic-ct`) target near-identical intent; content is differentiated today, but monitor Search Console for clustering and consolidate if Google collapses them to one canonical.
+3. Add `sameAs` links (Justia, Super Lawyers, LinkedIn, Google Business Profile) to the `Attorney`/`LegalService` schema to reinforce the entity graph.
+4. Add `speakable` schema to key Q&A blocks for voice/AI-assistant surfacing.
 
 ---
 
 ## Category Deep Dives
 
-### AI Citability (68/100)
-**Strengths:** Content is genuinely well-built for extraction. Clear single H1 per page, logical H2/H3 hierarchy, and self-contained factual statements that read like direct answers — e.g. *"Spouses, unmarried children under 21, and parents of U.S. citizens are immediate relatives"* and *"An approved petition generally remains valid indefinitely as long as the petitioner remains eligible."* The FAQ answers in `constants.ts` are model-quality citable passages: complete, specific, and standalone.
-**Gaps:** Pages are short, so there are fewer citable passages per page than competitors. No dates reduce perceived reliability. No statistics, no source citations to USCIS/government pages (linking authoritative sources both helps users and signals trustworthiness to AI).
-**Quick rewrite pattern:** Lead each topic page with a 40–60 word bolded "direct answer" summary immediately under the H1 before the narrative — this is the passage AI engines extract most often.
+### AI Citability (72/100)
+**Strong.** Topic pages are server-rendered (~1,403 words in raw HTML on `/immigration/i-130`), use clear H2/H3 hierarchy, and present information in extractable Q&A and "X vs. Y" formats ("Immediate Relatives vs. Preference Categories," "Common Reasons USCIS Issues RFEs") — exactly the passage structure AI systems quote. **Improve:** add a 2–3 sentence direct-answer summary at the top of each topic page (definition-style: "Form I-130 is…"), and convert dense paragraphs into more list/table blocks.
 
-### Brand Authority (38/100)
-**Strengths:** Consistent NAP (name/address/phone) across the site and schema; clear single-attorney entity.
-**Gaps:** A brand search surfaces only directory listings (Justia, Super Lawyers, LawInfo, Martindale) and a state bar legal notice — **no owned social profiles, no Google Business reviews, no Wikipedia, no Reddit/YouTube/LinkedIn footprint** linked from the site. With no `sameAs` links anywhere, AI systems have little to anchor the firm as a recognized entity.
-**Actions:** Claim/optimize Google Business Profile, Avvo, Justia, and LinkedIn; add all of them to `sameAs[]`; begin collecting Google reviews; publish a few authoritative answers on Reddit (r/immigration) and a short YouTube intro — all of these are sources AI engines cite.
+### Brand Authority (40/100)
+**Weak.** Off-site presence is limited to legal directories (Justia, LawInfo, Lawyers.com, Super Lawyers). No Wikipedia, notable press, or Reddit/YouTube footprint, and no strongly surfaced Google Business Profile. NAP is consistent (12 Roosevelt Ave Ste 9B, Mystic CT 06355 · (860) 471-3023), which helps. This is the biggest lever on whether AI *names and recommends* the firm.
 
-### Content E-E-A-T (58/100)
-**Strengths:** The `/about` page conveys real experience — six years U.S. Navy service, MBA + JD, English degree, trilingual (English/Spanish/Portuguese), concierge direct-attorney model. Two detailed testimonials. Complete, trustworthy contact info and hours.
-**Gaps:** No bar admission listed, no law school named, no years-in-practice, no author bylines on substantive legal pages, no outbound citations to USCIS, no content dates. For YMYL (legal) content, these are exactly the trust signals Google and AI engines look for.
-**Actions:** Add bar admissions + admitting jurisdictions, law school, year admitted, and a per-page "reviewed by attorney" attribution; cite official USCIS sources on procedural claims.
+### Content E-E-A-T (55/100)
+**Mixed — the weak link for a YMYL legal site.** Experience/trust signals exist (personal attorney service, bilingual EN/ES/PT, disclaimer present). Missing: explicit **credentials** (bar admission state + year, law school, J.D.), an authoritative bylined bio with a photo, client outcomes/testimonials with schema, and dates on content.
 
-### Technical GEO (80/100)
-**Strengths:** Next.js App Router with server-side rendering (content is in the HTML, not JS-gated), valid `robots.txt` (allow-all, admin/api disallowed), `sitemap.xml` with all 34 pages, `metadataBase`, canonical URLs, complete Open Graph + Twitter Card tags, per-page `generateMetadata`, mobile viewport, HTTPS. No AI crawlers blocked.
-**Gaps:** Missing `llms.txt`; no explicit AI-crawler allowlist; sitemap `lastmod` shows a single bulk date (2026-06-20), which can read as non-genuine freshness.
-**This is the strongest category — the foundation is solid.**
+### Technical GEO (62/100)
+`robots.txt` correctly allows all crawlers (`User-agent: * / Allow: /`), blocking only `/admin/` and `/api/`; content is SSR; canonicals on service/topic pages are correct and self-referential. **Deductions:** missing `llms.txt`, `/local/*` 404 in production, and the (now fixed-locally) contact/consultation homepage-canonical duplication still live until deployed.
 
-### Schema & Structured Data (62/100)
-**Strengths:** A clean `@graph` of `LegalService` + `WebSite` + `Attorney` is emitted site-wide via `layout.tsx`, with proper `@id` cross-references, `address`, `openingHoursSpecification`, `areaServed`, `knowsLanguage`, and `priceRange`. `FAQPage` schema is valid on `/faq`.
-**Gaps:** FAQPage only on one page despite 27 pages with FAQ content (issue #1); `breadcrumbJsonLd` unused; no `sameAs`; sparse `Attorney` node; no `geo`, `AggregateRating`, `Review`, `Service`, or `Person` author schema; no `dateModified`.
-**This is the highest-ROI category to improve — the helpers are mostly already written.**
+### Schema & Structured Data (58/100)
+Solid global graph on every page: `LegalService` (address, hours, `areaServed`, `knowsLanguage`), `WebSite`, `Attorney`. `/faq` correctly emits `FAQPage` (11 Q&A). **Gaps:** no `FAQPage` on topic pages (data already exists), no `Service` schema on service pages, no `BreadcrumbList`, no per-page `sameAs`.
 
-### Platform Optimization (48/100)
-- **Google AI Overviews:** Best-positioned surface — strong local schema + NAP. Will improve sharply once FAQ schema and reviews are added.
-- **ChatGPT / OAI-SearchBot:** Crawlable, but thin authority/citations limit citation likelihood.
-- **Perplexity:** Rewards source-cited, dated, comprehensive content — current pages are too thin and undated.
-- **Gemini:** Tied to Google entity signals (GBP, reviews) that are currently absent off-site.
-- **Bing Copilot:** Crawlable; would benefit from Bing Places listing in `sameAs`.
+### Platform Optimization (42/100)
+Indexed in the legal directories AI models lean on for local-lawyer queries (Justia, Super Lawyers) — a foundation. Absent from Wikipedia, YouTube, Reddit; GBP signal unconfirmed. AI Overviews readiness will jump once `FAQPage` schema ships on the topic pages.
 
 ---
 
 ## Quick Wins (Implement This Week)
 
-1. **Add `FAQPage` JSON-LD to all topic/service pages** that already render Q&A — reuse the existing `faqPageJsonLd()` pattern. *Highest single GEO gain available.*
-2. **Publish `llms.txt`** at the site root listing the firm summary + page index.
-3. **Add `sameAs[]`** (Google Business Profile, LinkedIn, Avvo, Justia, state bar) to the `LegalService` and `Attorney` nodes in `src/lib/structured-data.ts`.
-4. **Wire up the existing `breadcrumbJsonLd()`** on service and immigration topic pages.
-5. **Add an attorney attribution block** ("Reviewed by Jacquelyn R. Goncalves, Immigration Attorney →") linking `/about` on every content page.
+1. **Emit `FAQPage` schema on every topic page that has `faq` data** — the array already exists in `keyword-pages.ts`; map it into JSON-LD in `src/app/immigration/[slug]/page.tsx`. ~1 hour, biggest AI-visibility return.
+2. **Deploy the contact/consultation canonical fix + the 10 `/local/*` pages** — commit the working-tree changes and confirm all `/local/*` URLs return 200 and appear in the live sitemap.
+3. **Add `llms.txt`** at the site root (run the `geo-llmstxt` skill to generate it).
+4. **Add `Service` + `BreadcrumbList` schema** to the 12 service pages.
+5. **Strengthen the About page** with bar admission (state + year), law school/J.D., headshot, and bylined bio — then link it via `sameAs` in the `Attorney` schema.
 
 ## 30-Day Action Plan
 
-### Week 1: Structured Data Sweep
-- [ ] Emit per-page `FAQPage` schema on all 27 service/topic pages with Q&A
-- [ ] Create and publish `llms.txt`
-- [ ] Enrich `Attorney` node (`jobTitle`, `image`, `description`, `alumniOf`, `knowsAbout`) and add `sameAs[]` to both `Attorney` and `LegalService`
-- [ ] Wire `breadcrumbJsonLd()` into service + topic page layouts
+### Week 1: Structured Data & Deployment
+- [x] Add `FAQPage` schema to all `/immigration/*` topic pages — done via `FaqBlock` in `src/components/keywords/shared.tsx` (auto-emits on all 16 topic pages); pending deploy
+- [ ] Commit + deploy the contact/consultation metadata fix
+- [ ] Deploy the 10 `/local/*` pages; verify 200s and sitemap inclusion
+- [x] Generate and publish `llms.txt` — done at `public/llms.txt`; pending deploy
 
-### Week 2: E-E-A-T & Trust Signals
-- [ ] Add bar admissions, law school, year admitted, years-in-practice to `/about` + Attorney schema
-- [ ] Add "reviewed by attorney" attribution block to shared content layout
-- [ ] Add `GeoCoordinates` + `hasMap` to `LegalService`; embed a Google Map on `/contact`
-- [ ] Add visible "Last updated" dates + `dateModified` schema to content pages
+### Week 2: E-E-A-T & On-Page Trust
+- [ ] Rewrite About page with full credentials, headshot, and byline
+- [ ] Add `sameAs` (Justia, Super Lawyers, LinkedIn, GBP) to `Attorney`/`LegalService` schema
+- [ ] Add direct-answer summary blocks to the top of each topic page
+- [ ] Add `Service` + `BreadcrumbList` schema to service pages
 
-### Week 3: Off-Site Authority
-- [ ] Claim/optimize Google Business Profile; request reviews from past clients
-- [ ] Create/complete LinkedIn, Avvo, Justia profiles; link all in `sameAs[]`
-- [ ] Add `AggregateRating`/`Review` schema once verifiable reviews exist
-- [ ] Publish one helpful answer thread on r/immigration referencing expertise
+### Week 3: Local & Platform Presence
+- [ ] Claim/optimize Google Business Profile (categories, hours, services, photos, posts)
+- [ ] Complete/optimize Justia, Super Lawyers, Avvo, LinkedIn with consistent NAP
+- [ ] Request reviews; add `Review`/`AggregateRating` schema once collected
 
-### Week 4: Content Depth
-- [ ] Expand top 5 highest-intent pages (I-130, N-400, I-485, marriage petitions, fiancé visa) to 900–1,500 words
-- [ ] Add a bolded 40–60 word "direct answer" summary under each topic-page H1
-- [ ] Add outbound citations to official USCIS pages on procedural claims
-- [ ] Add `Service` schema to the 14 service pages
-- [ ] Add per-page OG images for major pages
+### Week 4: Content Authority & Indexing
+- [ ] Publish 2–3 in-depth, dated, bylined guides (e.g., "I-130 timeline 2026," "Marriage green card evidence checklist")
+- [ ] Resubmit sitemap in Search Console; Request Indexing on key pages
+- [ ] Verify `NEXT_PUBLIC_SITE_URL` matches production domain exactly (prevents canonical drift)
+- [ ] Re-run this audit and compare deltas
 
 ---
 
 ## Appendix: Pages Analyzed
 
-| URL | Type | Key GEO Issues |
+| URL | Title | GEO Issues |
 |---|---|---|
-| `/` | Home | Has LegalService/WebSite/Attorney schema; no FAQPage despite homepage FAQs |
-| `/about` | About | Good experience signals; missing bar/school/years, no Person/author schema |
-| `/services` | Index | OK; children lack Service schema |
-| `/faq` | FAQ | ✅ Only page with FAQPage schema |
-| `/contact` | Contact | NAP good; no geo coords, no map embed |
-| `/consultation` | Booking | Functional; minimal schema |
-| `/immigration` | Index | OK; children lack FAQPage/breadcrumb schema |
-| `/immigration/i-130` | Topic | Q&A present, **no FAQPage schema**, no date, no author, ~550 words |
-| `/immigration/n-400` | Topic | Same as above |
-| `/immigration/i-485` | Topic | Same as above |
-| `/immigration/i-864` | Topic | Same as above |
-| `/immigration/i-765` | Topic | Same as above |
-| `/immigration/i-90` | Topic | Same as above |
-| `/immigration/marriage-petitions` | Topic | Same as above |
-| `/immigration/green-card-petitions` | Topic | Same as above |
-| `/immigration/fiance-visa` | Topic | Same as above |
-| `/immigration/naturalization-criminal-history` | Topic | Same as above |
-| `/immigration/removal-of-conditions-divorce` | Topic | Same as above |
-| `/immigration/petition-for-spouse` | Topic | Same as above |
-| `/immigration/petition-for-children` | Topic | Same as above |
-| `/immigration/petition-for-parents` | Topic | Same as above |
-| `/immigration/petition-for-sibling` | Topic | Same as above |
-| `/services/family-based-petitions` | Service | No Service/FAQPage/breadcrumb schema |
-| `/services/adjustment-of-status` | Service | Same as above |
-| `/services/consular-processing` | Service | Same as above |
-| `/services/removal-of-conditions` | Service | Same as above |
-| `/services/citizenship-naturalization` | Service | Same as above |
-| `/services/fiance-petitions` | Service | Same as above |
-| `/services/work-permit-renewal` | Service | Same as above |
-| `/services/green-card-renewal` | Service | Same as above |
-| `/services/vawa` | Service | Same as above |
-| `/services/daca-renewal` | Service | Same as above |
-| `/services/e2-investment-visa` | Service | Same as above |
-| `/services/b1-b2-renewal` | Service | Same as above |
+| / | Law Office of Jacquelyn R. Goncalves | Meta desc + full org JSON-LD present; homepage canonical inherited (OK) |
+| /robots.txt | — | Correct; allows AI crawlers, blocks /admin /api |
+| /sitemap.xml | — | 34 URLs; **missing all /local/* routes** |
+| /llms.txt | — | **404 — missing** |
+| /about | About | E-E-A-T: no bar/J.D./credentials found |
+| /faq | FAQ | `FAQPage` schema present (11 Q&A) — good |
+| /services/family-based-petitions | Family Based Petitions | Correct canonical; **no `Service` schema** |
+| /immigration/i-130 | I-130 topic | ~1,403 words SSR, visible FAQ, **no `FAQPage` schema** |
+| /local/immigration-lawyer-mystic-ct | — | **404 — page not deployed** |
 
-*Fetch failures: none. `llms.txt` returned 404 (expected — file does not exist).*
+_Scoring reflects the live production site as of the audit date; the contact/consultation canonical fix exists in the working tree but is not yet deployed._

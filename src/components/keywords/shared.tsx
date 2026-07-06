@@ -57,8 +57,25 @@ export function FaqBlock({
   items: { q: string; a: string }[];
   title?: string;
 }) {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
   return (
     <section className="py-12 sm:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-black mb-6 sm:mb-8 text-center px-4">
         {title}
       </h2>

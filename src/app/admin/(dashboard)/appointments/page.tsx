@@ -12,6 +12,7 @@ interface Appointment {
   message: string;
   appointment_date: string;
   appointment_time: string;
+  duration_minutes: number;
   status: string;
   created_at: string;
 }
@@ -117,6 +118,9 @@ export default function AdminAppointmentsPage() {
                   </p>
                   <p className="text-olive-600 font-medium">
                     {formatTime(apt.appointment_time)}
+                    {apt.duration_minutes
+                      ? ` · ${apt.duration_minutes === 60 ? "1 hour" : `${apt.duration_minutes} min`}`
+                      : ""}
                   </p>
                 </div>
               </div>

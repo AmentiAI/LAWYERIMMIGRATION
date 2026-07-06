@@ -24,6 +24,7 @@ interface OverrideRow {
 interface BookedRow {
   appointment_date: string;
   appointment_time: string;
+  duration_minutes: number;
 }
 
 function parseTime(timeStr: string): number {
@@ -67,7 +68,8 @@ function generateSlotsForDay(
 
 export async function getAvailableSlotsForMonth(
   year: number,
-  month: number
+  month: number,
+  requestedDuration = 30
 ): Promise<Record<string, TimeSlot[]>> {
   const sql = getDb();
 
@@ -98,19 +100,28 @@ export async function getAvailableSlotsForMonth(
   );
 
   const booked = (await sql`
-    SELECT appointment_date::text, appointment_time::text
+    SELECT appointment_date::text, appointment_time::text, duration_minutes
     FROM appointments
     WHERE appointment_date >= ${startStr}::date
       AND appointment_date <= ${endStr}::date
       AND status != 'cancelled'
   `) as BookedRow[];
 
-  const bookedSet = new Set(
-    booked.map(
-      (b) =>
-        `${normalizeDateKey(b.appointment_date)}_${normalizeTimeKey(b.appointment_time)}`
-    )
-  );
+  // Map each date to the minute-ranges [start, start + duration) it is booked for.
+  const bookedRanges = new Map<string, { start: number; end: number }[]>();
+  for (const b of booked) {
+    const dateKey = normalizeDateKey(b.appointment_date);
+    const start = parseTime(normalizeTimeKey(b.appointment_time));
+    const ranges = bookedRanges.get(dateKey) ?? [];
+    ranges.push({ start, end: start + (b.duration_minutes || 30) });
+    bookedRanges.set(dateKey, ranges);
+  }
+
+  const isOccupied = (dateStr: string, minute: number): boolean => {
+    const ranges = bookedRanges.get(dateStr);
+    if (!ranges) return false;
+    return ranges.some((r) => minute >= r.start && minute < r.end);
+  };
 
   const result: Record<string, TimeSlot[]> = {};
   const today = new Date();
@@ -142,11 +153,18 @@ export async function getAvailableSlotsForMonth(
     }
 
     const times = generateSlotsForDay(startMinutes, endMinutes, duration);
-    const daySlots: TimeSlot[] = times.map((time) => ({
-      date: dateStr,
-      time,
-      available: !bookedSet.has(`${dateStr}_${time}`),
-    }));
+    // Number of consecutive base slots the requested session spans.
+    const slotsNeeded = Math.max(1, Math.ceil(requestedDuration / duration));
+    const daySlots: TimeSlot[] = times.map((time) => {
+      const startMin = parseTime(time);
+      // The full session must finish within the working window...
+      let available = startMin + requestedDuration <= endMinutes;
+      // ...and every base slot it covers must be free.
+      for (let k = 0; available && k < slotsNeeded; k++) {
+        if (isOccupied(dateStr, startMin + k * duration)) available = false;
+      }
+      return { date: dateStr, time, available };
+    });
 
     if (daySlots.some((s) => s.available)) {
       result[dateStr] = daySlots;
@@ -158,12 +176,13 @@ export async function getAvailableSlotsForMonth(
 
 export async function isSlotAvailable(
   date: string,
-  time: string
+  time: string,
+  requestedDuration = 30
 ): Promise<boolean> {
   const [year, month] = date.split("-").map(Number);
-  const slots = await getAvailableSlotsForMonth(year, month);
+  const slots = await getAvailableSlotsForMonth(year, month, requestedDuration);
   const daySlots = slots[date];
   if (!daySlots) return false;
-  const slot = daySlots.find((s) => s.time === time);
+  const slot = daySlots.find((s) => s.time === normalizeTimeKey(time));
   return slot?.available ?? false;
 }

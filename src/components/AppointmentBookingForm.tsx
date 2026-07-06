@@ -69,6 +69,13 @@ export function AppointmentBookingForm() {
     setStep(2);
   }
 
+  function handleSelectConsultationType(value: string) {
+    setForm((p) => ({ ...p, consultationType: value }));
+    // Changing session length can change which start times are open.
+    setSelectedTime(null);
+    setError("");
+  }
+
   function handleBack() {
     setStep(1);
     setError("");
@@ -77,6 +84,12 @@ export function AppointmentBookingForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+
+    if (!form.consultationType) {
+      setError("Please select a session length.");
+      setStep(1);
+      return;
+    }
 
     if (!selectedDate || !selectedTime) {
       setError("Please select an appointment date and time.");
@@ -106,6 +119,7 @@ export function AppointmentBookingForm() {
           message: form.message,
           appointmentDate: selectedDate,
           appointmentTime: selectedTime,
+          durationMinutes: Number(form.consultationType),
         }),
       });
 
@@ -175,19 +189,59 @@ export function AppointmentBookingForm() {
         {step === 1 ? (
           <div>
             <h2 className="font-serif text-xl sm:text-2xl font-bold text-olive-900 mb-2">
-              Choose an Available Time
+              Choose Your Consultation
             </h2>
-            <p className="text-slate-600 text-sm mb-6">
-              Select a day, then pick an open time slot for your in-person or
-              video consultation.
+            <p className="text-slate-600 text-sm mb-5">
+              First, select a session length. Then pick a day and an open time
+              slot for your in-person or video consultation.
             </p>
-            <AppointmentCalendar
-              selectedDate={selectedDate}
-              selectedTime={selectedTime}
-              onSelectDate={handleSelectDate}
-              onSelectTime={(time) => time && handleSelectTime(time)}
-              embedded
-            />
+
+            <fieldset className="mb-6">
+              <legend className="block text-sm font-medium text-olive-900 mb-2">
+                Session length *
+              </legend>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {CONSULTATION_TYPES.map((c) => {
+                  const active = form.consultationType === c.value;
+                  return (
+                    <button
+                      key={c.value}
+                      type="button"
+                      onClick={() => handleSelectConsultationType(c.value)}
+                      aria-pressed={active}
+                      className={`text-left rounded-xl border-2 p-4 transition-colors ${
+                        active
+                          ? "border-olive-700 bg-olive-50"
+                          : "border-tan-200 bg-tan-50 hover:border-olive-400"
+                      }`}
+                    >
+                      <span className="flex items-center gap-2 font-semibold text-olive-900">
+                        <Clock className="h-4 w-4 text-olive-700" />
+                        {c.duration}
+                      </span>
+                      <span className="block mt-1 text-sm text-slate-600">
+                        {c.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+
+            {form.consultationType ? (
+              <AppointmentCalendar
+                selectedDate={selectedDate}
+                selectedTime={selectedTime}
+                onSelectDate={handleSelectDate}
+                onSelectTime={(time) => time && handleSelectTime(time)}
+                durationMinutes={Number(form.consultationType)}
+                embedded
+              />
+            ) : (
+              <div className="rounded-xl border border-dashed border-tan-300 bg-tan-50 p-6 text-center text-sm text-slate-500">
+                Select a session length above to see available times.
+              </div>
+            )}
           </div>
         ) : (
           <div>
@@ -219,6 +273,12 @@ export function AppointmentBookingForm() {
                 <span className="inline-flex items-center gap-2">
                   <Clock className="h-4 w-4 text-olive-700" />
                   {formatDisplayTime(selectedTime)}
+                  {form.consultationType &&
+                    ` · ${
+                      CONSULTATION_TYPES.find(
+                        (c) => c.value === form.consultationType
+                      )?.duration
+                    }`}
                 </span>
               </div>
             )}
@@ -300,34 +360,6 @@ export function AppointmentBookingForm() {
                 >
                   <option value="">Select a service</option>
                   {CASE_TYPES.map((c) => (
-                    <option key={c.value} value={c.value}>
-                      {c.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="booking-consultation-type"
-                  className="block text-sm font-medium text-olive-900 mb-2"
-                >
-                  Consultation Type *
-                </label>
-                <select
-                  id="booking-consultation-type"
-                  required
-                  value={form.consultationType}
-                  onChange={(e) =>
-                    setForm((p) => ({
-                      ...p,
-                      consultationType: e.target.value,
-                    }))
-                  }
-                  className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-3 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
-                >
-                  <option value="">Select consultation type</option>
-                  {CONSULTATION_TYPES.map((c) => (
                     <option key={c.value} value={c.value}>
                       {c.label}
                     </option>

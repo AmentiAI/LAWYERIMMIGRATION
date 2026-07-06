@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { siteConfig, navLinks } from "@/lib/constants";
 import { servicesList } from "@/lib/services";
 import { keywordPagesList } from "@/lib/keyword-pages";
+import { locationPagesList } from "@/lib/location-pages";
 
 export function Footer() {
   return (
@@ -119,6 +120,18 @@ export function Footer() {
               className="text-[11px] leading-tight text-olive-950 hover:text-olive-950"
             >
               {topic.title}
+            </Link>
+          ))}
+        </nav>
+
+        <nav className="flex flex-wrap gap-x-3 gap-y-1 pb-4">
+          {locationPagesList.map((page) => (
+            <Link
+              key={page.slug}
+              href={`/local/${page.slug}`}
+              className="text-[11px] leading-tight text-olive-950 hover:text-olive-950"
+            >
+              {page.title}
             </Link>
           ))}
         </nav>

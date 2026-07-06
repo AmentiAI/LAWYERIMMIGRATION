@@ -64,10 +64,17 @@ export async function initDatabase() {
       message TEXT,
       appointment_date DATE NOT NULL,
       appointment_time TIME NOT NULL,
+      duration_minutes INTEGER NOT NULL DEFAULT 30,
       status VARCHAR(20) NOT NULL DEFAULT 'pending',
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
       UNIQUE(appointment_date, appointment_time)
     )
+  `;
+
+  // Migration for databases created before duration_minutes existed.
+  await sql`
+    ALTER TABLE appointments
+    ADD COLUMN IF NOT EXISTS duration_minutes INTEGER NOT NULL DEFAULT 30
   `;
 
   await sql`

@@ -15,6 +15,8 @@ interface AppointmentCalendarProps {
   selectedTime: string | null;
   onSelectDate: (date: string) => void;
   onSelectTime: (time: string | null) => void;
+  /** Requested session length in minutes; controls which start times are open. */
+  durationMinutes?: number;
   /** When true, omits outer card wrapper (used inside AppointmentBookingForm) */
   embedded?: boolean;
 }
@@ -40,6 +42,7 @@ export function AppointmentCalendar({
   selectedTime,
   onSelectDate,
   onSelectTime,
+  durationMinutes = 30,
   embedded = false,
 }: AppointmentCalendarProps) {
   const today = new Date();
@@ -56,7 +59,7 @@ export function AppointmentCalendar({
     setNoAvailability(false);
     try {
       const res = await fetch(
-        `/api/availability?year=${year}&month=${month}`,
+        `/api/availability?year=${year}&month=${month}&duration=${durationMinutes}`,
         { cache: "no-store" }
       );
       const data = await res.json();
@@ -83,7 +86,7 @@ export function AppointmentCalendar({
     } finally {
       setLoading(false);
     }
-  }, [year, month]);
+  }, [year, month, durationMinutes]);
 
   useEffect(() => {
     fetchSlots();

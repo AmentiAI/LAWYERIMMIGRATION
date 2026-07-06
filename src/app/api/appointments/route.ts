@@ -24,7 +24,12 @@ export async function POST(request: Request) {
       message,
       appointmentDate,
       appointmentTime,
+      durationMinutes,
     } = body;
+
+    const duration = [30, 60].includes(Number(durationMinutes))
+      ? Number(durationMinutes)
+      : 30;
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -40,7 +45,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const available = await isSlotAvailable(appointmentDate, appointmentTime);
+    const available = await isSlotAvailable(
+      appointmentDate,
+      appointmentTime,
+      duration
+    );
     if (!available) {
       return NextResponse.json(
         { error: "That time slot is no longer available. Please choose another." },
@@ -53,10 +62,10 @@ export async function POST(request: Request) {
     const appointment = await sql`
       INSERT INTO appointments (
         client_name, client_email, client_phone, subject, message,
-        appointment_date, appointment_time, status
+        appointment_date, appointment_time, duration_minutes, status
       ) VALUES (
         ${name}, ${email}, ${phone || null}, ${subject || null}, ${message},
-        ${appointmentDate}::date, ${appointmentTime}::time, 'pending'
+        ${appointmentDate}::date, ${appointmentTime}::time, ${duration}, 'pending'
       )
       RETURNING id, appointment_date::text, appointment_time::text, status, created_at
     `;

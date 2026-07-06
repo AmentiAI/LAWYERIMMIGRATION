@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { keywordPagesList } from "@/lib/keyword-pages";
+import { locationPagesList } from "@/lib/location-pages";
 import { servicesList } from "@/lib/services";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -42,5 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...serviceEntries, ...topicEntries];
+  const localEntries = locationPagesList.map((page) => ({
+    url: `${siteUrl}/local/${page.slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...serviceEntries, ...topicEntries, ...localEntries];
 }

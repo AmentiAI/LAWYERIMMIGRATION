@@ -20,12 +20,14 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const year = parseInt(searchParams.get("year") || String(new Date().getFullYear()));
     const month = parseInt(searchParams.get("month") || String(new Date().getMonth() + 1));
+    const duration = parseInt(searchParams.get("duration") || "30");
 
     if (month < 1 || month > 12) {
       return NextResponse.json({ error: "Invalid month" }, { status: 400 });
     }
 
-    const slots = await getAvailableSlotsForMonth(year, month);
+    const requestedDuration = [30, 60].includes(duration) ? duration : 30;
+    const slots = await getAvailableSlotsForMonth(year, month, requestedDuration);
 
     const sql = getDb();
     const enabledDays = await sql`

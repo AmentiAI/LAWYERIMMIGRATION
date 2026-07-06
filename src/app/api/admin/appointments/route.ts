@@ -24,7 +24,7 @@ export async function GET() {
     const appointments = await sql`
       SELECT
         id, client_name, client_email, client_phone, subject, message,
-        appointment_date::text, appointment_time::text, status, created_at
+        appointment_date::text, appointment_time::text, duration_minutes, status, created_at
       FROM appointments
       ORDER BY appointment_date DESC, appointment_time DESC
     `;
