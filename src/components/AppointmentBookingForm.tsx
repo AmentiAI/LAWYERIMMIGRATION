@@ -7,9 +7,11 @@ import {
   ArrowLeft,
   Calendar,
   Clock,
+  DollarSign,
 } from "lucide-react";
 import { AppointmentCalendar, formatDisplayTime } from "@/components/AppointmentCalendar";
 import { ConsultationBookingInfo } from "@/components/ConsultationBookingInfo";
+import { getLawPayLink } from "@/lib/constants";
 
 const CASE_TYPES = [
   { value: "family", label: "Family Based Petitions" },
@@ -31,13 +33,15 @@ const CASE_TYPES = [
 const CONSULTATION_TYPES = [
   {
     value: "30",
-    label: "General Overview Snapshot — 30 min ($99)",
+    title: "General Overview",
     duration: "30 min",
+    price: "$99",
   },
   {
     value: "60",
-    label: "Start Working on Your Case — 1 hour ($350)",
+    title: "Start Your Case",
     duration: "1 hour",
+    price: "$350",
   },
 ];
 
@@ -154,6 +158,28 @@ export function AppointmentBookingForm() {
           Your consultation request has been received. We&apos;ll confirm your
           appointment by email within one business day.
         </p>
+
+        {form.consultationType && (
+          <div className="mt-8">
+            <p className="text-sm text-slate-600 mb-3">
+              Pay your consultation fee securely online with LawPay.
+            </p>
+            <a
+              href={getLawPayLink(form.consultationType)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-olive-700 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-olive-600 hover:shadow-lg"
+            >
+              Pay{" "}
+              {
+                CONSULTATION_TYPES.find(
+                  (c) => c.value === form.consultationType
+                )?.price
+              }{" "}
+              Now
+            </a>
+          </div>
+        )}
       </div>
     );
   }
@@ -169,7 +195,7 @@ export function AppointmentBookingForm() {
         ].map(({ num, label }) => (
           <div
             key={num}
-            className={`flex-1 px-4 py-4 text-center text-sm font-medium transition-colors ${
+            className={`flex-1 px-4 py-3 text-center text-sm font-medium transition-colors ${
               step === num
                 ? "bg-olive-50 text-olive-900 border-b-2 border-olive-700"
                 : step > num
@@ -185,48 +211,42 @@ export function AppointmentBookingForm() {
         ))}
       </div>
 
-      <div className="p-4 sm:p-6 md:p-8">
+      <div className="p-4 sm:p-6">
         {step === 1 ? (
           <div>
-            <h2 className="font-serif text-xl sm:text-2xl font-bold text-olive-900 mb-2">
-              Choose Your Consultation
-            </h2>
-            <p className="text-slate-600 text-sm mb-5">
-              First, select a session length. Then pick a day and an open time
-              slot for your in-person or video consultation.
+            <p className="text-sm font-medium text-olive-900 mb-2">
+              Choose a session length
             </p>
-
-            <fieldset className="mb-6">
-              <legend className="block text-sm font-medium text-olive-900 mb-2">
-                Session length *
-              </legend>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {CONSULTATION_TYPES.map((c) => {
-                  const active = form.consultationType === c.value;
-                  return (
-                    <button
-                      key={c.value}
-                      type="button"
-                      onClick={() => handleSelectConsultationType(c.value)}
-                      aria-pressed={active}
-                      className={`text-left rounded-xl border-2 p-4 transition-colors ${
-                        active
-                          ? "border-olive-700 bg-olive-50"
-                          : "border-tan-200 bg-tan-50 hover:border-olive-400"
-                      }`}
-                    >
-                      <span className="flex items-center gap-2 font-semibold text-olive-900">
-                        <Clock className="h-4 w-4 text-olive-700" />
-                        {c.duration}
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              {CONSULTATION_TYPES.map((c) => {
+                const active = form.consultationType === c.value;
+                return (
+                  <button
+                    key={c.value}
+                    type="button"
+                    onClick={() => handleSelectConsultationType(c.value)}
+                    aria-pressed={active}
+                    className={`rounded-xl border-2 p-3 text-left transition-colors ${
+                      active
+                        ? "border-olive-700 bg-olive-50"
+                        : "border-tan-200 bg-tan-50 hover:border-olive-400"
+                    }`}
+                  >
+                    <span className="flex items-baseline justify-between gap-2">
+                      <span className="font-semibold text-olive-900">
+                        {c.title}
                       </span>
-                      <span className="block mt-1 text-sm text-slate-600">
-                        {c.label}
+                      <span className="font-serif font-bold text-gold-600">
+                        {c.price}
                       </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </fieldset>
+                    </span>
+                    <span className="mt-0.5 block text-xs text-slate-500">
+                      {c.duration} · in person or video
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
 
             {form.consultationType ? (
               <AppointmentCalendar
@@ -248,21 +268,14 @@ export function AppointmentBookingForm() {
             <button
               type="button"
               onClick={handleBack}
-              className="inline-flex items-center gap-2 text-sm font-medium text-olive-700 hover:text-olive-900 mb-6 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-olive-700 hover:text-olive-900 mb-4 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               Change date or time
             </button>
 
-            <h2 className="font-serif text-xl sm:text-2xl font-bold text-olive-900 mb-2">
-              Your Details
-            </h2>
-            <p className="text-slate-600 text-sm mb-4">
-              Complete the form below to confirm your appointment.
-            </p>
-
             {selectedDate && selectedTime && (
-              <div className="mb-6 flex flex-wrap gap-4 p-4 bg-olive-50 rounded-xl border border-olive-200 text-sm text-olive-900">
+              <div className="mb-4 flex flex-wrap gap-x-4 gap-y-1 p-3 bg-olive-50 rounded-xl border border-olive-200 text-sm text-olive-900">
                 <span className="inline-flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-olive-700" />
                   {new Date(selectedDate + "T12:00:00").toLocaleDateString(
@@ -283,11 +296,29 @@ export function AppointmentBookingForm() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            {form.consultationType && (
+              <a
+                href={getLawPayLink(form.consultationType)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="animate-glow mb-5 flex items-center justify-center gap-2 rounded-full bg-olive-700 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-olive-600"
+              >
+                <DollarSign className="h-5 w-5" />
+                Pay{" "}
+                {
+                  CONSULTATION_TYPES.find(
+                    (c) => c.value === form.consultationType
+                  )?.price
+                }{" "}
+                with LawPay
+              </a>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="booking-name"
-                  className="block text-sm font-medium text-olive-900 mb-2"
+                  className="block text-sm font-medium text-olive-900 mb-1.5"
                 >
                   Full Name *
                 </label>
@@ -299,7 +330,7 @@ export function AppointmentBookingForm() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, name: e.target.value }))
                   }
-                  className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-3 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
+                  className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-2.5 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
                 />
               </div>
 
@@ -307,7 +338,7 @@ export function AppointmentBookingForm() {
                 <div>
                   <label
                     htmlFor="booking-email"
-                    className="block text-sm font-medium text-olive-900 mb-2"
+                    className="block text-sm font-medium text-olive-900 mb-1.5"
                   >
                     Email *
                   </label>
@@ -319,13 +350,13 @@ export function AppointmentBookingForm() {
                     onChange={(e) =>
                       setForm((p) => ({ ...p, email: e.target.value }))
                     }
-                    className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-3 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
+                    className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-2.5 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="booking-phone"
-                    className="block text-sm font-medium text-olive-900 mb-2"
+                    className="block text-sm font-medium text-olive-900 mb-1.5"
                   >
                     Phone *
                   </label>
@@ -337,7 +368,7 @@ export function AppointmentBookingForm() {
                     onChange={(e) =>
                       setForm((p) => ({ ...p, phone: e.target.value }))
                     }
-                    className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-3 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
+                    className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-2.5 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
                   />
                 </div>
               </div>
@@ -345,7 +376,7 @@ export function AppointmentBookingForm() {
               <div>
                 <label
                   htmlFor="booking-case-type"
-                  className="block text-sm font-medium text-olive-900 mb-2"
+                  className="block text-sm font-medium text-olive-900 mb-1.5"
                 >
                   Type of Case *
                 </label>
@@ -356,7 +387,7 @@ export function AppointmentBookingForm() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, caseType: e.target.value }))
                   }
-                  className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-3 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
+                  className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-2.5 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20"
                 >
                   <option value="">Select a service</option>
                   {CASE_TYPES.map((c) => (
@@ -370,20 +401,20 @@ export function AppointmentBookingForm() {
               <div>
                 <label
                   htmlFor="booking-message"
-                  className="block text-sm font-medium text-olive-900 mb-2"
+                  className="block text-sm font-medium text-olive-900 mb-1.5"
                 >
                   Brief Description of Your Situation *
                 </label>
                 <textarea
                   id="booking-message"
                   required
-                  rows={4}
+                  rows={3}
                   value={form.message}
                   onChange={(e) =>
                     setForm((p) => ({ ...p, message: e.target.value }))
                   }
                   placeholder="Please provide a brief overview of your immigration matter..."
-                  className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-3 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20 resize-none"
+                  className="w-full rounded-xl border border-tan-200 bg-tan-50 px-4 py-2.5 text-olive-900 focus:border-olive-500 focus:outline-none focus:ring-2 focus:ring-olive-500/20 resize-none"
                 />
               </div>
 
@@ -397,7 +428,7 @@ export function AppointmentBookingForm() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-full bg-olive-700 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-olive-600 hover:shadow-lg disabled:opacity-60 flex items-center justify-center gap-2"
+                className="w-full rounded-full bg-olive-700 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-olive-600 hover:shadow-lg disabled:opacity-60 flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>

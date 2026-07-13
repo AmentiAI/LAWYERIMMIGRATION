@@ -28,16 +28,35 @@ export const siteConfig = {
   languagesNote: "Other languages available upon request.",
 };
 
-export const businessInvestmentServices = [
-  "LLC applications",
-  "Finance Dept.",
-  "Consular processing",
-  "Consultation fees",
-];
+/**
+ * LawPay hosted payment pages.
+ *
+ * `operatingUrl` is the firm's general LawPay payment page (deposits to the
+ * OPERATING account). On that page the payer confirms the amount themselves.
+ *
+ * To lock in fixed amounts per consultation length, create separate fixed-amount
+ * payment links in the LawPay dashboard and paste them into `payLinks` below,
+ * keyed by session length in minutes. Until a link is filled in, the button
+ * falls back to `operatingUrl` and still works.
+ */
+export const lawpay = {
+  operatingUrl:
+    "https://secure.lawpay.com/pages/lawofficejacquelynrgoncalves/operating",
+  payLinks: {
+    "30": "", // $99 — General Overview Snapshot (30 min). Paste LawPay link here.
+    "60": "", // $350 — Start Working on Your Case (1 hour). Paste LawPay link here.
+  } as Record<string, string>,
+};
+
+/** Best LawPay link for a session length, falling back to the general page. */
+export function getLawPayLink(durationMinutes: string | number): string {
+  return lawpay.payLinks[String(durationMinutes)]?.trim() || lawpay.operatingUrl;
+}
 
 export const consultationFees = [
   {
     title: "General Overview Snapshot",
+    minutes: 30,
     duration: "30 min",
     price: "$99",
     description:
@@ -45,6 +64,7 @@ export const consultationFees = [
   },
   {
     title: "Start Working on Your Case",
+    minutes: 60,
     duration: "1 hour",
     price: "$350",
     description:
