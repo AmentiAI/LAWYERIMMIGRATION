@@ -106,35 +106,47 @@ export function Footer() {
           </div>
         </div>
 
-        <nav className="flex flex-wrap gap-x-3 gap-y-1 pb-4">
-          <Link
-            href="/immigration"
-            className="text-[11px] leading-tight text-olive-950 hover:text-olive-950"
-          >
-            Immigration Topics
-          </Link>
-          {keywordPagesList.map((topic) => (
-            <Link
-              key={topic.slug}
-              href={`/immigration/${topic.slug}`}
-              className="text-[11px] leading-tight text-olive-950 hover:text-olive-950"
-            >
-              {topic.title}
-            </Link>
-          ))}
-        </nav>
+        <div className="border-t border-white/10 pt-8 pb-4 space-y-5">
+          <div>
+            <h3 className="text-[11px] font-semibold uppercase tracking-wider text-white/45 mb-2.5">
+              Immigration Topics
+            </h3>
+            <nav className="flex flex-wrap gap-x-3 gap-y-1.5">
+              <Link
+                href="/immigration"
+                className="text-[11px] leading-tight text-white/45 hover:text-gold-400 transition-colors"
+              >
+                All Topics
+              </Link>
+              {keywordPagesList.map((topic) => (
+                <Link
+                  key={topic.slug}
+                  href={`/immigration/${topic.slug}`}
+                  className="text-[11px] leading-tight text-white/45 hover:text-gold-400 transition-colors"
+                >
+                  {topic.title}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
-        <nav className="flex flex-wrap gap-x-3 gap-y-1 pb-4">
-          {locationPagesList.map((page) => (
-            <Link
-              key={page.slug}
-              href={`/local/${page.slug}`}
-              className="text-[11px] leading-tight text-olive-950 hover:text-olive-950"
-            >
-              {page.title}
-            </Link>
-          ))}
-        </nav>
+          <div>
+            <h3 className="text-[11px] font-semibold uppercase tracking-wider text-white/45 mb-2.5">
+              Immigration Help Across Connecticut
+            </h3>
+            <nav className="flex flex-wrap gap-x-3 gap-y-1.5">
+              {locationPagesList.map((page) => (
+                <Link
+                  key={page.slug}
+                  href={`/local/${page.slug}`}
+                  className="text-[11px] leading-tight text-white/45 hover:text-gold-400 transition-colors"
+                >
+                  {page.title}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
 
         <div className="border-t border-white/10 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/40">

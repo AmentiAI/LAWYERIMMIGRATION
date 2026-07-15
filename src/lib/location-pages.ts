@@ -151,6 +151,162 @@ export const locationPagesList: LocationPage[] = [
     metaDescription:
       "Connecticut deportation and removal defense lawyer. Compassionate, urgent help with NTAs, immigration court hearings, bond, and relief from removal. Act quickly — call today.",
   },
+  {
+    slug: "immigration-attorney",
+    title: "Immigration Attorney",
+    keyword: "immigration attorney",
+    secondaryKeywords: [
+      "experienced immigration attorney",
+      "immigration attorney Connecticut",
+      "hire an immigration attorney",
+    ],
+    metaTitle: "Immigration Attorney | Law Office of Jacquelyn R. Goncalves",
+    metaDescription:
+      "Work directly with an experienced immigration attorney on family petitions, green cards, and citizenship. Personal attention on every case — English, Spanish, and Portuguese.",
+  },
+  {
+    slug: "immigration-law",
+    title: "Immigration Law",
+    keyword: "immigration law",
+    secondaryKeywords: [
+      "law immigration",
+      "immigration law explained",
+      "U.S. immigration law",
+    ],
+    metaTitle: "Immigration Law, Explained Simply | Jacquelyn R. Goncalves",
+    metaDescription:
+      "A plain-language guide to U.S. immigration law — family petitions, green cards, work authorization, and citizenship — from a Connecticut immigration attorney.",
+  },
+  {
+    slug: "us-immigration",
+    title: "US Immigration",
+    keyword: "US immigration",
+    secondaryKeywords: [
+      "United States immigration",
+      "US immigration process",
+      "immigrate to the United States",
+    ],
+    metaTitle: "Understanding the U.S. Immigration System | Jacquelyn R. Goncalves",
+    metaDescription:
+      "How the U.S. immigration system actually works: the agencies, the pathways to a green card, realistic timelines, and where an attorney makes the difference.",
+  },
+  {
+    slug: "immigration-services",
+    title: "Immigration Services",
+    keyword: "immigration services",
+    secondaryKeywords: [
+      "immigration help",
+      "immigration case services",
+      "family immigration services",
+    ],
+    metaTitle: "Immigration Services for Families & Individuals | Jacquelyn R. Goncalves",
+    metaDescription:
+      "Full-service immigration help — petitions, green cards, fiancé visas, work permits, and naturalization — handled personally by attorney Jacquelyn R. Goncalves.",
+  },
+  {
+    slug: "immigration-legal-services",
+    title: "Immigration Legal Services",
+    keyword: "immigration legal services",
+    secondaryKeywords: [
+      "immigration legal help",
+      "legal immigration assistance",
+      "immigration attorney services",
+    ],
+    metaTitle: "Immigration Legal Services in Connecticut | Jacquelyn R. Goncalves",
+    metaDescription:
+      "Trusted immigration legal services in Connecticut. Attorney-led preparation of USCIS petitions and applications, done right the first time. Se habla español.",
+  },
+  {
+    slug: "immigration-office",
+    title: "Immigration Office",
+    keyword: "immigration office",
+    secondaryKeywords: [
+      "local immigration office",
+      "immigration office near me",
+      "immigration help office",
+    ],
+    metaTitle: "Looking for an Immigration Office? Start Here | Jacquelyn R. Goncalves",
+    metaDescription:
+      "Searching for an immigration office? Our Mystic, CT law office guides you through USCIS filings — and explains the difference between a government field office and a law office.",
+  },
+  {
+    slug: "immigration-law-office",
+    title: "Immigration Law Office",
+    keyword: "immigration law office",
+    secondaryKeywords: [
+      "immigration law practice",
+      "immigration attorney office",
+      "law office immigration",
+    ],
+    metaTitle: "A Dedicated Immigration Law Office | Jacquelyn R. Goncalves",
+    metaDescription:
+      "A focused immigration law office in Mystic, CT. One attorney, direct access, and careful case work for families navigating the U.S. immigration process.",
+  },
+  {
+    slug: "immigration-law-firm",
+    title: "Immigration Law Firm",
+    keyword: "immigration law firm",
+    secondaryKeywords: [
+      "boutique immigration firm",
+      "small immigration law firm",
+      "family immigration law firm",
+    ],
+    metaTitle: "A Boutique Immigration Law Firm | Jacquelyn R. Goncalves",
+    metaDescription:
+      "A boutique immigration law firm where your case never gets lost in the shuffle. See how personal attorney attention beats the big-firm assembly line.",
+  },
+  {
+    slug: "immigration-attorney-consultation",
+    title: "Immigration Attorney Consultation",
+    keyword: "immigration attorney consultation",
+    secondaryKeywords: [
+      "immigration consultation",
+      "immigration lawyer consultation",
+      "book immigration consultation",
+    ],
+    metaTitle: "Immigration Attorney Consultation — What to Expect | Jacquelyn R. Goncalves",
+    metaDescription:
+      "Book an immigration attorney consultation in person or by video. Learn what happens, how to prepare, and the two consultation options ($99 and $350).",
+  },
+  {
+    slug: "immigration-attorney-bridgeport-connecticut",
+    title: "Immigration Attorney Bridgeport CT",
+    keyword: "immigration attorney Bridgeport Connecticut",
+    secondaryKeywords: [
+      "Bridgeport immigration lawyer",
+      "immigration attorney Fairfield County",
+      "Bridgeport CT immigration help",
+    ],
+    metaTitle: "Immigration Attorney Serving Bridgeport, Connecticut | Jacquelyn R. Goncalves",
+    metaDescription:
+      "Immigration attorney serving Bridgeport and Fairfield County, Connecticut. Family petitions, green cards, and citizenship by secure video or at our Connecticut office.",
+  },
+  {
+    slug: "immigration-lawyer-hartford-ct",
+    title: "Immigration Lawyer Hartford CT",
+    keyword: "immigration lawyer Hartford CT",
+    secondaryKeywords: [
+      "Hartford immigration attorney",
+      "immigration lawyer Hartford County",
+      "Hartford CT immigration help",
+    ],
+    metaTitle: "Immigration Lawyer for Hartford, Connecticut | Jacquelyn R. Goncalves",
+    metaDescription:
+      "Immigration lawyer serving Hartford, CT and central Connecticut. Direct-attorney help with green cards, petitions, and naturalization — by video or in person.",
+  },
+  {
+    slug: "green-card-renewal-lawyer",
+    title: "Green Card Renewal Lawyer",
+    keyword: "green card renewal lawyer",
+    secondaryKeywords: [
+      "green card renewal attorney",
+      "I-90 renewal lawyer",
+      "renew permanent resident card",
+    ],
+    metaTitle: "Green Card Renewal Lawyer (Form I-90) | Jacquelyn R. Goncalves",
+    metaDescription:
+      "Renew or replace your green card without the stress. Attorney help filing Form I-90 correctly — expiring cards, lost cards, and name changes. Call (860) 471-3023.",
+  },
 ];
 
 export function getLocationBySlug(slug: string) {
