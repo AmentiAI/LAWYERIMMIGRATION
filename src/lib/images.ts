@@ -46,6 +46,14 @@ export const legalImages = {
     src: "/images/mystic-office.png",
     alt: "Office building exterior at 12 Roosevelt Ave, Mystic, Connecticut",
   },
+  attorneyGoncalves: {
+    src: "/images/attorney-goncalves.png",
+    alt: "Attorney Jacquelyn R. Goncalves, immigration lawyer in Mystic, Connecticut",
+  },
+  attorneyGoncalvesFull: {
+    src: "/images/attorney-goncalves-full.png",
+    alt: "Attorney Jacquelyn R. Goncalves standing for a professional portrait",
+  },
 } as const;
 
 export type LegalImageKey = keyof typeof legalImages;

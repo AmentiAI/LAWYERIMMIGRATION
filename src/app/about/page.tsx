@@ -64,15 +64,23 @@ export default function AboutPage() {
               </div>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src={legalImages.courtroom.src}
-                  alt={legalImages.courtroom.alt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  unoptimized
-                  className="object-cover"
-                />
+              <div className="relative mx-auto max-w-md lg:max-w-lg">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src={legalImages.attorneyGoncalves.src}
+                    alt={legalImages.attorneyGoncalves.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    priority
+                    className="object-cover object-top"
+                  />
+                </div>
+                <p className="mt-4 text-center font-serif text-lg font-semibold text-navy-900">
+                  Jacquelyn R. Goncalves
+                </p>
+                <p className="text-center text-sm text-slate-600">
+                  Attorney at Law
+                </p>
               </div>
             </FadeIn>
           </div>
@@ -81,30 +89,45 @@ export default function AboutPage() {
 
       <section className="section-padding bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto prose-custom">
-              <h2>A Hands-On, Concierge-Style Approach</h2>
-              <p>
-                Immigration matters are often life-changing. They can affect
-                families, careers, businesses, and futures. That is why
-                Jacquelyn takes a hands-on, concierge-style approach to legal
-                representation. She guides clients through each step of the
-                immigration process, answers questions promptly, and remains
-                available when concerns arise.
-              </p>
-              <p>
-                Whether you are pursuing a family-based petition, consular
-                processing, a fiancé(e) visa, citizenship and naturalization,
-                removal of conditions, or a business and investment immigration
-                matter, Jacquelyn is committed to providing dedicated advocacy
-                and personalized guidance.
-              </p>
-              <p>
-                Her goal is simple: to help every client feel informed,
-                supported, and confident throughout their immigration journey.
-              </p>
-            </div>
-          </FadeIn>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <FadeIn>
+              <div className="relative mx-auto max-w-sm lg:max-w-md">
+                <div className="relative aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
+                  <Image
+                    src={legalImages.attorneyGoncalvesFull.src}
+                    alt={legalImages.attorneyGoncalvesFull.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 35vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <div className="prose-custom">
+                <h2>A Hands-On, Concierge-Style Approach</h2>
+                <p>
+                  Immigration matters are often life-changing. They can affect
+                  families, careers, businesses, and futures. That is why
+                  Jacquelyn takes a hands-on, concierge-style approach to legal
+                  representation. She guides clients through each step of the
+                  immigration process, answers questions promptly, and remains
+                  available when concerns arise.
+                </p>
+                <p>
+                  Whether you are pursuing a family-based petition, consular
+                  processing, a fiancé(e) visa, citizenship and naturalization,
+                  removal of conditions, or a business and investment immigration
+                  matter, Jacquelyn is committed to providing dedicated advocacy
+                  and personalized guidance.
+                </p>
+                <p>
+                  Her goal is simple: to help every client feel informed,
+                  supported, and confident throughout their immigration journey.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 

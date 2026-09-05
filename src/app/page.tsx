@@ -101,14 +101,15 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeIn direction="left">
-              <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
+              <div className="relative mx-auto max-w-md lg:max-w-none">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
                   <Image
-                    src={legalImages.immigrationLawOffice.src}
-                    alt={legalImages.immigrationLawOffice.alt}
+                    src={legalImages.attorneyGoncalves.src}
+                    alt={legalImages.attorneyGoncalves.alt}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    priority
+                    className="object-cover object-top"
                   />
                 </div>
               </div>
