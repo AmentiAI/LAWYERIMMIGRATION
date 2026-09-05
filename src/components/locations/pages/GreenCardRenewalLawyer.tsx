@@ -55,7 +55,7 @@ export default function GreenCardRenewalLawyer() {
 
       <section className="py-16 bg-olive-950 text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="font-serif text-3xl font-bold mb-4">Renewal vs. Replacement — Don't Mix Them Up</h2>
+          <h2 className="font-serif text-3xl font-bold mb-4">Renewal vs. Replacement — Don&apos;t Mix Them Up</h2>
           <p className="text-white/80 leading-relaxed mb-4">
             {"Form I-90 renews a standard 10-year green card or replaces a lost, damaged, or outdated one. It is not the same as Form I-751, which removes the conditions on a 2-year marriage-based card."}
           </p>

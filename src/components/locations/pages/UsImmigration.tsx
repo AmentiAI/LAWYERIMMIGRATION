@@ -92,7 +92,7 @@ export default function UsImmigration() {
       <section className="py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <h2 className="font-serif text-3xl font-bold text-olive-950 mb-6">
-            Why Timelines Test Everyone's Patience
+            Why Timelines Test Everyone&apos;s Patience
           </h2>
           <p className="text-slate-700 leading-relaxed mb-4">
             {"Immigration cases move at the pace of federal processing and visa availability, not personal urgency. Depending on the category and the applicant's country, waits can range from several months to several years."}
