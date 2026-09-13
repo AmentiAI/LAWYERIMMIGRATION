@@ -99,12 +99,13 @@ export async function getAvailableSlotsForMonth(
     overrides.map((o) => [normalizeDateKey(o.override_date), o])
   );
 
+  // Only active bookings occupy calendar slots. Cancelled/completed free them.
   const booked = (await sql`
     SELECT appointment_date::text, appointment_time::text, duration_minutes
     FROM appointments
     WHERE appointment_date >= ${startStr}::date
       AND appointment_date <= ${endStr}::date
-      AND status != 'cancelled'
+      AND status IN ('pending', 'confirmed')
   `) as BookedRow[];
 
   // Map each date to the minute-ranges [start, start + duration) it is booked for.

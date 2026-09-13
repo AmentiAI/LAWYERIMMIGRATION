@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { initDatabase } from "@/lib/schema";
 import { getDb } from "@/lib/db";
 import { isSlotAvailable } from "@/lib/availability";
+import { logAppointmentEvent } from "@/lib/appointment-log";
 
 let dbReady = false;
 
@@ -67,17 +68,38 @@ export async function POST(request: Request) {
         ${name}, ${email}, ${phone || null}, ${subject || null}, ${message},
         ${appointmentDate}::date, ${appointmentTime}::time, ${duration}, 'pending'
       )
-      RETURNING id, appointment_date::text, appointment_time::text, status, created_at
+      RETURNING
+        id, client_name, client_email, client_phone, subject, message,
+        appointment_date::text, appointment_time::text, duration_minutes,
+        status, created_at
     `;
+
+    const created = appointment[0];
 
     await sql`
       INSERT INTO contact_messages (client_name, client_email, subject, message, appointment_id)
-      VALUES (${name}, ${email}, ${subject || null}, ${message}, ${appointment[0].id})
+      VALUES (${name}, ${email}, ${subject || null}, ${message}, ${created.id})
     `;
+
+    await logAppointmentEvent({
+      appointmentId: created.id as number,
+      action: "created",
+      actor: "client",
+      details: {
+        client_name: name,
+        client_email: email,
+        client_phone: phone || null,
+        subject: subject || null,
+        appointment_date: appointmentDate,
+        appointment_time: appointmentTime,
+        duration_minutes: duration,
+        status: "pending",
+      },
+    });
 
     return NextResponse.json({
       success: true,
-      appointment: appointment[0],
+      appointment: created,
     });
   } catch (error: unknown) {
     console.error("Appointment booking error:", error);

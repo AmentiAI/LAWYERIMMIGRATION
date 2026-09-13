@@ -24,7 +24,8 @@ export async function GET() {
     const appointments = await sql`
       SELECT
         id, client_name, client_email, client_phone, subject, message,
-        appointment_date::text, appointment_time::text, duration_minutes, status, created_at
+        appointment_date::text, appointment_time::text, duration_minutes,
+        status, created_at, updated_at
       FROM appointments
       ORDER BY appointment_date DESC, appointment_time DESC
     `;
@@ -33,13 +34,23 @@ export async function GET() {
       SELECT
         COUNT(*) FILTER (WHERE status = 'pending')::int AS pending,
         COUNT(*) FILTER (WHERE status = 'confirmed')::int AS confirmed,
-        COUNT(*) FILTER (WHERE appointment_date >= CURRENT_DATE AND status != 'cancelled')::int AS upcoming
+        COUNT(*) FILTER (WHERE appointment_date >= CURRENT_DATE AND status IN ('pending', 'confirmed'))::int AS upcoming,
+        COUNT(*)::int AS total
       FROM appointments
+    `;
+
+    const logs = await sql`
+      SELECT
+        id, appointment_id, action, actor, details, created_at
+      FROM appointment_logs
+      ORDER BY created_at DESC
+      LIMIT 100
     `;
 
     return NextResponse.json({
       appointments,
       stats: stats[0],
+      logs,
     });
   } catch (error) {
     console.error("Admin appointments error:", error);

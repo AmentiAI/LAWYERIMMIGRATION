@@ -42,7 +42,7 @@ async function initDatabase() {
       duration_minutes INTEGER NOT NULL DEFAULT 30,
       status VARCHAR(20) NOT NULL DEFAULT 'pending',
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-      UNIQUE(appointment_date, appointment_time)
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `;
 
@@ -52,15 +52,59 @@ async function initDatabase() {
   `;
 
   await sql`
+    ALTER TABLE appointments
+    ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  `;
+
+  await sql`
     CREATE TABLE IF NOT EXISTS contact_messages (
       id SERIAL PRIMARY KEY,
       client_name VARCHAR(255) NOT NULL,
       client_email VARCHAR(255) NOT NULL,
       subject VARCHAR(500),
       message TEXT NOT NULL,
-      appointment_id INTEGER REFERENCES appointments(id),
+      appointment_id INTEGER REFERENCES appointments(id) ON DELETE SET NULL,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
+  `;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS appointment_logs (
+      id SERIAL PRIMARY KEY,
+      appointment_id INTEGER,
+      action VARCHAR(50) NOT NULL,
+      actor VARCHAR(50) NOT NULL DEFAULT 'system',
+      details JSONB,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS appointment_logs_appointment_id_idx
+    ON appointment_logs (appointment_id)
+  `;
+
+  await sql`
+    ALTER TABLE appointments
+    DROP CONSTRAINT IF EXISTS appointments_appointment_date_appointment_time_key
+  `;
+
+  await sql`
+    CREATE UNIQUE INDEX IF NOT EXISTS appointments_active_slot_unique
+    ON appointments (appointment_date, appointment_time)
+    WHERE status IN ('pending', 'confirmed')
+  `;
+
+  await sql`
+    ALTER TABLE contact_messages
+    DROP CONSTRAINT IF EXISTS contact_messages_appointment_id_fkey
+  `;
+
+  await sql`
+    ALTER TABLE contact_messages
+    ADD CONSTRAINT contact_messages_appointment_id_fkey
+    FOREIGN KEY (appointment_id) REFERENCES appointments(id)
+    ON DELETE SET NULL
   `;
 
   const existing = await sql`SELECT COUNT(*)::int AS count FROM weekly_availability`;

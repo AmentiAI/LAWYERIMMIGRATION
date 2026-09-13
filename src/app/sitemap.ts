@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { keywordPagesList } from "@/lib/keyword-pages";
 import { locationPagesList } from "@/lib/location-pages";
+import { LLMS_SECTIONS } from "@/lib/llms";
 import { servicesList } from "@/lib/services";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -50,5 +51,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...serviceEntries, ...topicEntries, ...localEntries];
+  const llmsEntries: MetadataRoute.Sitemap = [
+    {
+      url: `${siteUrl}/llms.txt`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.5,
+    },
+    {
+      url: `${siteUrl}/llms-full.txt`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.4,
+    },
+    ...LLMS_SECTIONS.map((section) => ({
+      url: `${siteUrl}/llms/${section}.md`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.35,
+    })),
+  ];
+
+  return [
+    ...staticEntries,
+    ...serviceEntries,
+    ...topicEntries,
+    ...localEntries,
+    ...llmsEntries,
+  ];
 }

@@ -61,14 +61,24 @@ export default function AdminAvailabilityPage() {
 
   async function saveWeekly() {
     setSaving(true);
-    await fetch("/api/admin/availability", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ weekly }),
-    });
-    setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+    setSaved(false);
+    try {
+      const res = await fetch("/api/admin/availability", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ weekly }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to save");
+      }
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to save availability");
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function addOverride(e: React.FormEvent) {

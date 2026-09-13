@@ -28,6 +28,51 @@ async function ensureDefaultWeeklySchedule() {
   }
 }
 
+/** Drop the table-level unique so cancelled rows no longer block rebooking. */
+async function migrateAppointmentSlotUniqueness() {
+  const sql = getDb();
+
+  await sql`
+    ALTER TABLE appointments
+    DROP CONSTRAINT IF EXISTS appointments_appointment_date_appointment_time_key
+  `;
+
+  // Only pending/confirmed bookings occupy a slot.
+  await sql`
+    CREATE UNIQUE INDEX IF NOT EXISTS appointments_active_slot_unique
+    ON appointments (appointment_date, appointment_time)
+    WHERE status IN ('pending', 'confirmed')
+  `;
+}
+
+async function migrateContactMessageFk() {
+  const sql = getDb();
+
+  // Recreate FK with ON DELETE SET NULL so admin hard-delete does not fail.
+  const existing = await sql`
+    SELECT confdeltype
+    FROM pg_constraint
+    WHERE conname = 'contact_messages_appointment_id_fkey'
+  `;
+
+  // confdeltype 'n' = SET NULL; 'a' = NO ACTION; 'r' = RESTRICT; 'c' = CASCADE
+  if (existing.length > 0 && existing[0].confdeltype === "n") {
+    return;
+  }
+
+  await sql`
+    ALTER TABLE contact_messages
+    DROP CONSTRAINT IF EXISTS contact_messages_appointment_id_fkey
+  `;
+
+  await sql`
+    ALTER TABLE contact_messages
+    ADD CONSTRAINT contact_messages_appointment_id_fkey
+    FOREIGN KEY (appointment_id) REFERENCES appointments(id)
+    ON DELETE SET NULL
+  `;
+}
+
 export async function initDatabase() {
   const sql = getDb();
 
@@ -67,14 +112,18 @@ export async function initDatabase() {
       duration_minutes INTEGER NOT NULL DEFAULT 30,
       status VARCHAR(20) NOT NULL DEFAULT 'pending',
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-      UNIQUE(appointment_date, appointment_time)
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `;
 
-  // Migration for databases created before duration_minutes existed.
   await sql`
     ALTER TABLE appointments
     ADD COLUMN IF NOT EXISTS duration_minutes INTEGER NOT NULL DEFAULT 30
+  `;
+
+  await sql`
+    ALTER TABLE appointments
+    ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
   `;
 
   await sql`
@@ -84,10 +133,33 @@ export async function initDatabase() {
       client_email VARCHAR(255) NOT NULL,
       subject VARCHAR(500),
       message TEXT NOT NULL,
-      appointment_id INTEGER REFERENCES appointments(id),
+      appointment_id INTEGER REFERENCES appointments(id) ON DELETE SET NULL,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `;
 
+  await sql`
+    CREATE TABLE IF NOT EXISTS appointment_logs (
+      id SERIAL PRIMARY KEY,
+      appointment_id INTEGER,
+      action VARCHAR(50) NOT NULL,
+      actor VARCHAR(50) NOT NULL DEFAULT 'system',
+      details JSONB,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS appointment_logs_appointment_id_idx
+    ON appointment_logs (appointment_id)
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS appointment_logs_created_at_idx
+    ON appointment_logs (created_at DESC)
+  `;
+
+  await migrateAppointmentSlotUniqueness();
+  await migrateContactMessageFk();
   await ensureDefaultWeeklySchedule();
 }
