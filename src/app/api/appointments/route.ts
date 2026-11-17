@@ -3,6 +3,7 @@ import { initDatabase } from "@/lib/schema";
 import { getDb } from "@/lib/db";
 import { isSlotAvailable } from "@/lib/availability";
 import { logAppointmentEvent } from "@/lib/appointment-log";
+import { sendAppointmentEmails } from "@/lib/mail";
 
 let dbReady = false;
 
@@ -81,6 +82,17 @@ export async function POST(request: Request) {
       VALUES (${name}, ${email}, ${subject || null}, ${message}, ${created.id})
     `;
 
+    const mail = await sendAppointmentEmails({
+      name,
+      email,
+      phone,
+      subject,
+      message,
+      appointmentDate,
+      appointmentTime,
+      durationMinutes: duration,
+    });
+
     await logAppointmentEvent({
       appointmentId: created.id as number,
       action: "created",
@@ -94,6 +106,9 @@ export async function POST(request: Request) {
         appointment_time: appointmentTime,
         duration_minutes: duration,
         status: "pending",
+        email_to_office: mail.office,
+        email_to_client: mail.client,
+        email_error: mail.error ?? null,
       },
     });
 
