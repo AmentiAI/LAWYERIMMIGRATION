@@ -384,7 +384,7 @@ export function getServiceContent(slug: string) {
       sections: [
         {
           title: "Renewal Applications",
-          body: "We file your I-765 renewal before your current EAD expires. USCIS recommends filing up to 180 days before expiration. Automatic extension rules may apply depending on your category.",
+          body: "We file your I-765 renewal before your current EAD expires. You may file up to 180 days before expiration, and early filing matters: most renewals filed on or after October 30, 2025 no longer receive an automatic extension.",
           items: [
             "Pending adjustment of status EAD renewals",
             "Asylum applicant work authorization",
@@ -404,7 +404,7 @@ export function getServiceContent(slug: string) {
         },
         {
           title: "Avoiding Employment Gaps",
-          body: "A lapse in work authorization can jeopardize your job. We track processing times for your category and advise on automatic extension eligibility to protect your employment.",
+          body: "A lapse in work authorization can jeopardize your job. We track processing times for your category and advise whether any extension exception (such as TPS or STEM OPT) applies to protect your employment.",
         },
       ],
       cta: "Renew or Replace Your EAD",

@@ -44,7 +44,7 @@ export default function ConsularProcessingService() {
                 "I-130 or I-140 filed and approved",
                 "Priority date established on filing date",
                 "Approval notice (I-797) sent to petitioner and NVC",
-                "Typical processing: 12–24 months",
+                "Typical I-130 processing: 12–24 months (before NVC)",
               ],
             },
             {

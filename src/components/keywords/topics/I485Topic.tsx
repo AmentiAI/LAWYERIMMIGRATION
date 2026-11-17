@@ -128,7 +128,7 @@ export default function I485Topic() {
         items={[
           {
             q: "How long does adjustment processing take?",
-            a: "Processing times vary case by case depending on location and case type.",
+            a: "Most family-based I-485 cases we file take about 10–14 months from filing to green card. The usual sequence is a receipt notice within a few weeks, a biometrics appointment about 4–8 weeks after filing, then an interview at the local USCIS field office (Hartford for Connecticut residents), and card production after approval. High-volume offices can run longer; USCIS posts current times at uscis.gov/processing-times.",
           },
           {
             q: "What happens if my adjustment is denied?",

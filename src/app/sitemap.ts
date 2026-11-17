@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { keywordPagesList } from "@/lib/keyword-pages";
 import { locationPagesList } from "@/lib/location-pages";
-import { LLMS_SECTIONS } from "@/lib/llms";
 import { servicesList } from "@/lib/services";
 import { getSiteUrl } from "@/lib/site-url";
+import { CONTENT_LAST_REVIEWED } from "@/lib/constants";
 
 const STATIC_ROUTES: {
   path: string;
@@ -21,7 +21,8 @@ const STATIC_ROUTES: {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
-  const lastModified = new Date();
+  // Real content dates (not build time) so crawlers can trust lastmod.
+  const lastModified = new Date(`${CONTENT_LAST_REVIEWED}T00:00:00Z`);
 
   const staticEntries = STATIC_ROUTES.map(({ path, changeFrequency, priority }) => ({
     url: path === "/" ? siteUrl : `${siteUrl}${path}`,
@@ -51,32 +52,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const llmsEntries: MetadataRoute.Sitemap = [
-    {
-      url: `${siteUrl}/llms.txt`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.5,
-    },
-    {
-      url: `${siteUrl}/llms-full.txt`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.4,
-    },
-    ...LLMS_SECTIONS.map((section) => ({
-      url: `${siteUrl}/llms/${section}.md`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.35,
-    })),
-  ];
-
   return [
     ...staticEntries,
     ...serviceEntries,
     ...topicEntries,
     ...localEntries,
-    ...llmsEntries,
   ];
 }

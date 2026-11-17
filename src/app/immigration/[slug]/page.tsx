@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import { keywordPagesList, getKeywordBySlug } from "@/lib/keyword-pages";
 import { topicPageRegistry } from "@/components/keywords/registry";
 import { pageMetadata } from "@/lib/seo";
+import { pageJsonLd } from "@/lib/structured-data";
+import { topicSources } from "@/lib/sources";
+import { JsonLd } from "@/components/JsonLd";
+import { ReviewedBy } from "@/components/ReviewedBy";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -31,5 +35,22 @@ export default async function KeywordPage({ params }: Props) {
 
   if (!page || !TopicPage) notFound();
 
-  return <TopicPage />;
+  return (
+    <>
+      <JsonLd
+        data={pageJsonLd({
+          path: `/immigration/${slug}`,
+          name: page.title,
+          description: page.metaDescription,
+          breadcrumb: [
+            { name: "Immigration Guides", path: "/immigration" },
+            { name: page.title, path: `/immigration/${slug}` },
+          ],
+          article: true,
+        })}
+      />
+      <TopicPage />
+      <ReviewedBy sources={topicSources[slug]} />
+    </>
+  );
 }

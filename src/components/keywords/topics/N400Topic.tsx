@@ -5,7 +5,7 @@ const eligibilityGrid = [
   { req: "Age 18+", detail: "At time of filing and oath ceremony" },
   { req: "LPR 5 Years", detail: "3 years if married to U.S. citizen" },
   { req: "Physical Presence", detail: "30 months in U.S. (18 if married to USC)" },
-  { req: "Continuous Residence", detail: "No breaks longer than 6 months" },
+  { req: "Continuous Residence", detail: "Trips over 6 months presume a break (rebuttable); 1 year or more breaks it" },
   { req: "Good Moral Character", detail: "Evaluated for statutory period" },
   { req: "English & Civics", detail: "Read, write, speak basic English; pass civics test" },
 ];
@@ -74,9 +74,11 @@ export default function N400Topic() {
             </div>
             <p className="text-slate-600 leading-relaxed mb-6">
               The citizenship interview includes an English reading and writing
-              test and a civics test covering U.S. history and government. USCIS
-              publishes 100 civics questions — you will be asked up to 10, and
-              must answer 6 correctly.
+              test and a civics test covering U.S. history and government. For
+              applications filed on or after October 20, 2025, USCIS uses the
+              2025 civics test: a bank of 128 questions, up to 20 asked, and 12
+              correct answers to pass. Applicants who filed before that date
+              take the 2008 test (100 questions, 6 of 10 correct).
             </p>
             <h3 className="font-semibold text-navy-900 mb-3">Civics Topics Covered:</h3>
             <ul className="space-y-2">

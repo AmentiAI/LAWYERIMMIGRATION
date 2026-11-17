@@ -37,7 +37,7 @@ export default function RemovalOfConditionsService() {
           {[
             { label: "90 days before expiration", detail: "Earliest date you may file I-751. Filing before this window opens results in rejection." },
             { label: "Expiration date", detail: "If I-751 is not filed, conditional resident status terminates automatically on this date." },
-            { label: "While pending", detail: "Timely filing extends your conditional status. You receive an extension letter valid 24 months while USCIS adjudicates." },
+            { label: "While pending", detail: "Timely filing extends your conditional status. Your I-751 receipt notice extends your green card for 48 months past its expiration date while USCIS adjudicates." },
           ].map((d) => (
             <div key={d.label} className="bg-white rounded-xl p-6 border border-tan-200 text-center">
               <p className="font-bold text-olive-900 mb-2">{d.label}</p>
@@ -111,7 +111,7 @@ export default function RemovalOfConditionsService() {
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             "Current processing time: 18–36 months for most cases",
-            "Extension letter valid 24 months while case is pending",
+            "Receipt notice extends your card 48 months while the case is pending",
             "Approval results in a 10-year unconditional green card",
             "Denial may result in Notice to Appear in immigration court",
           ].map((item) => (
@@ -144,7 +144,7 @@ export default function RemovalOfConditionsService() {
           },
           {
             q: "Can I work while I-751 is pending?",
-            a: "Yes. Your conditional card plus the I-751 receipt notice (or extension letter) serves as proof of work authorization for up to 24 months.",
+            a: "Yes. Your conditional card plus the I-751 receipt notice (or extension letter) serves as proof of status and work authorization for 48 months past the card's expiration date.",
           },
           {
             q: "What if we are separated but not divorced?",

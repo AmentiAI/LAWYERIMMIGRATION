@@ -209,6 +209,66 @@ export const keywordPagesList: KeywordPage[] = [
       "Sibling immigration petition attorney. I-130 for brothers and sisters of U.S. citizens in the F4 preference category.",
     relatedService: "family-based-petitions",
   },
+  {
+    slug: "cr-1-ir-1-visa",
+    title: "CR-1 and IR-1 Spouse Visa",
+    keyword: "CR-1 IR-1 visa",
+    shortDescription:
+      "Immigrant visas for the spouse of a U.S. citizen living abroad — CR-1 when the marriage is under two years, IR-1 when it is longer.",
+    layout: "visa-journey",
+    imageKey: "capitol",
+    metaDescription:
+      "CR-1 and IR-1 spouse visa attorney. Consular immigrant visas for husbands and wives of U.S. citizens, from I-130 through the embassy interview.",
+    relatedService: "consular-processing",
+  },
+  {
+    slug: "advance-parole",
+    title: "Advance Parole",
+    keyword: "advance parole",
+    shortDescription:
+      "Form I-131 travel permission so you can leave the United States and return while an adjustment of status application is pending.",
+    layout: "status-bridge",
+    imageKey: "capitol",
+    metaDescription:
+      "Advance parole attorney in Connecticut. Form I-131 travel documents for green card applicants who need to travel while I-485 is pending.",
+    relatedService: "adjustment-of-status",
+  },
+  {
+    slug: "uscis-request-for-evidence",
+    title: "USCIS Request for Evidence",
+    keyword: "USCIS RFE",
+    shortDescription:
+      "How to answer a USCIS Request for Evidence on time — marriage proof, financial sponsorship, and missing civil documents.",
+    layout: "form-banner",
+    imageKey: "lawBooks",
+    metaDescription:
+      "USCIS Request for Evidence attorney. Deadline-driven RFE responses for family petitions, adjustment of status, and naturalization.",
+    relatedService: "family-based-petitions",
+  },
+  {
+    slug: "conditional-green-card",
+    title: "Conditional Green Card",
+    keyword: "conditional green card",
+    shortDescription:
+      "The two-year marriage-based green card and the I-751 filing window that keeps your permanent residence from expiring.",
+    layout: "renewal-cycle",
+    imageKey: "immigrationAct",
+    metaDescription:
+      "Conditional green card lawyer. Two-year CR cards and Form I-751 filings to remove conditions before status expires.",
+    relatedService: "removal-of-conditions",
+  },
+  {
+    slug: "citizenship-interview",
+    title: "Citizenship Interview",
+    keyword: "citizenship interview",
+    shortDescription:
+      "What happens at the N-400 naturalization interview — English, civics, and how to prepare for the questions USCIS actually asks.",
+    layout: "oath-prep",
+    imageKey: "naturalization",
+    metaDescription:
+      "Citizenship interview preparation in Connecticut. N-400 English and civics test coaching with Attorney Goncalves.",
+    relatedService: "citizenship-naturalization",
+  },
 ];
 
 export function getKeywordBySlug(slug: string) {
@@ -428,7 +488,7 @@ export function getKeywordContent(slug: string): KeywordContent | undefined {
         },
         {
           title: "Renewal Timing",
-          body: "File your renewal 180 days before expiration when possible. Automatic extension rules may apply depending on your category — we advise on your specific situation.",
+          body: "File your renewal as close to 180 days before expiration as possible. Since October 30, 2025, most renewals no longer receive an automatic extension, so a late filing can mean a gap in work authorization.",
         },
         {
           title: "Replacement Applications",
@@ -458,7 +518,7 @@ export function getKeywordContent(slug: string): KeywordContent | undefined {
         },
         {
           title: "Biometrics and Processing",
-          body: "Most I-90 applicants attend a biometrics appointment. Processing typically takes 8–12 months. We monitor your case and address any USCIS requests.",
+          body: "Most I-90 applicants attend a biometrics appointment. Processing typically takes 8–14 months. We monitor your case and address any USCIS requests.",
         },
       ],
       cta: "Renew or Replace Your Card",
@@ -610,6 +670,104 @@ export function getKeywordContent(slug: string): KeywordContent | undefined {
         },
       ],
       cta: "File a Sibling Petition",
+    },
+    "cr-1-ir-1-visa": {
+      eyebrow: "Spouse Immigrant Visa",
+      headline: "CR-1 and IR-1 Visas for Spouses Living Abroad",
+      lead: "When a U.S. citizen's spouse lives outside the United States, the immigrant visa path is a CR-1 or IR-1 — not a fiancé visa. The category depends on how long you have been married when the visa is issued.",
+      sections: [
+        {
+          title: "CR-1 vs. IR-1",
+          body: "A marriage under two years at admission leads to a CR-1 conditional visa and a two-year green card. A marriage of two years or more leads to an IR-1 and a ten-year card. Both start with Form I-130 and finish at a U.S. embassy.",
+          items: [
+            "U.S. citizen petitioner",
+            "Legally valid marriage",
+            "Beneficiary processing abroad",
+            "I-864 affidavit of support before the interview",
+          ],
+        },
+        {
+          title: "How It Differs from a K-1",
+          body: "A K-1 is for fiancés who will marry after entering the United States. A CR-1 or IR-1 is for couples who are already married. The immigrant visa leads directly to permanent residence at entry.",
+        },
+      ],
+      cta: "Plan a Spouse Visa",
+    },
+    "advance-parole": {
+      eyebrow: "Form I-131",
+      headline: "Travel While Your Green Card Application Is Pending",
+      lead: "Advance parole is permission to leave the United States and return without abandoning a pending adjustment of status application. It is requested on Form I-131 and should be approved before you travel.",
+      sections: [
+        {
+          title: "Why the Document Matters",
+          body: "Leaving the country while Form I-485 is pending can be treated as abandoning the application if you do not have advance parole or another status that allows you to return. We review your history before you book travel.",
+        },
+        {
+          title: "What We Prepare",
+          body: "The I-131 package explains the reason for travel and is often filed with the adjustment application or while it is pending.",
+          items: [
+            "Pending or concurrent I-485",
+            "Passport biographic page",
+            "Explanation of the trip",
+            "Any prior travel or status issues disclosed up front",
+          ],
+        },
+      ],
+      cta: "Ask About Travel",
+    },
+    "uscis-request-for-evidence": {
+      eyebrow: "RFE Response",
+      headline: "Answer a USCIS Request for Evidence Before the Deadline",
+      lead: "A Request for Evidence means USCIS will not approve the filing on the record it has. The notice sets a response deadline. Missing it is a common reason otherwise strong cases are denied.",
+      sections: [
+        {
+          title: "What RFEs Usually Ask For",
+          body: "Family cases are often questioned on relationship evidence, civil documents, or the affidavit of support. We read the notice against your file and send only what the request actually asks for.",
+          items: [
+            "Joint life evidence for marriage cases",
+            "Tax returns and I-864 income proof",
+            "Translations and missing birth or marriage records",
+            "Explanations for inconsistencies in prior filings",
+          ],
+        },
+        {
+          title: "Deadline Discipline",
+          body: "The response must arrive by the date on the notice. We calendar that date the day the RFE arrives and assemble the packet with a cover letter that tracks each item USCIS listed.",
+        },
+      ],
+      cta: "Review an RFE",
+    },
+    "conditional-green-card": {
+      eyebrow: "Two-Year Residence",
+      headline: "Remove Conditions Before the Two-Year Card Expires",
+      lead: "A conditional green card is issued when permanent residence is granted through a marriage that is less than two years old. Status ends if Form I-751 is not filed in the 90-day window before the card expires.",
+      sections: [
+        {
+          title: "The Filing Window",
+          body: "USCIS must receive Form I-751 during the 90 days before the card's expiration date. Filing early is rejected. Filing late can place you in removal proceedings. We calendar the window when the card is issued.",
+        },
+        {
+          title: "Joint Filing and Waivers",
+          body: "Most couples file jointly with evidence the marriage was real. If the marriage ended, a waiver may still be available. That path is covered separately from a standard joint petition.",
+        },
+      ],
+      cta: "Review Your I-751 Window",
+    },
+    "citizenship-interview": {
+      eyebrow: "N-400 Interview",
+      headline: "Prepare for the Citizenship Interview and Civics Test",
+      lead: "The naturalization interview is where USCIS reviews your N-400, tests English, and asks civics questions. The study materials that apply depend on your filing date.",
+      sections: [
+        {
+          title: "What the Officer Covers",
+          body: "You will review the answers on your application, including trips, addresses, and any arrests. English is tested through speaking, reading, and writing. Civics is a set of questions drawn from the official USCIS materials for your filing.",
+        },
+        {
+          title: "How We Prepare You",
+          body: "We confirm which civics test applies, walk through the N-400 line by line, and practice the questions you are most likely to be asked so the interview is a review, not a surprise.",
+        },
+      ],
+      cta: "Prepare for Your Interview",
     },
   };
 

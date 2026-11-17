@@ -14,6 +14,11 @@ import PetitionForSpouseTopic from "./topics/PetitionForSpouseTopic";
 import PetitionForChildrenTopic from "./topics/PetitionForChildrenTopic";
 import PetitionForParentsTopic from "./topics/PetitionForParentsTopic";
 import PetitionForSiblingTopic from "./topics/PetitionForSiblingTopic";
+import Cr1Ir1VisaTopic from "./topics/Cr1Ir1VisaTopic";
+import AdvanceParoleTopic from "./topics/AdvanceParoleTopic";
+import UscisRfeTopic from "./topics/UscisRfeTopic";
+import ConditionalGreenCardTopic from "./topics/ConditionalGreenCardTopic";
+import CitizenshipInterviewTopic from "./topics/CitizenshipInterviewTopic";
 
 export const topicPageRegistry: Record<string, ComponentType> = {
   "marriage-petitions": MarriagePetitionsTopic,
@@ -31,4 +36,9 @@ export const topicPageRegistry: Record<string, ComponentType> = {
   "petition-for-children": PetitionForChildrenTopic,
   "petition-for-parents": PetitionForParentsTopic,
   "petition-for-sibling": PetitionForSiblingTopic,
+  "cr-1-ir-1-visa": Cr1Ir1VisaTopic,
+  "advance-parole": AdvanceParoleTopic,
+  "uscis-request-for-evidence": UscisRfeTopic,
+  "conditional-green-card": ConditionalGreenCardTopic,
+  "citizenship-interview": CitizenshipInterviewTopic,
 };

@@ -72,7 +72,7 @@ export default function ImmigrationLawyerHartford() {
           },
           {
             q: "Is a video consultation as good as meeting in person?",
-            a: "For most immigration matters, yes. You get the same direct attorney attention, the same careful case preparation, and the convenience of skipping the drive.",
+            a: "For most immigration matters, yes. Hartford-area clients book the same $99 30-minute or $350 one-hour consultation by secure video, share documents online, and work directly with Attorney Goncalves throughout the case. When an interview is scheduled, it is usually at the USCIS Hartford Field Office at 450 Main Street — the field office that serves Connecticut — and we prepare you for it in advance.",
           },
           {
             q: "What immigration matters do you handle for Hartford clients?",

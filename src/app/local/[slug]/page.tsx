@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { locationPagesList, getLocationBySlug } from "@/lib/location-pages";
 import { locationPageRegistry } from "@/components/locations/registry";
-import { pageMetadata, absoluteUrl } from "@/lib/seo";
-import { siteConfig } from "@/lib/constants";
+import { pageMetadata } from "@/lib/seo";
+import { pageJsonLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/JsonLd";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -32,35 +33,16 @@ export default async function LocalPage({ params }: Props) {
 
   if (!page || !LocationComponent) notFound();
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Attorney",
-    name: siteConfig.name,
+  const schema = pageJsonLd({
+    path: `/local/${slug}`,
+    name: page.metaTitle,
     description: page.metaDescription,
-    url: absoluteUrl(`/local/${slug}`),
-    telephone: siteConfig.phone,
-    email: siteConfig.email,
-    image: absoluteUrl("/og-image.png"),
-    priceRange: "$$",
-    knowsLanguage: siteConfig.languages,
-    areaServed: { "@type": "State", name: "Connecticut" },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: siteConfig.address.street,
-      addressLocality: siteConfig.address.city,
-      addressRegion: siteConfig.address.state,
-      postalCode: siteConfig.address.zip,
-      addressCountry: "US",
-    },
-    knowsAbout: [page.keyword, ...page.secondaryKeywords],
-  };
+    breadcrumb: [{ name: page.title, path: `/local/${slug}` }],
+  });
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLd data={schema} />
       <LocationComponent />
     </>
   );

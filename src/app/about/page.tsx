@@ -5,7 +5,7 @@ import { CheckCircle2, Award, Globe, Users, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { CTASection } from "@/components/CTASection";
-import { siteConfig } from "@/lib/constants";
+import { attorneyProfile, siteConfig } from "@/lib/constants";
 import { legalImages } from "@/lib/images";
 import { pageMetadata } from "@/lib/seo";
 
@@ -15,6 +15,12 @@ export const metadata: Metadata = pageMetadata({
     "About Attorney Jacquelyn R. Goncalves — immigration lawyer serving Connecticut with concierge-style, family-based immigration representation.",
   path: "/about",
 });
+
+const PROFILE_LABELS: Record<string, string> = {
+  linkedin: "LinkedIn",
+  avvo: "Avvo",
+  stateBarLookup: "State bar record",
+};
 
 export default function AboutPage() {
   return (
@@ -128,6 +134,116 @@ export default function AboutPage() {
               </div>
             </FadeIn>
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-white border-t border-tan-200">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-8">
+              Credentials at a Glance
+            </h2>
+            <dl className="grid sm:grid-cols-2 gap-x-10 gap-y-6 text-slate-700">
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                  Practice
+                </dt>
+                <dd>
+                  {attorneyProfile.jobTitle} and founder of the {siteConfig.name},
+                  Mystic, Connecticut
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                  Military service
+                </dt>
+                <dd>{attorneyProfile.militaryService}</dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                  Education
+                </dt>
+                <dd>
+                  <ul className="space-y-1">
+                    {attorneyProfile.education.map((e) => (
+                      <li key={e.degree}>
+                        {e.degree}
+                        {e.school && `, ${e.school}`}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+              {attorneyProfile.barAdmissions.length > 0 && (
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                    Bar admissions
+                  </dt>
+                  <dd>
+                    <ul className="space-y-1">
+                      {attorneyProfile.barAdmissions.map((bar) => (
+                        <li key={bar.jurisdiction}>
+                          {bar.jurisdiction}
+                          {bar.year && ` (${bar.year})`}
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              )}
+              {attorneyProfile.memberships.length > 0 && (
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                    Professional memberships
+                  </dt>
+                  <dd>
+                    <ul className="space-y-1">
+                      {attorneyProfile.memberships.map((m) => (
+                        <li key={m}>{m}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              )}
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                  Languages
+                </dt>
+                <dd>
+                  {siteConfig.languages.join(", ")}. {siteConfig.languagesNote}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                  Focus areas
+                </dt>
+                <dd>
+                  Family-based immigration, green cards, removal of conditions,
+                  naturalization, fiancé(e) visas, and visitor and investor visas
+                </dd>
+              </div>
+            </dl>
+            {Object.entries(attorneyProfile.profiles).some(([, url]) => url) && (
+              <p className="mt-8 text-sm text-slate-600">
+                Verify credentials:{" "}
+                {Object.entries(attorneyProfile.profiles)
+                  .filter(([, url]) => url)
+                  .map(([key, url], index) => (
+                    <span key={key}>
+                      {index > 0 && " · "}
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:text-olive-700"
+                      >
+                        {PROFILE_LABELS[key] ?? key}
+                      </a>
+                    </span>
+                  ))}
+              </p>
+            )}
+          </FadeIn>
         </div>
       </section>
 

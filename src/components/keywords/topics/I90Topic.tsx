@@ -178,7 +178,7 @@ export default function I90Topic() {
           },
           {
             q: "Can I get temporary proof of status while I-90 is pending?",
-            a: "Yes. The I-797C receipt notice extends your expired card validity for 24 months (as of recent USCIS policy updates). Carry it with your expired card.",
+            a: "Yes. For I-90 renewals, the I-797C receipt notice extends your green card for 36 months past the expiration date printed on the card (USCIS policy since September 10, 2024). Carry the receipt notice together with your expired card.",
           },
         ]}
       />

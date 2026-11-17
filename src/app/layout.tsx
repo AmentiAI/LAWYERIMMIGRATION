@@ -51,6 +51,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  ...(process.env.BING_SITE_VERIFICATION && {
+    verification: {
+      other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION },
+    },
+  }),
   robots: {
     index: true,
     follow: true,

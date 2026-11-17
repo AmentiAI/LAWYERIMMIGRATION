@@ -270,6 +270,77 @@ body {
   margin-bottom: 0.5rem;
 }
 
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(18px, 26px, 0);
+  }
+}
+
+@keyframes hero-frame {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1.15deg);
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-line {
+  transform-origin: left center;
+  animation: hero-line 0.65s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-orb {
+  animation: hero-float 14s ease-in-out infinite;
+}
+
+.hero-orb-alt {
+  animation: hero-float 16s ease-in-out infinite reverse;
+}
+
+.hero-frame {
+  animation: hero-frame 12s ease-in-out infinite;
+}
+
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hero-line,
+  .hero-orb,
+  .hero-orb-alt,
+  .hero-frame {
+    animation: none;
+  }
+}
+
 /* Prevent long words/URLs from breaking layout */
 .break-anywhere {
   overflow-wrap: anywhere;

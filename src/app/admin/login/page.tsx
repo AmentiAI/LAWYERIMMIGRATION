@@ -23,7 +23,11 @@ export default function AdminLoginPage() {
       });
 
       if (!res.ok) {
-        setError("Invalid password");
+        setError(
+          res.status === 429
+            ? "Too many attempts. Try again in 15 minutes."
+            : "Invalid password"
+        );
         return;
       }
 

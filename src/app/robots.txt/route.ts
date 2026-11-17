@@ -20,7 +20,7 @@ export function GET() {
 
   const aiBlocks = AI_BOTS.map(
     (bot) =>
-      `User-agent: ${bot}\nAllow: /\nAllow: /llms.txt\nAllow: /llms-full.txt\nAllow: /llms/\nDisallow: /admin/\nDisallow: /api/`
+      `User-agent: ${bot}\nAllow: /\nDisallow: /admin\nDisallow: /api/`
   ).join("\n\n");
 
   const body = `# ${siteUrl}
@@ -31,16 +31,12 @@ export function GET() {
 
 User-agent: *
 Allow: /
-Allow: /llms.txt
-Allow: /llms-full.txt
-Allow: /llms/
-Disallow: /admin/
+Disallow: /admin
 Disallow: /api/
 
 ${aiBlocks}
 
 Sitemap: ${siteUrl}/sitemap.xml
-Host: ${siteUrl}
 `;
 
   return new Response(body, {

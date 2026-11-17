@@ -26,7 +26,54 @@ export const siteConfig = {
   serviceAreas: "Connecticut",
   languages: ["English", "Spanish", "Portuguese"],
   languagesNote: "Other languages available upon request.",
+  /** Office coordinates (12 Roosevelt Ave, Mystic) for LocalBusiness schema. */
+  geo: { latitude: 41.3509, longitude: -71.9619 },
+  /**
+   * Official third-party profiles, emitted as schema.org `sameAs` so AI
+   * systems can tie listings to this firm. Add each URL once the profile is
+   * claimed and shows immigration as the practice area; empty entries are
+   * skipped.
+   */
+  profiles: {
+    googleBusinessProfile: "",
+    linkedinCompany: "",
+    facebook: "",
+    justia: "",
+    avvo: "",
+  },
 };
+
+/**
+ * Attorney credentials shown on /about and in Person schema. Only filled-in
+ * fields are rendered — leave a field empty rather than guessing.
+ */
+export const attorneyProfile = {
+  name: "Jacquelyn R. Goncalves",
+  jobTitle: "Immigration Attorney",
+  image: "/images/attorney-goncalves.png",
+  militaryService: "U.S. Navy veteran — six years of service",
+  education: [
+    { degree: "Juris Doctor (J.D.)", school: "" },
+    { degree: "Master of Business Administration (MBA)", school: "" },
+    { degree: "Bachelor's degree in English", school: "" },
+  ],
+  /** e.g. { jurisdiction: "Connecticut", year: "2015" } */
+  barAdmissions: [] as { jurisdiction: string; year?: string }[],
+  /** e.g. "American Immigration Lawyers Association (AILA)" */
+  memberships: [] as string[],
+  profiles: {
+    linkedin: "",
+    avvo: "",
+    stateBarLookup: "",
+  },
+};
+
+/**
+ * Date the attorney last reviewed the legal content on /services and
+ * /immigration pages. Update whenever pages are re-checked against current
+ * USCIS rules; shown on-page and emitted as `dateModified`.
+ */
+export const CONTENT_LAST_REVIEWED = "2026-10-02";
 
 /**
  * LawPay hosted payment pages.
@@ -110,7 +157,7 @@ export const faqs = [
   {
     question: "What immigration services do you offer?",
     answer:
-      "We provide family-based immigration services for individuals and families navigating the U.S. immigration process — including green cards, marriage-based petitions, fiancé visas, adjustment of status, citizenship and naturalization, and other family immigration matters. We also assist with business and investment immigration, including LLC applications, finance department documentation, consular processing, and consultation fees. Every case is handled with personal attention and direct attorney involvement from start to finish.",
+      "We provide family-based immigration services for individuals and families navigating the U.S. immigration process — including green cards, marriage-based petitions, fiancé visas, adjustment of status, citizenship and naturalization, and other family immigration matters. We also handle consular processing for relatives abroad, work permit and green card renewals, DACA renewals, VAWA self-petitions, B-1/B-2 visitor visa renewals, and E-2 treaty investor visas for business owners. Every case is handled with personal attention and direct attorney involvement from start to finish.",
   },
   {
     question: "How do I start the immigration process?",
@@ -145,7 +192,7 @@ export const faqs = [
   {
     question: "How long does the immigration process take?",
     answer:
-      "Processing times vary depending on the type of immigration case, government processing backlogs, and your individual circumstances. Some cases may take several months, while others can take longer. We help clients understand the timeline for their specific case and keep them informed throughout the process.",
+      "It depends on the case type. Typical ranges we see: work permit (I-765) renewals 3–7 months; naturalization (N-400) 6–12 months from filing to oath; marriage-based green cards filed inside the U.S. 10–14 months; fiancé (K-1) petitions 8–14 months at USCIS before the consular stage; green card renewals (I-90) 8–14 months; and removal of conditions (I-751) 18–36 months. Consular cases add 8–18 months after the I-130 is approved. USCIS publishes current times by form and office at uscis.gov/processing-times, and we check your specific office at the start of every case.",
   },
   {
     question: "What languages do you speak?",

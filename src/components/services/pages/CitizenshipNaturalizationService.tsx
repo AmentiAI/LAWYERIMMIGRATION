@@ -110,7 +110,7 @@ export default function CitizenshipNaturalizationService() {
               <li>• <strong>Speaking:</strong> Officer assesses English ability during the interview conversation</li>
               <li>• <strong>Reading:</strong> Read aloud one of three sentences correctly</li>
               <li>• <strong>Writing:</strong> Write one of three sentences correctly as dictated</li>
-              <li>• <strong>Civics:</strong> Answer 6 of 10 questions correctly from the 100-question bank</li>
+              <li>• <strong>Civics:</strong> For N-400s filed on or after October 20, 2025, answer 12 of up to 20 questions correctly from the 128-question bank (earlier filers take the 2008 test: 6 of 10 from 100)</li>
             </ul>
           </div>
           <div className="bg-olive-50 rounded-2xl p-8 border border-olive-200">

@@ -13,7 +13,7 @@ export default function WorkPermitRenewalService() {
       <ServiceBanner
         eyebrow="Form I-765 · Employment Authorization"
         title="Renew or Replace Your Employment Authorization Document"
-        lead="An expired EAD means your employer cannot legally keep you on payroll. Attorney Goncalves files I-765 renewals and replacements on time, tracks automatic extension eligibility, and resolves category code errors that cause rejections."
+        lead="An expired EAD means your employer cannot legally keep you on payroll. Attorney Goncalves files I-765 renewals and replacements as early as the rules allow, flags the few categories that still receive automatic extensions, and resolves category code errors that cause rejections."
       />
 
       <ServiceIntro>
@@ -33,7 +33,7 @@ export default function WorkPermitRenewalService() {
 
       <ServiceSection
         title="When to File Your EAD Renewal"
-        subtitle="Timing matters — file too early and USCIS rejects; file too late and you lose work authorization."
+        subtitle="Since October 30, 2025, most renewals no longer receive an automatic extension — filing early is the main protection against a gap."
       >
         <div className="grid md:grid-cols-3 gap-6">
           {[
@@ -42,12 +42,12 @@ export default function WorkPermitRenewalService() {
               detail: "Earliest you may file a renewal I-765. USCIS rejects filings more than 180 days before expiration.",
             },
             {
-              label: "90–120 days before expiration",
-              detail: "Recommended filing window. Allows time for USCIS processing before your current card expires.",
+              label: "As close to 180 days as possible",
+              detail: "Recommended. Because most renewals filed on or after October 30, 2025 get no automatic extension, every extra week of lead time reduces the risk of a gap.",
             },
             {
               label: "After expiration",
-              detail: "Late filing may still be accepted but you lose work authorization until the new EAD arrives unless automatic extension applies.",
+              detail: "USCIS may still accept a late filing, but in most categories you cannot work from the day the card expires until the new EAD arrives.",
             },
           ].map((d) => (
             <div key={d.label} className="bg-white rounded-xl p-6 border border-tan-200 text-center">
@@ -59,29 +59,48 @@ export default function WorkPermitRenewalService() {
       </ServiceSection>
 
       <ServiceSection
-        title="Automatic 180-Day EAD Extension"
-        subtitle="Certain categories qualify for continued work authorization while renewal is pending."
+        title="Automatic EAD Extensions Ended for Most Renewals"
+        subtitle="A DHS interim final rule changed the rules for renewals filed on or after October 30, 2025."
         variant="alt"
       >
+        <p className="text-slate-600 leading-relaxed mb-4 max-w-3xl">
+          Before October 30, 2025, many renewal applicants could keep working after their
+          EAD expired by showing the expired card with the I-797C receipt notice. Under the
+          Department of Homeland Security&apos;s interim final rule, renewal applications
+          filed on or after October 30, 2025 no longer receive that automatic extension in
+          most categories. You must have the new card in hand to keep working once the old
+          one expires.
+        </p>
         <p className="text-slate-600 leading-relaxed mb-6 max-w-3xl">
-          If you file a timely renewal in an eligible category and USCIS has not adjudicated
-          your application before your current EAD expires, you may continue working for
-          up to 180 days with your expired card plus the I-797C receipt notice.
+          Extensions that were already in effect before October 30, 2025 are not affected.
+          Limited exceptions remain where an extension is provided by law or by Federal
+          Register notice, and the situations below are treated differently. Confirm your
+          own category before relying on any extension.
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
           {[
-            "Adjustment of status applicants — category (c)(9)",
-            "Asylum applicants with pending I-589 — category (c)(8)",
-            "DACA recipients — category (c)(33)",
-            "TPS beneficiaries — category (a)(12) or (c)(19)",
-            "Pending I-821D renewal with timely filing",
-            "Certain H-4 spouses with approved I-140 — category (c)(26)",
+            "TPS beneficiaries — extensions announced by Federal Register notice for your country",
+            "F-1 students with a timely STEM OPT extension — 180-day extension under 8 CFR 214.2(f)",
+            "Renewals filed before October 30, 2025 that already carried an automatic extension",
+            "Status-based work authorization (e.g., refugees, asylees) — your right to work does not depend on the card, though employers may require other I-9 documents",
           ].map((cat) => (
             <div key={cat} className="bg-white rounded-xl p-4 text-sm text-slate-700 border border-tan-200">
               {cat}
             </div>
           ))}
         </div>
+        <p className="text-xs text-slate-500 mt-6 max-w-3xl">
+          Source:{" "}
+          <a
+            href="https://www.uscis.gov/i-9-central/form-i-9-related-news/interim-final-rule-published-to-end-the-practice-of-automatically-extending-certain-employment"
+            className="underline hover:text-olive-700"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            USCIS — Interim Final Rule Ending Automatic Extension of Certain EADs
+          </a>
+          .
+        </p>
       </ServiceSection>
 
       <ServiceSection title="Renewal vs. Replacement">
@@ -173,7 +192,7 @@ export default function WorkPermitRenewalService() {
         items={[
           {
             q: "Can I keep working if my EAD expires before the renewal arrives?",
-            a: "Only if you filed timely in an eligible category and qualify for the automatic 180-day extension. Otherwise, you must stop working when your card expires.",
+            a: "For most renewals filed on or after October 30, 2025, no. DHS ended automatic EAD extensions for most categories, so you must stop working when your card expires unless the new EAD has arrived. Limited exceptions exist (for example, TPS extensions by Federal Register notice and STEM OPT), which is why filing up to 180 days early matters.",
           },
           {
             q: "Do I need a new EAD if I change employers?",

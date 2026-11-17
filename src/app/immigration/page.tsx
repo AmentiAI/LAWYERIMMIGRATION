@@ -27,6 +27,8 @@ export default function ImmigrationIndexPage() {
       "petition-for-sibling",
       "fiance-visa",
       "green-card-petitions",
+      "cr-1-ir-1-visa",
+      "conditional-green-card",
     ].includes(p.slug)
   );
   const special = keywordPagesList.filter(

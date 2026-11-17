@@ -41,121 +41,159 @@ const iconMap = {
   Plane,
 };
 
+const highlights = [
+  "Direct attorney involvement on every case",
+  "English, Spanish, and Portuguese",
+  "Clients in Connecticut and worldwide",
+];
+
+const steps = [
+  {
+    n: "01",
+    title: "Consult",
+    body: "Meet Attorney Goncalves in Mystic or by video. You leave with a plan, not a handoff.",
+  },
+  {
+    n: "02",
+    title: "Prepare",
+    body: "She drafts the filing, checks the evidence, and explains each form before anything is sent.",
+  },
+  {
+    n: "03",
+    title: "See it through",
+    body: "The same attorney stays on the file through interviews, RFEs, and the decision.",
+  },
+];
+
+const titleWords = siteConfig.tagline.split(" ");
+
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[70dvh] sm:min-h-[75dvh] lg:min-h-[85dvh] flex items-center border-b-4 border-gold-500 overflow-hidden">
-        <Image
-          src={legalImages.mysticConnecticut.src}
-          alt={legalImages.mysticConnecticut.alt}
-          fill
-          priority
-          sizes="100vw"
-          quality={95}
-          unoptimized
-          className="object-cover object-center"
+      <section className="relative page-header-offset pb-16 sm:pb-20 bg-olive-950 text-white overflow-hidden border-b-4 border-gold-500">
+        <div
+          aria-hidden
+          className="hero-orb pointer-events-none absolute -top-24 -left-16 h-72 w-72 rounded-full bg-gold-500/15 blur-3xl"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-olive-950/65 via-olive-950/40 to-olive-950/25"
-          aria-hidden="true"
+          aria-hidden
+          className="hero-orb-alt pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-olive-600/30 blur-3xl"
         />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 w-full">
-          <FadeIn>
-            <p className="law-eyebrow mb-3 sm:mb-4 text-xs sm:text-sm">
-              Immigration Law · Connecticut
-            </p>
-          </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] max-w-4xl break-words">
-              {siteConfig.tagline}
-            </h1>
-            <div className="law-rule mt-5 sm:mt-6" />
-          </FadeIn>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-center">
+            <div>
+              <p className="hero-rise law-eyebrow mb-4 text-xs sm:text-sm">
+                Immigration Law · Mystic, Connecticut
+              </p>
 
-          <FadeIn delay={0.2}>
-            <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-tan-100/80 max-w-2xl leading-relaxed font-light">
-              {siteConfig.subtagline}
-            </p>
-          </FadeIn>
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.35rem] font-bold leading-[1.12] text-white">
+                {titleWords.map((word, index) => (
+                  <span
+                    key={`${word}-${index}`}
+                    className="hero-rise inline-block mr-[0.28em]"
+                    style={{ animationDelay: `${0.05 + index * 0.04}s` }}
+                  >
+                    {word}
+                  </span>
+                ))}
+              </h1>
 
-          <FadeIn delay={0.3}>
-            <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Button href="/consultation" variant="gold" size="lg" className="w-full sm:w-auto justify-center">
-                Book Consultation
-              </Button>
-              <Button
-                href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto justify-center"
+              <div className="hero-line law-rule mt-6" />
+
+              <p
+                className="hero-rise mt-5 text-base sm:text-lg text-tan-100/85 max-w-xl leading-relaxed"
+                style={{ animationDelay: "0.45s" }}
               >
-                Call {siteConfig.phone}
-              </Button>
+                {siteConfig.subtagline} You work directly with Attorney
+                Jacquelyn R. Goncalves from the first conversation through the
+                decision.
+              </p>
+
+              <ul className="mt-6 space-y-2.5">
+                {highlights.map((item, index) => (
+                  <li
+                    key={item}
+                    className="hero-rise flex items-center gap-3 text-sm sm:text-base text-tan-100/90"
+                    style={{ animationDelay: `${0.55 + index * 0.08}s` }}
+                  >
+                    <CheckCircle2 className="h-5 w-5 text-gold-400 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="hero-rise mt-8 flex flex-col sm:flex-row gap-3" style={{ animationDelay: "0.85s" }}>
+                <Button href="/consultation" variant="gold" size="lg" className="w-full sm:w-auto justify-center">
+                  Book Consultation
+                </Button>
+                <Button
+                  href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto justify-center"
+                >
+                  Call {siteConfig.phone}
+                </Button>
+              </div>
             </div>
-          </FadeIn>
+
+            <div className="hero-rise relative mx-auto w-full max-w-md lg:max-w-none" style={{ animationDelay: "0.2s" }}>
+              <div
+                aria-hidden
+                className="hero-frame absolute -inset-3 rounded-[1.6rem] border border-gold-400/50"
+              />
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-2xl shadow-black/40 ring-1 ring-gold-400/30">
+                <Image
+                  src={legalImages.attorneyGoncalves.src}
+                  alt={legalImages.attorneyGoncalves.alt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 90vw, 38vw"
+                  className="object-cover object-top"
+                />
+              </div>
+              <p className="mt-4 text-center text-sm text-tan-100/80">
+                <span className="font-serif text-base text-white">Jacquelyn R. Goncalves</span>
+                <span className="block text-gold-400 text-xs tracking-wider uppercase mt-1">
+                  Attorney at Law
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="section-padding bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <FadeIn direction="left">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl shadow-navy-950/10">
-                  <Image
-                    src={legalImages.attorneyGoncalves.src}
-                    alt={legalImages.attorneyGoncalves.alt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    priority
-                    className="object-cover object-top"
-                  />
+          <FadeIn className="max-w-2xl mb-12">
+            <p className="law-eyebrow mb-3 !text-olive-700">How a case moves</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-olive-950">
+              One attorney. From the first call to the decision.
+            </h2>
+          </FadeIn>
+          <StaggerContainer className="grid md:grid-cols-3 gap-6">
+            {steps.map((step) => (
+              <StaggerItem key={step.n}>
+                <div className="h-full law-card p-8 transition-transform duration-300 hover:-translate-y-1">
+                  <p className="font-serif text-4xl font-bold text-gold-500 mb-4">{step.n}</p>
+                  <h3 className="font-serif text-2xl font-semibold text-olive-950 mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{step.body}</p>
                 </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn direction="right">
-              <p className="law-eyebrow mb-3">
-                Concierge-Style Representation
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6">
-                Personal Attention. Clear Guidance.
-              </h2>
-              <p className="text-slate-700 leading-relaxed mb-6">
-                At the {siteConfig.name}, we understand that immigration is
-                more than paperwork — it&apos;s about your future, your family,
-                and your peace of mind.
-              </p>
-              <p className="text-slate-700 leading-relaxed mb-8">
-                You will work directly with Attorney Goncalves from start to
-                finish, never passed from one person to another.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  "Direct attorney involvement on every case",
-                  "English, Spanish, and Portuguese — other languages available upon request",
-                  "Assist clients worldwide",
-                  "Family-based immigration focus",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 text-slate-700"
-                  >
-                    <CheckCircle2 className="h-5 w-5 text-teal-600 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 text-navy-900 font-semibold hover:text-teal-600 transition-colors group"
-              >
-                Learn More About Me
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </FadeIn>
-          </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+          <FadeIn className="mt-10">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-olive-900 font-semibold hover:text-gold-600 transition-colors group"
+            >
+              Learn more about Attorney Goncalves
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </FadeIn>
         </div>
       </section>
 
@@ -337,6 +375,11 @@ export default function HomePage() {
               </StaggerItem>
             ))}
           </StaggerContainer>
+          <p className="mt-8 text-center text-xs text-slate-500 max-w-2xl mx-auto">
+            Client testimonials describe individual experiences. Prior results do not
+            guarantee a similar outcome, and processing times depend on USCIS and the
+            facts of each case.
+          </p>
         </div>
       </section>
 

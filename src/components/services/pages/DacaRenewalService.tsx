@@ -43,7 +43,10 @@ export default function DacaRenewalService() {
           policy clarity — timely renewal is your best protection.
         </p>
         <p className="text-white/85 leading-relaxed max-w-3xl">
-          Processing times vary case by case.
+          USCIS recommends filing your renewal 120 to 150 days before your current
+          DACA and work permit expire. Because most work-permit renewals filed on or
+          after October 30, 2025 no longer receive an automatic extension, filing
+          inside that window is the best way to avoid a gap in work authorization.
         </p>
       </ServiceSection>
 

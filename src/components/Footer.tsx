@@ -132,7 +132,7 @@ export function Footer() {
 
           <div>
             <h3 className="text-[11px] font-semibold uppercase tracking-wider text-white/45 mb-2.5">
-              Immigration Help Across Connecticut
+              Areas We Serve
             </h3>
             <nav className="flex flex-wrap gap-x-3 gap-y-1.5">
               {locationPagesList.map((page) => (

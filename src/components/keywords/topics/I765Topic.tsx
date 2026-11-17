@@ -48,8 +48,8 @@ export default function I765Topic() {
               </h3>
               <p className="text-white/70 text-sm leading-relaxed mb-4">
                 File when your current EAD is expiring. USCIS recommends filing up
-                to 180 days before expiration. Many categories qualify for
-                automatic 180-day extensions while renewal is pending.
+                to 180 days before expiration. Since October 30, 2025, most
+                renewals no longer receive an automatic extension, so file early.
               </p>
               <ul className="space-y-2 text-sm text-white/60">
                 <li>• Same eligibility category as original EAD</li>
@@ -115,14 +115,25 @@ export default function I765Topic() {
       <section className="py-16 bg-olive-800 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="font-serif text-2xl font-bold mb-4 text-white">
-            Automatic Extension Rules
+            Automatic Extensions Have Ended for Most Renewals
           </h2>
           <p className="text-white/90 leading-relaxed">
-            If you file your I-765 renewal on time and USCIS has not adjudicated
-            it before your current EAD expires, you may receive an automatic
-            180-day extension. Your employer can accept your expired EAD plus the
-            I-797C receipt notice as proof of continued work authorization —
-            but only for eligible categories.
+            Under a DHS interim final rule, I-765 renewals filed on or after
+            October 30, 2025 no longer receive an automatic extension in most
+            categories — if your EAD expires before the new card arrives, you
+            must stop working. Extensions granted before that date still stand,
+            and narrow exceptions remain (such as TPS extensions announced by
+            Federal Register notice and the 180-day STEM OPT extension). File as
+            close to 180 days before expiration as possible.{" "}
+            <a
+              href="https://www.uscis.gov/i-9-central/form-i-9-related-news/interim-final-rule-published-to-end-the-practice-of-automatically-extending-certain-employment"
+              className="underline text-white"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read the USCIS announcement
+            </a>
+            .
           </p>
         </div>
       </section>
@@ -137,7 +148,7 @@ export default function I765Topic() {
             },
             {
               q: "Can I start a new job with just the receipt notice?",
-              a: "Only if you qualify for automatic extension and present the receipt notice with your expired EAD. New employers should verify eligibility before hiring.",
+              a: "Generally no. For most renewals filed on or after October 30, 2025, the receipt notice alone does not extend work authorization. Narrow exceptions (such as certain TPS and STEM OPT cases) exist, so confirm your category before starting work.",
             },
             {
               q: "What if my EAD has wrong information?",

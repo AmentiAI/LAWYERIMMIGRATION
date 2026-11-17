@@ -4,7 +4,7 @@ import { legalImages } from "@/lib/images";
 import { TopicFooter, FaqBlock, DocChecklist } from "../shared";
 
 const k1Timeline = [
-  { phase: "USCIS", duration: "6–10 months", action: "I-129F petition filed and adjudicated" },
+  { phase: "USCIS", duration: "8–14 months", action: "I-129F petition filed and adjudicated" },
   { phase: "NVC", duration: "2–4 weeks", action: "Case transferred to National Visa Center" },
   { phase: "Embassy", duration: "2–4 months", action: "DS-160, medical exam, interview scheduled" },
   { phase: "Entry", duration: "90 days", action: "Enter U.S. and marry your fiancé(e)" },

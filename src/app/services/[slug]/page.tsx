@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import { servicesList, getServiceBySlug } from "@/lib/services";
 import { servicePageRegistry } from "@/components/services/registry";
 import { pageMetadata } from "@/lib/seo";
+import { pageJsonLd } from "@/lib/structured-data";
+import { serviceSources } from "@/lib/sources";
+import { JsonLd } from "@/components/JsonLd";
+import { ReviewedBy } from "@/components/ReviewedBy";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -30,5 +34,23 @@ export default async function ServicePage({ params }: Props) {
 
   if (!service || !ServicePageComponent) notFound();
 
-  return <ServicePageComponent />;
+  return (
+    <>
+      <JsonLd
+        data={pageJsonLd({
+          path: `/services/${slug}`,
+          name: service.title,
+          description: service.metaDescription,
+          breadcrumb: [
+            { name: "Services", path: "/services" },
+            { name: service.title, path: `/services/${slug}` },
+          ],
+          service: true,
+          article: true,
+        })}
+      />
+      <ServicePageComponent />
+      <ReviewedBy sources={serviceSources[slug]} />
+    </>
+  );
 }
